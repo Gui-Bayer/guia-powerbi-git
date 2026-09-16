@@ -39,13 +39,14 @@ projetos **PBIP** com Git, GitHub e VS Code — da instalação inicial até a c
 
 ```
 guia-powerbi-git/
-??? index.html              # todo o conteúdo do guia
-??? assets/
-?   ??? css/style.css       # design system, temas e componentes
-?   ??? js/main.js          # JavaScript puro, sem dependências
-?   ??? img/*.svg           # 16 ilustrações e mockups de tela
-??? .nojekyll               # necessário para o GitHub Pages servir os assets
-??? README.md
+├── index.html              # todo o conteúdo do guia
+├── assets/
+│   ├── css/style.css       # design system, temas e componentes
+│   ├── js/main.js          # JavaScript puro, sem dependências
+│   └── img/*.svg           # 22 ilustrações e mockups de tela
+├── tools/serve.ps1         # servidor HTTP local para testar o site
+├── .nojekyll               # necessário para o GitHub Pages servir os assets
+└── README.md
 ```
 
 ## Como abrir localmente
@@ -72,7 +73,7 @@ Depois acesse <http://localhost:8000>.
    git push -u origin main
    ```
 
-2. No repositório, vá em **Settings ? Pages**.
+2. No repositório, vá em **Settings → Pages**.
 3. Em *Source*, selecione **Deploy from a branch**, branch `main` e pasta `/ (root)`.
 4. Salve. Em cerca de um minuto o site fica disponível em
    `https://SEU-USUARIO.github.io/guia-powerbi-git/`.

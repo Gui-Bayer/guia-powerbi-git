@@ -1,16 +1,178 @@
 /* ==========================================================================
    Guia Power BI + Git + GitHub + VS Code
    JavaScript puro, sem dependencias externas.
+
+   Todo texto visivel ao usuario vem de assets/i18n/<idioma>.json.
+   Este arquivo e mantido em ASCII de proposito: acentos e caracteres
+   especiais ficam nos JSON de traducao, nunca no codigo.
    ========================================================================== */
 (function () {
   'use strict';
 
   const $  = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+
   const STORE = {
     theme: 'guia-pbip:theme',
-    check: 'guia-pbip:checklist'
+    check: 'guia-pbip:checklist',
+    lang:  'guia-pbip:lang'
   };
+
+  /* ---------------------------------------------------------------- i18n -- */
+  const I18n = (function () {
+    const SUPPORTED = ['pt-BR', 'en-US', 'es-MX'];
+    const BASE = 'pt-BR';
+    const SHORT = { 'pt-BR': 'PT', 'en-US': 'EN', 'es-MX': 'ES' };
+
+    const cache = {};
+    let current = BASE;
+    let dict = {};
+    let base = {};
+    let ready = false;
+
+    // Ordem de deteccao: ?lang= > preferencia salva > idioma do navegador.
+    function detect() {
+      let param = null;
+      try { param = new URLSearchParams(window.location.search).get('lang'); } catch (e) { /* ignora */ }
+      const fromParam = match(param);
+      if (fromParam) return fromParam;
+
+      let saved = null;
+      try { saved = localStorage.getItem(STORE.lang); } catch (e) { /* storage bloqueado */ }
+      const fromSaved = match(saved);
+      if (fromSaved) return fromSaved;
+
+      const prefs = navigator.languages && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language || ''];
+      for (let i = 0; i < prefs.length; i++) {
+        const hit = match(prefs[i]);
+        if (hit) return hit;
+      }
+      return BASE;
+    }
+
+    // Aceita 'en', 'en-GB', 'ES-mx' etc. e resolve para um idioma suportado.
+    function match(tag) {
+      if (!tag) return null;
+      const wanted = String(tag).toLowerCase();
+      const exact = SUPPORTED.filter(l => l.toLowerCase() === wanted)[0];
+      if (exact) return exact;
+      const prefix = wanted.slice(0, 2);
+      return SUPPORTED.filter(l => l.slice(0, 2) === prefix)[0] || null;
+    }
+
+    function load(lang) {
+      if (cache[lang]) return Promise.resolve(cache[lang]);
+      return fetch('assets/i18n/' + lang + '.json', { cache: 'no-cache' })
+        .then(res => {
+          if (!res.ok) throw new Error('i18n ' + lang + ': HTTP ' + res.status);
+          return res.json();
+        })
+        .then(json => { cache[lang] = json; return json; });
+    }
+
+    // Aceita chave plana ("nav.introducao") ou aninhada ({ nav: { introducao } }).
+    function pluck(source, key) {
+      if (source && typeof source[key] === 'string') return source[key];
+
+      const parts = key.split('.');
+      let node = source;
+      for (let i = 0; i < parts.length; i++) {
+        if (node === null || typeof node !== 'object' || !(parts[i] in node)) return undefined;
+        node = node[parts[i]];
+      }
+      return typeof node === 'string' ? node : undefined;
+    }
+
+    // Devolve a chave quando nao ha traducao, para o texto original do HTML ficar intacto.
+    function t(key, vars) {
+      let value = pluck(dict, key);
+      if (value === undefined) value = pluck(base, key);
+      if (value === undefined) return key;
+      if (vars) {
+        Object.keys(vars).forEach(name => {
+          value = value.split('{' + name + '}').join(String(vars[name]));
+        });
+      }
+      return value;
+    }
+
+    function setMeta(kind, name, key) {
+      const value = t(key);
+      if (value === key) return;
+      const el = document.head.querySelector('meta[' + kind + '="' + name + '"]');
+      if (el) el.setAttribute('content', value);
+    }
+
+    function apply() {
+      document.documentElement.setAttribute('lang', current);
+
+      $$('[data-i18n]').forEach(el => {
+        const value = t(el.dataset.i18n);
+        if (value !== el.dataset.i18n) el.textContent = value;
+      });
+
+      $$('[data-i18n-html]').forEach(el => {
+        const value = t(el.dataset.i18nHtml);
+        if (value !== el.dataset.i18nHtml) el.innerHTML = value;
+      });
+
+      $$('[data-i18n-attr]').forEach(el => {
+        el.dataset.i18nAttr.split('|').forEach(pair => {
+          const cut = pair.indexOf(':');
+          if (cut < 0) return;
+          const attr = pair.slice(0, cut).trim();
+          const key = pair.slice(cut + 1).trim();
+          const value = t(key);
+          if (value !== key) el.setAttribute(attr, value);
+        });
+      });
+
+      const title = t('meta.title');
+      if (title !== 'meta.title') document.title = title;
+      setMeta('name', 'description', 'meta.description');
+      setMeta('property', 'og:title', 'meta.ogTitle');
+      setMeta('property', 'og:description', 'meta.ogDescription');
+    }
+
+    function setLang(lang, options) {
+      const target = match(lang) || BASE;
+      const persist = !options || options.persist !== false;
+
+      return load(BASE)
+        .then(baseDict => {
+          base = baseDict;
+          return target === BASE ? baseDict : load(target);
+        })
+        .then(langDict => {
+          dict = langDict;
+          current = target;
+          ready = true;
+          apply();
+          if (persist) {
+            try { localStorage.setItem(STORE.lang, target); } catch (e) { /* ignora */ }
+          }
+          document.dispatchEvent(new CustomEvent('i18n:change', { detail: { lang: target } }));
+        })
+        .catch(err => {
+          // Em file:// o fetch e bloqueado: o site segue no texto original do HTML.
+          if (window.console && console.info) {
+            console.info('i18n indisponivel, mantendo o conteudo original:', err.message);
+          }
+        });
+    }
+
+    return {
+      init: () => setLang(detect(), { persist: false }),
+      setLang: setLang,
+      t: t,
+      get lang() { return current; },
+      get ready() { return ready; },
+      supported: SUPPORTED,
+      short: SHORT
+    };
+  })();
 
   /* ---------------------------------------------------------------- tema -- */
   const html = document.documentElement;
@@ -21,9 +183,13 @@
     if (btn) {
       const dark = theme === 'dark';
       btn.innerHTML = '<i class="fa-solid fa-' + (dark ? 'sun' : 'moon') + '"></i>';
-      btn.setAttribute('aria-label', dark ? 'Ativar tema claro' : 'Ativar tema escuro');
-      btn.title = dark ? 'Tema claro' : 'Tema escuro';
+      btn.setAttribute('aria-label', I18n.t(dark ? 'ui.theme.toLight' : 'ui.theme.toDark'));
+      btn.title = I18n.t(dark ? 'ui.theme.light' : 'ui.theme.dark');
     }
+  }
+
+  function currentTheme() {
+    return html.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
   }
 
   function initTheme() {
@@ -35,11 +201,54 @@
     const toggle = $('#themeToggle');
     if (toggle) {
       toggle.addEventListener('click', () => {
-        const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        const next = currentTheme() === 'dark' ? 'light' : 'dark';
         applyTheme(next);
         try { localStorage.setItem(STORE.theme, next); } catch (e) { /* ignora */ }
       });
     }
+
+    document.addEventListener('i18n:change', () => applyTheme(currentTheme()));
+  }
+
+  /* ------------------------------------------------- seletor de idioma ---- */
+  function initLangSwitch() {
+    const wrap   = $('#langSwitch');
+    const toggle = $('#langToggle');
+    const menu   = $('#langMenu');
+    const code   = $('#langCode');
+    if (!wrap || !toggle || !menu) return;
+
+    const close = () => { wrap.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); };
+    const open  = () => { wrap.classList.add('is-open');    toggle.setAttribute('aria-expanded', 'true'); };
+
+    toggle.addEventListener('click', event => {
+      event.stopPropagation();
+      if (wrap.classList.contains('is-open')) close(); else open();
+    });
+
+    $$('button[data-lang]', menu).forEach(btn => {
+      btn.addEventListener('click', () => {
+        I18n.setLang(btn.dataset.lang);
+        close();
+      });
+    });
+
+    document.addEventListener('click', event => {
+      if (!event.target.closest('#langSwitch')) close();
+    });
+    window.addEventListener('keydown', event => {
+      if (event.key === 'Escape') close();
+    });
+
+    function sync() {
+      if (code) code.textContent = I18n.short[I18n.lang] || I18n.lang;
+      $$('button[data-lang]', menu).forEach(btn => {
+        btn.setAttribute('aria-selected', String(btn.dataset.lang === I18n.lang));
+      });
+    }
+
+    document.addEventListener('i18n:change', sync);
+    sync();
   }
 
   /* ----------------------------------------------- copiar comandos -------- */
@@ -58,6 +267,11 @@
       .join('\n');
   }
 
+  function copyIdleLabel(btn) {
+    btn.innerHTML = '<i class="fa-regular fa-copy"></i> ' + I18n.t('ui.copy.label');
+    btn.setAttribute('aria-label', I18n.t('ui.copy.aria'));
+  }
+
   function initCopyButtons() {
     $$('.code').forEach(block => {
       if (block.classList.contains('code--nocopy')) return;
@@ -66,8 +280,7 @@
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'code__copy';
-      btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copiar';
-      btn.setAttribute('aria-label', 'Copiar comando');
+      copyIdleLabel(btn);
 
       btn.addEventListener('click', async () => {
         const text = copyableText(block);
@@ -85,14 +298,20 @@
           ta.remove();
         }
         btn.classList.add('is-done');
-        btn.innerHTML = '<i class="fa-solid fa-check"></i> Copiado!';
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> ' + I18n.t('ui.copy.done');
         setTimeout(() => {
           btn.classList.remove('is-done');
-          btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copiar';
+          copyIdleLabel(btn);
         }, 1800);
       });
 
       block.appendChild(btn);
+    });
+
+    document.addEventListener('i18n:change', () => {
+      $$('.code__copy').forEach(btn => {
+        if (!btn.classList.contains('is-done')) copyIdleLabel(btn);
+      });
     });
   }
 
@@ -128,31 +347,17 @@
     window.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
   }
 
-  /* --------------------------------------------- scroll-spy + progresso -- */
+  /* ------------------------------------------------ menu ativo + leitura -- */
   function initScrollSpy() {
-    const sections = $$('.section');
-    const links = new Map($$('.nav__link').map(a => [a.getAttribute('href').slice(1), a]));
-    const fill  = $('#readProgress');
-    const label = $('#readLabel');
-    const sidebar = $('#sidebar');
+    const sections = $$('.section, .hero');
+    const links = $$('.nav__link');
     if (!sections.length) return;
 
-    let current = '';
+    const fill  = $('#readProgress');
+    const label = $('#readLabel');
 
     function setActive(id) {
-      if (id === current) return;
-      current = id;
-      links.forEach(a => a.classList.remove('is-active'));
-
-      const active = links.get(id);
-      if (active && sidebar) {
-        active.classList.add('is-active');
-        const box = active.getBoundingClientRect();
-        const wrap = sidebar.getBoundingClientRect();
-        if (box.top < wrap.top + 60 || box.bottom > wrap.bottom - 60) {
-          active.scrollIntoView({ block: 'center', behavior: 'smooth' });
-        }
-      }
+      links.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + id));
 
       const index = sections.findIndex(s => s.id === id);
       if (index >= 0 && fill) {
@@ -207,7 +412,7 @@
     const results = $('#searchResults');
     if (!input || !results) return;
 
-    const index = buildIndex();
+    let index = buildIndex();
     let cursor = -1;
 
     function escapeHtml(str) {
@@ -242,8 +447,10 @@
               '<span class="search__hit-title"><i class="' + item.icon + '"></i>' + item.label + '</span>' +
               '<span class="search__hit-ctx">' + snippet(item, q) + '</span>' +
             '</a>').join('')
-        : '<p class="search__empty">Nenhum resultado para "<b>' + escapeHtml(raw) + '</b>".<br>' +
-          'Tente <code>commit</code>, <code>branch</code>, <code>pbip</code> ou <code>conflito</code>.</p>';
+        : '<p class="search__empty">' +
+            I18n.t('ui.search.empty', { query: '<b>' + escapeHtml(raw) + '</b>' }) + '<br>' +
+            I18n.t('ui.search.hint') +
+          '</p>';
 
       results.classList.add('is-open');
     }
@@ -286,6 +493,12 @@
         e.preventDefault(); input.focus();
       }
     });
+
+    // O indice guarda o texto traduzido, entao precisa ser refeito na troca de idioma.
+    document.addEventListener('i18n:change', () => {
+      index = buildIndex();
+      if (input.value.trim().length >= 2) render(input.value); else close();
+    });
   }
 
   /* --------------------------------------------------------- checklist ---- */
@@ -302,7 +515,7 @@
       const done = boxes.filter(b => b.checked).length;
       const pct = Math.round((done / boxes.length) * 100);
       if (fill) fill.style.width = pct + '%';
-      if (count) count.textContent = done + ' de ' + boxes.length + ' concluídos';
+      if (count) count.textContent = I18n.t('checklist.count', { done: done, total: boxes.length });
     }
 
     function persist() {
@@ -324,6 +537,7 @@
       });
     }
 
+    document.addEventListener('i18n:change', update);
     update();
   }
 
@@ -334,7 +548,10 @@
       const nodes = $$('.flow__node', flow);
       if (!detail || !nodes.length) return;
 
+      let active = nodes[0];
+
       const show = node => {
+        active = node;
         nodes.forEach(n => n.classList.toggle('is-on', n === node));
         detail.innerHTML = node.dataset.detail || '';
       };
@@ -349,11 +566,14 @@
         });
       });
 
+      // Reaplica o detalhe do no ativo quando o idioma muda.
+      document.addEventListener('i18n:change', () => show(active));
+
       show(nodes[0]);
     });
   }
 
-  /* ------------------------------------------------- animações de entrada - */
+  /* --------------------------------------------------- animacoes de entrada */
   function initReveal() {
     const items = $$('.reveal');
     if (!items.length) return;
@@ -395,21 +615,23 @@
     });
   }
 
-  /* ----------------------------------------------------- âncoras em títulos */
+  /* ------------------------------------------------- ancoras em titulos --- */
   function initAnchors() {
     $$('.section h2[id], .section h3[id]').forEach(h => {
       const a = document.createElement('a');
       a.className = 'anchor';
       a.href = '#' + h.id;
       a.innerHTML = '<i class="fa-solid fa-link"></i>';
-      a.setAttribute('aria-label', 'Link para esta seção');
+      a.setAttribute('aria-label', I18n.t('ui.anchor.aria'));
+      a.setAttribute('data-i18n-attr', 'aria-label:ui.anchor.aria');
       h.appendChild(a);
     });
   }
 
   /* ------------------------------------------------------------- arranque - */
-  function boot() {
+  function start() {
     initTheme();
+    initLangSwitch();
     initCopyButtons();
     initSidebar();
     initScrollSpy();
@@ -420,6 +642,24 @@
     initToTop();
     initExternalLinks();
     initAnchors();
+  }
+
+  // API publica: window.I18n.setLang('en-US'), .t('chave'), .lang, .supported
+  window.I18n = I18n;
+
+  // O texto traduzido muda a altura da pagina depois que o navegador ja pulou
+  // para a ancora do link, entao o alvo precisa ser reposicionado uma vez.
+  function realignHash() {
+    if (!window.location.hash || window.location.hash === '#') return;
+    let target = null;
+    try { target = document.querySelector(window.location.hash); } catch (e) { return; }
+    if (target) requestAnimationFrame(() => target.scrollIntoView());
+  }
+
+  // O idioma carrega antes do resto para que a busca indexe o texto correto.
+  function boot() {
+    const run = () => { start(); realignHash(); };
+    I18n.init().then(run, run);
   }
 
   if (document.readyState === 'loading') {

@@ -21,17 +21,15 @@ projetos **PBIP** com Git, GitHub e VS Code — da instalação inicial até a c
 | 12 | Boas práticas para equipes Power BI |
 | 13 | Publicação e entrega final |
 | 14 | Comandos Git mais utilizados |
-| 15 | Checklist final interativo |
 | + | Recursos úteis |
 
 ## Recursos do site
 
 - Tema claro e escuro, com detecção da preferência do sistema e persistência em `localStorage`
-- Menu lateral fixo com destaque automático do capítulo em leitura e barra de progresso
+- Menu lateral fixo com destaque automático do capítulo em leitura
 - Busca instantânea em todo o conteúdo (`Ctrl+K` ou `/`), com navegação por teclado
 - Botão **Copiar** em cada bloco de comando, que copia só os comandos e descarta a saída do terminal
 - Fluxogramas interativos, linha do tempo do workflow e diagramas de branches
-- Checklist final com progresso salvo no navegador
 - 16 ilustrações SVG próprias: telas do VS Code, GitHub, GitHub Desktop, Power BI Desktop e terminais
 - Responsivo, acessível e com estilos de impressão
 

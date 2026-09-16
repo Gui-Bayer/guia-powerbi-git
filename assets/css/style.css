@@ -212,25 +212,6 @@ code, kbd, pre { font-family: var(--mono); }
   transition: transform .26s ease;
 }
 
-.sidebar__progress {
-  margin: 0 10px 18px;
-  padding: 12px 13px;
-  background: var(--surface);
-  border: 1px solid var(--border-soft);
-  border-radius: var(--radius);
-}
-.sidebar__progress-label {
-  display: flex; justify-content: space-between;
-  font-size: 11.5px; color: var(--text-soft); margin-bottom: 7px;
-}
-.sidebar__progress-label b { color: var(--text); }
-.bar { height: 6px; background: var(--surface-2); border-radius: 99px; overflow: hidden; }
-.bar__fill {
-  height: 100%; width: 0;
-  background: linear-gradient(90deg, #1f6feb, #8250df);
-  border-radius: 99px; transition: width .35s ease;
-}
-
 .nav__group { font-size: 10.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
   color: var(--text-mute); padding: 16px 12px 7px; }
 .nav__list { list-style: none; margin: 0; padding: 0; }
@@ -621,45 +602,7 @@ td .cmd {
   padding: 3px 9px; border-radius: 6px; white-space: nowrap;
 }
 
-/* --- 17. Checklist ------------------------------------------------------- */
-.checklist { list-style: none; margin: 22px 0; padding: 0; display: grid; gap: 9px; }
-.check {
-  display: flex; align-items: flex-start; gap: 13px;
-  padding: 13px 16px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: all .18s ease;
-}
-.check:hover { border-color: var(--brand); transform: translateX(3px); }
-.check input { position: absolute; opacity: 0; width: 0; height: 0; }
-.check__box {
-  flex: none; width: 21px; height: 21px; margin-top: 2px;
-  border: 2px solid var(--border); border-radius: 6px;
-  display: grid; place-items: center;
-  color: transparent; font-size: 11px;
-  transition: all .18s ease;
-}
-.check__text { font-size: 14.5px; font-weight: 600; }
-.check__hint { display: block; font-size: 12.5px; font-weight: 400; color: var(--text-mute); margin-top: 2px; }
-.check input:checked ~ .check__box { background: var(--green); border-color: var(--green); color: #fff; }
-.check:has(input:checked) { background: var(--green-soft); border-color: color-mix(in srgb, var(--green) 45%, transparent); }
-.check:has(input:checked) .check__text { text-decoration: line-through; color: var(--text-mute); }
-
-.checklist-bar {
-  display: flex; align-items: center; gap: 14px;
-  padding: 15px 18px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  margin-bottom: 18px;
-}
-.checklist-bar .bar { flex: 1; height: 9px; }
-.checklist-bar__count { font-size: 14px; font-weight: 700; white-space: nowrap; }
-.checklist-bar .btn { padding: 7px 13px; font-size: 12.5px; }
-
-/* --- 18. Links úteis ----------------------------------------------------- */
+/* --- 17. Links úteis ----------------------------------------------------- */
 .links { display: grid; gap: 11px; grid-template-columns: repeat(auto-fit, minmax(275px, 1fr)); margin: 22px 0; }
 .link-card {
   display: flex; align-items: center; gap: 13px;
@@ -685,7 +628,7 @@ td .cmd {
 .link-card__go { color: var(--text-mute); font-size: 12px; }
 .link-card:hover .link-card__go { color: var(--brand); }
 
-/* --- 19. Comparação lado a lado ----------------------------------------- */
+/* --- 18. Comparação lado a lado ----------------------------------------- */
 .vs { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 22px 0; }
 .vs__col { border: 1px solid; border-radius: var(--radius); padding: 18px; }
 .vs__col--bad { background: var(--red-soft); border-color: color-mix(in srgb, var(--red) 35%, transparent); }
@@ -696,7 +639,7 @@ td .cmd {
 .vs__col ul { margin: 0; padding-left: 20px; font-size: 13.8px; }
 .vs__col li { margin-bottom: 6px; }
 
-/* --- 20. Rodapé ---------------------------------------------------------- */
+/* --- 19. Rodapé ---------------------------------------------------------- */
 .footer {
   margin-top: 54px; padding-top: 26px;
   border-top: 1px solid var(--border);
@@ -718,7 +661,7 @@ td .cmd {
 .to-top.is-on { opacity: 1; pointer-events: auto; }
 .to-top:hover { transform: translateY(-3px); }
 
-/* --- 21. Animações ------------------------------------------------------- */
+/* --- 20. Animações ------------------------------------------------------- */
 .reveal { opacity: 0; transform: translateY(18px); }
 .reveal.is-in { opacity: 1; transform: none; transition: opacity .55s ease, transform .55s ease; }
 
@@ -735,7 +678,7 @@ td .cmd {
 }
 .backdrop.is-on { opacity: 1; pointer-events: auto; }
 
-/* --- 22. Responsivo ------------------------------------------------------ */
+/* --- 21. Responsivo ------------------------------------------------------ */
 @media (max-width: 1100px) {
   :root { --sidebar-w: 260px; }
   .content { padding: 30px 26px 90px; }
@@ -767,7 +710,7 @@ td .cmd {
   .flow__node { flex: 1 1 100%; }
 }
 
-/* --- 23. Impressão ------------------------------------------------------- */
+/* --- 22. Impressão ------------------------------------------------------- */
 @media print {
   .topbar, .sidebar, .to-top, .code__copy, .backdrop { display: none !important; }
   .content { margin: 0; padding: 0; }

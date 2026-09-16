@@ -69,13 +69,6 @@
 
   <!-- ==================================================== MENU LATERAL -->
   <aside class="sidebar" id="sidebar">
-    <div class="sidebar__progress">
-      <div class="sidebar__progress-label">
-        <span>Progresso da leitura</span><b id="readLabel">0%</b>
-      </div>
-      <div class="bar"><div class="bar__fill" id="readProgress"></div></div>
-    </div>
-
     <nav aria-label="Capítulos do guia">
       <p class="nav__group">Começando</p>
       <ul class="nav__list">
@@ -101,7 +94,6 @@
         <li><a class="nav__link" href="#boas-praticas"><span class="nav__num">12</span> Boas práticas</a></li>
         <li><a class="nav__link" href="#publicacao"><span class="nav__num">13</span> Publicação e entrega</a></li>
         <li><a class="nav__link" href="#comandos"><span class="nav__num">14</span> Comandos mais usados</a></li>
-        <li><a class="nav__link" href="#checklist"><span class="nav__num">15</span> Checklist final</a></li>
         <li><a class="nav__link" href="#recursos"><i class="fa-solid fa-book-bookmark"></i> Recursos úteis</a></li>
       </ul>
     </nav>
@@ -127,13 +119,12 @@
         <span class="chip chip--gh"><i class="fa-brands fa-github"></i> GitHub</span>
         <span class="chip chip--vs"><i class="fa-solid fa-code"></i> VS Code</span>
         <span class="chip"><i class="fa-solid fa-clock"></i> ~45 min de leitura</span>
-        <span class="chip"><i class="fa-solid fa-layer-group"></i> 15 capítulos</span>
+        <span class="chip"><i class="fa-solid fa-layer-group"></i> 14 capítulos</span>
       </div>
 
       <div class="btn-row">
         <a class="btn btn--primary" href="#introducao"><i class="fa-solid fa-play"></i> Começar pelo capítulo 1</a>
         <a class="btn btn--ghost" href="#comandos"><i class="fa-solid fa-terminal"></i> Ir direto aos comandos</a>
-        <a class="btn btn--ghost" href="#checklist"><i class="fa-solid fa-list-check"></i> Checklist final</a>
       </div>
 
       <figure class="fig hero__fig">
@@ -2456,129 +2447,6 @@ atingimento de meta por país no mesmo painel de receita.
     </section>
 
     <!-- ================================================== SEÇÃO 15 -->
-    <section class="section reveal" id="checklist"
-             data-label="15. Checklist final" data-icon="fa-solid fa-list-check"
-             data-keywords="checklist interativo git instalado github configurado repositório branch commit push pull request merge sincronizado">
-      <span class="eyebrow"><i class="fa-solid fa-list-check"></i> Capítulo 15</span>
-      <h2 id="h-checklist">Checklist final</h2>
-      <p class="lead">
-        Marque cada item conforme avança. O progresso fica salvo no seu navegador, então você pode
-        fechar a página e voltar depois.
-      </p>
-
-      <div class="checklist-bar">
-        <span class="checklist-bar__count" id="checkCount">0 de 10 concluídos</span>
-        <div class="bar"><div class="bar__fill" id="checkProgress"></div></div>
-        <button class="btn btn--ghost" id="checkReset" type="button">
-          <i class="fa-solid fa-rotate-left"></i> Limpar
-        </button>
-      </div>
-
-      <ul class="checklist">
-        <li>
-          <label class="check">
-            <input type="checkbox" id="ck1">
-            <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text">Git instalado
-              <span class="check__hint"><code>git --version</code> responde com um número de versão</span>
-            </span>
-          </label>
-        </li>
-        <li>
-          <label class="check">
-            <input type="checkbox" id="ck2">
-            <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text">GitHub configurado
-              <span class="check__hint">Conta criada, 2FA ativo e <code>user.name</code> / <code>user.email</code> definidos</span>
-            </span>
-          </label>
-        </li>
-        <li>
-          <label class="check">
-            <input type="checkbox" id="ck3">
-            <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text">VS Code instalado
-              <span class="check__hint">Com as extensões GitHub Pull Requests, Copilot, TMDL e Material Icon Theme</span>
-            </span>
-          </label>
-        </li>
-        <li>
-          <label class="check">
-            <input type="checkbox" id="ck4">
-            <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text">Repositório conectado
-              <span class="check__hint"><code>git remote -v</code> mostra o <code>origin</code> correto</span>
-            </span>
-          </label>
-        </li>
-        <li>
-          <label class="check">
-            <input type="checkbox" id="ck5">
-            <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text">Branch criada
-              <span class="check__hint"><code>git checkout -b feature/minha-tarefa</code> com nome padronizado</span>
-            </span>
-          </label>
-        </li>
-        <li>
-          <label class="check">
-            <input type="checkbox" id="ck6">
-            <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text">Commit realizado
-              <span class="check__hint">Mensagem no padrão <code>feat:</code>, <code>fix:</code>, <code>docs:</code>…</span>
-            </span>
-          </label>
-        </li>
-        <li>
-          <label class="check">
-            <input type="checkbox" id="ck7">
-            <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text">Push realizado
-              <span class="check__hint">A branch já aparece na aba <em>Branches</em> do GitHub</span>
-            </span>
-          </label>
-        </li>
-        <li>
-          <label class="check">
-            <input type="checkbox" id="ck8">
-            <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text">Pull Request criado
-              <span class="check__hint">Com descrição, revisor indicado e branch de destino correta</span>
-            </span>
-          </label>
-        </li>
-        <li>
-          <label class="check">
-            <input type="checkbox" id="ck9">
-            <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text">Merge concluído
-              <span class="check__hint">PR aprovado e mesclado; conflitos resolvidos e testados no Desktop</span>
-            </span>
-          </label>
-        </li>
-        <li>
-          <label class="check">
-            <input type="checkbox" id="ck10">
-            <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text">Projeto sincronizado
-              <span class="check__hint"><code>git checkout main</code> + <code>git pull</code> e branch antiga removida</span>
-            </span>
-          </label>
-        </li>
-      </ul>
-
-      <div class="callout callout--tip">
-        <i class="fa-solid fa-trophy"></i>
-        <div>
-          <span class="callout__title">Dez itens marcados = ciclo completo dominado</span>
-          <p>Você saiu de "arquivo por e-mail" para um fluxo versionado, revisado e rastreável.
-             A partir daqui, o próximo nível é automatizar: integração Git do Fabric, validação
-             automática de TMDL e Deployment Pipelines.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================ SEÇÃO EXTRA -->
     <section class="section reveal" id="recursos"
              data-label="Recursos úteis" data-icon="fa-solid fa-book-bookmark"
              data-keywords="links documentação oficial git docs github docs github flow vscode power bi gitignore generator">
@@ -2700,7 +2568,6 @@ atingimento de meta por país no mesmo painel de receita.
         <span class="footer__links">
           <a href="#inicio">Voltar ao início</a>
           <a href="#comandos">Comandos</a>
-          <a href="#checklist">Checklist</a>
         </span>
       </footer>
     </section>

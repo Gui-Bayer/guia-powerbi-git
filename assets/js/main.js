@@ -8,8 +8,7 @@
   const $  = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
   const STORE = {
-    theme: 'guia-pbip:theme',
-    check: 'guia-pbip:checklist'
+    theme: 'guia-pbip:theme'
   };
 
   /* ---------------------------------------------------------------- tema -- */
@@ -128,12 +127,11 @@
     window.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
   }
 
-  /* --------------------------------------------- scroll-spy + progresso -- */
+  /* ---------------------------------------------------------- scroll-spy -- */
   function initScrollSpy() {
     const sections = $$('.section');
     const links = new Map($$('.nav__link').map(a => [a.getAttribute('href').slice(1), a]));
-    const fill  = $('#readProgress');
-    const label = $('#readLabel');
+
     const sidebar = $('#sidebar');
     if (!sections.length) return;
 
@@ -154,12 +152,6 @@
         }
       }
 
-      const index = sections.findIndex(s => s.id === id);
-      if (index >= 0 && fill) {
-        const pct = Math.round(((index + 1) / sections.length) * 100);
-        fill.style.width = pct + '%';
-        if (label) label.textContent = pct + '%';
-      }
     }
 
     const observer = new IntersectionObserver(entries => {
@@ -288,45 +280,6 @@
     });
   }
 
-  /* --------------------------------------------------------- checklist ---- */
-  function initChecklist() {
-    const boxes = $$('.check input[type="checkbox"]');
-    if (!boxes.length) return;
-
-    const fill  = $('#checkProgress');
-    const count = $('#checkCount');
-    let saved = {};
-    try { saved = JSON.parse(localStorage.getItem(STORE.check) || '{}'); } catch (e) { saved = {}; }
-
-    function update() {
-      const done = boxes.filter(b => b.checked).length;
-      const pct = Math.round((done / boxes.length) * 100);
-      if (fill) fill.style.width = pct + '%';
-      if (count) count.textContent = done + ' de ' + boxes.length + ' concluídos';
-    }
-
-    function persist() {
-      const state = {};
-      boxes.forEach(b => { state[b.id] = b.checked; });
-      try { localStorage.setItem(STORE.check, JSON.stringify(state)); } catch (e) { /* ignora */ }
-    }
-
-    boxes.forEach(box => {
-      if (saved[box.id]) box.checked = true;
-      box.addEventListener('change', () => { persist(); update(); });
-    });
-
-    const reset = $('#checkReset');
-    if (reset) {
-      reset.addEventListener('click', () => {
-        boxes.forEach(b => { b.checked = false; });
-        persist(); update();
-      });
-    }
-
-    update();
-  }
-
   /* ------------------------------------------------ fluxogramas interativos */
   function initFlows() {
     $$('.flow').forEach(flow => {
@@ -414,7 +367,6 @@
     initSidebar();
     initScrollSpy();
     initSearch();
-    initChecklist();
     initFlows();
     initReveal();
     initToTop();

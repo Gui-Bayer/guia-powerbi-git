@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 440" role="img" aria-label="Power BI Desktop com a opção de salvar como projeto PBIP">
+  <rect width="820" height="440" rx="12" fill="#f3f2f1"/>
+  <rect x="0" y="0" width="820" height="34" rx="12" fill="#F2C811"/>
+  <rect x="0" y="22" width="820" height="12" fill="#F2C811"/>
+  <g font-family="Segoe UI, Inter, sans-serif">
+    <g transform="translate(14 8)">
+      <rect x="0" y="9" width="4" height="9" rx="1" fill="#5b4200"/>
+      <rect x="6" y="5" width="4" height="13" rx="1" fill="#5b4200"/>
+      <rect x="12" y="1" width="4" height="17" rx="1" fill="#5b4200"/>
+    </g>
+    <text x="42" y="22" font-size="12" font-weight="600" fill="#3b2c00">Vendas LATAM &#8212; Power BI Desktop</text>
+    <text x="806" y="22" text-anchor="end" font-size="12" fill="#3b2c00">&#8211; &#9633; &#10005;</text>
+
+    <rect x="0" y="34" width="820" height="30" fill="#ffffff"/>
+    <g font-size="11.5" fill="#323130">
+      <text x="18" y="54" font-weight="600" fill="#0f6cbd">Arquivo</text>
+      <text x="78" y="54">Página Inicial</text>
+      <text x="164" y="54">Inserir</text>
+      <text x="212" y="54">Modelagem</text>
+      <text x="292" y="54">Exibição</text>
+      <text x="356" y="54">Otimizar</text>
+      <text x="416" y="54">Ajuda</text>
+    </g>
+    <rect x="0" y="63" width="820" height="1" fill="#e1dfdd"/>
+
+    <rect x="12" y="76" width="470" height="350" rx="6" fill="#ffffff" stroke="#e1dfdd"/>
+    <text x="30" y="102" font-size="13" font-weight="700" fill="#201f1e">Performance Comercial LATAM</text>
+
+    <g>
+      <rect x="30" y="116" width="126" height="64" rx="6" fill="#f8f8f8" stroke="#edebe9"/>
+      <text x="42" y="136" font-size="9.5" fill="#605e5c">RECEITA YTD</text>
+      <text x="42" y="162" font-size="19" font-weight="700" fill="#107c10">R$ 18,4M</text>
+
+      <rect x="164" y="116" width="126" height="64" rx="6" fill="#f8f8f8" stroke="#edebe9"/>
+      <text x="176" y="136" font-size="9.5" fill="#605e5c">KPI LATAM</text>
+      <text x="176" y="162" font-size="19" font-weight="700" fill="#0f6cbd">104,2%</text>
+
+      <rect x="298" y="116" width="170" height="64" rx="6" fill="#f8f8f8" stroke="#edebe9"/>
+      <text x="310" y="136" font-size="9.5" fill="#605e5c">MARGEM</text>
+      <text x="310" y="162" font-size="19" font-weight="700" fill="#8764b8">32,7%</text>
+
+      <rect x="30" y="192" width="260" height="140" rx="6" fill="#f8f8f8" stroke="#edebe9"/>
+      <text x="42" y="212" font-size="10" fill="#605e5c">Receita por mês</text>
+      <g fill="#0f6cbd">
+        <rect x="46" y="284" width="18" height="34" rx="2"/><rect x="74" y="266" width="18" height="52" rx="2"/>
+        <rect x="102" y="248" width="18" height="70" rx="2"/><rect x="130" y="256" width="18" height="62" rx="2"/>
+        <rect x="158" y="230" width="18" height="88" rx="2"/><rect x="186" y="240" width="18" height="78" rx="2"/>
+        <rect x="214" y="218" width="18" height="100" rx="2"/><rect x="242" y="226" width="18" height="92" rx="2"/>
+      </g>
+
+      <rect x="298" y="192" width="170" height="140" rx="6" fill="#f8f8f8" stroke="#edebe9"/>
+      <text x="310" y="212" font-size="10" fill="#605e5c">Mix por país</text>
+      <circle cx="383" cy="268" r="44" fill="#0f6cbd"/>
+      <path d="M383 268 L383 224 A44 44 0 0 1 424 283 Z" fill="#8764b8"/>
+      <path d="M383 268 L424 283 A44 44 0 0 1 396 310 Z" fill="#F2C811"/>
+      <circle cx="383" cy="268" r="18" fill="#f8f8f8"/>
+
+      <rect x="30" y="344" width="438" height="70" rx="6" fill="#f8f8f8" stroke="#edebe9"/>
+      <text x="42" y="364" font-size="10" fill="#605e5c">Detalhe por representante</text>
+      <g fill="#a19f9d">
+        <rect x="42" y="374" width="414" height="8" rx="2" opacity=".5"/>
+        <rect x="42" y="388" width="380" height="8" rx="2" opacity=".35"/>
+        <rect x="42" y="402" width="400" height="8" rx="2" opacity=".35"/>
+      </g>
+    </g>
+
+    <rect x="498" y="76" width="308" height="350" rx="8" fill="#ffffff" stroke="#c8c6c4"/>
+    <rect x="498" y="76" width="308" height="34" rx="8" fill="#f3f2f1"/>
+    <rect x="498" y="100" width="308" height="10" fill="#f3f2f1"/>
+    <text x="516" y="98" font-size="12" font-weight="600" fill="#201f1e">Salvar como</text>
+    <text x="790" y="98" text-anchor="end" font-size="12" fill="#605e5c">&#10005;</text>
+
+    <text x="516" y="136" font-size="11" fill="#605e5c">Nome do arquivo</text>
+    <rect x="516" y="144" width="272" height="28" rx="3" fill="#ffffff" stroke="#8a8886"/>
+    <text x="528" y="163" font-size="11.5" fill="#201f1e">Vendas LATAM</text>
+
+    <text x="516" y="196" font-size="11" fill="#605e5c">Tipo</text>
+    <rect x="516" y="204" width="272" height="30" rx="3" fill="#ffffff" stroke="#0f6cbd" stroke-width="2"/>
+    <text x="528" y="224" font-size="11.5" font-weight="600" fill="#0f6cbd">Power BI project files (*.pbip)</text>
+    <text x="772" y="224" font-size="10" fill="#0f6cbd">&#9662;</text>
+
+    <rect x="516" y="244" width="272" height="30" rx="3" fill="#f3f2f1" stroke="#e1dfdd"/>
+    <text x="528" y="263" font-size="11.5" fill="#a19f9d">Power BI files (*.pbix)</text>
+
+    <rect x="516" y="290" width="272" height="72" rx="6" fill="#eff6fc" stroke="#0f6cbd"/>
+    <text x="530" y="312" font-size="11" font-weight="600" fill="#0f6cbd">Por que .pbip?</text>
+    <text x="530" y="330" font-size="10.5" fill="#1b3f66">Gera uma pasta com arquivos de texto</text>
+    <text x="530" y="346" font-size="10.5" fill="#1b3f66">(JSON e TMDL) que o Git consegue versionar.</text>
+
+    <rect x="632" y="382" width="74" height="28" rx="3" fill="#0f6cbd"/>
+    <text x="669" y="401" text-anchor="middle" font-size="11.5" font-weight="600" fill="#ffffff">Salvar</text>
+    <rect x="714" y="382" width="74" height="28" rx="3" fill="#ffffff" stroke="#8a8886"/>
+    <text x="751" y="401" text-anchor="middle" font-size="11.5" fill="#201f1e">Cancelar</text>
+
+    <text x="516" y="392" font-size="10" fill="#605e5c">Preview ativado em</text>
+    <text x="516" y="406" font-size="10" fill="#605e5c">Opções &#8594; Recursos</text>
+    <text x="516" y="420" font-size="10" fill="#605e5c">de Preview</text>
+  </g>
+</svg>

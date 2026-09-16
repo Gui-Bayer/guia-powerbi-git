@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" role="img" aria-label="Fluxo feature para develop para main e publicação">
+  <defs>
+    <marker id="ra" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect width="880" height="340" rx="14" fill="#f8fafc"/>
+  <g font-family="Segoe UI, Inter, sans-serif">
+    <text x="440" y="36" text-anchor="middle" font-size="15.5" font-weight="700" fill="#0f172a">Entrega final: feature &#8594; develop &#8594; main &#8594; Serviço do Power BI</text>
+
+    <g stroke="#94a3b8" stroke-width="2.5">
+      <path d="M198 148 H238" marker-end="url(#ra)"/>
+      <path d="M402 148 H442" marker-end="url(#ra)"/>
+      <path d="M606 148 H646" marker-end="url(#ra)"/>
+    </g>
+
+    <rect x="24" y="96" width="174" height="104" rx="12" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+    <text x="111" y="126" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0e7490">feature/*</text>
+    <text x="111" y="150" text-anchor="middle" font-size="11" fill="#155e75">Desenvolvimento</text>
+    <text x="111" y="168" text-anchor="middle" font-size="11" fill="#155e75">individual da tarefa</text>
+    <text x="111" y="188" text-anchor="middle" font-size="10" fill="#0891b2">testado no Desktop</text>
+
+    <rect x="238" y="96" width="164" height="104" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <text x="320" y="126" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1e40af">develop</text>
+    <text x="320" y="150" text-anchor="middle" font-size="11" fill="#1d4ed8">Integração da equipe</text>
+    <text x="320" y="168" text-anchor="middle" font-size="11" fill="#1d4ed8">Homologação / QA</text>
+    <text x="320" y="188" text-anchor="middle" font-size="10" fill="#2563eb">workspace de teste</text>
+
+    <rect x="442" y="96" width="164" height="104" rx="12" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+    <text x="524" y="126" text-anchor="middle" font-size="13.5" font-weight="700" fill="#14532d">main</text>
+    <text x="524" y="150" text-anchor="middle" font-size="11" fill="#15803d">Versão oficial</text>
+    <text x="524" y="168" text-anchor="middle" font-size="11" fill="#15803d">aprovada pelo negócio</text>
+    <text x="524" y="188" text-anchor="middle" font-size="10" fill="#16a34a">tag v1.3</text>
+
+    <rect x="646" y="96" width="210" height="104" rx="12" fill="#fffbeb" stroke="#F2C811" stroke-width="2"/>
+    <g transform="translate(672 116)">
+      <rect x="0" y="14" width="6" height="11" rx="2" fill="#F2C811"/>
+      <rect x="9" y="8" width="6" height="17" rx="2" fill="#E8B000"/>
+      <rect x="18" y="1" width="6" height="24" rx="2" fill="#D99B00"/>
+    </g>
+    <text x="760" y="132" text-anchor="middle" font-size="13.5" font-weight="700" fill="#713f12">Publicação</text>
+    <text x="751" y="156" text-anchor="middle" font-size="11" fill="#854d0e">Workspace de produção</text>
+    <text x="751" y="174" text-anchor="middle" font-size="11" fill="#854d0e">(Git integration / Deploy)</text>
+    <text x="751" y="192" text-anchor="middle" font-size="10" fill="#a16207">usuários acessam o relatório</text>
+
+    <rect x="24" y="226" width="832" height="88" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="48" y="252" font-size="12.5" font-weight="700" fill="#0f172a">Depois do merge final, atualize sua máquina</text>
+    <g font-family="Consolas, monospace" font-size="11.5">
+      <rect x="48" y="264" width="188" height="28" rx="6" fill="#0f172a"/>
+      <text x="62" y="283" fill="#a5d6ff">git checkout main</text>
+      <rect x="248" y="264" width="188" height="28" rx="6" fill="#0f172a"/>
+      <text x="262" y="283" fill="#a5d6ff">git pull</text>
+      <rect x="448" y="264" width="188" height="28" rx="6" fill="#0f172a"/>
+      <text x="462" y="283" font-size="10.5" fill="#ffa657">git branch -d feature/kpi</text>
+      <rect x="648" y="264" width="188" height="28" rx="6" fill="#0f172a"/>
+      <text x="662" y="283" font-size="10.5" fill="#ffa657">git push origin --delete</text>
+    </g>
+    <text x="48" y="308" font-size="10.5" fill="#64748b">Branch concluída pode ser removida: o histórico dela já vive dentro de develop e main.</text>
+  </g>
+</svg>

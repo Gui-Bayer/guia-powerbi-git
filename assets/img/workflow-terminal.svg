@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 470" role="img" aria-label="Terminal com o workflow completo de desenvolvimento">
+  <rect width="820" height="470" rx="12" fill="#0c0c0c"/>
+  <rect x="0" y="0" width="820" height="34" rx="12" fill="#2d2d2d"/>
+  <rect x="0" y="22" width="820" height="12" fill="#2d2d2d"/>
+  <g font-family="Segoe UI, Inter, sans-serif">
+    <rect x="12" y="6" width="170" height="24" rx="5" fill="#0c0c0c"/>
+    <text x="26" y="23" font-size="11.5" fill="#cccccc">pwsh &#8212; Vendas.pbip</text>
+    <text x="800" y="23" text-anchor="end" font-size="12" fill="#cccccc">&#8211; &#9633; &#10005;</text>
+  </g>
+  <g font-family="Consolas, Courier New, monospace" font-size="12.5">
+    <text x="18" y="62"><tspan fill="#16c60c">PS ~\Vendas.pbip&gt;</tspan><tspan fill="#f2f2f2"> git checkout -b feature/novo-kpi</tspan></text>
+    <text x="18" y="82" fill="#cccccc">Switched to a new branch 'feature/novo-kpi'</text>
+
+    <text x="18" y="114"><tspan fill="#16c60c">PS ~\Vendas.pbip&gt;</tspan><tspan fill="#f2f2f2"> git status</tspan></text>
+    <text x="18" y="134" fill="#cccccc">On branch feature/novo-kpi</text>
+    <text x="18" y="154" fill="#cccccc">Changes not staged for commit:</text>
+    <text x="42" y="174" fill="#e74856">modified:&#160;&#160; Vendas.SemanticModel/definition/tables/Vendas.tmdl</text>
+    <text x="42" y="194" fill="#e74856">modified:&#160;&#160; Vendas.Report/definition/pages/pages.json</text>
+
+    <text x="18" y="226"><tspan fill="#16c60c">PS ~\Vendas.pbip&gt;</tspan><tspan fill="#f2f2f2"> git add .</tspan></text>
+
+    <text x="18" y="256"><tspan fill="#16c60c">PS ~\Vendas.pbip&gt;</tspan><tspan fill="#f2f2f2"> git commit -m </tspan><tspan fill="#ce9178">"feat: adicionando novo KPI LATAM"</tspan></text>
+    <text x="18" y="276" fill="#cccccc">[feature/novo-kpi 7c4f1ab] feat: adicionando novo KPI LATAM</text>
+    <text x="18" y="296" fill="#cccccc">&#160;2 files changed, 14 insertions(+), 2 deletions(-)</text>
+
+    <text x="18" y="328"><tspan fill="#16c60c">PS ~\Vendas.pbip&gt;</tspan><tspan fill="#f2f2f2"> git push origin feature/novo-kpi</tspan></text>
+    <text x="18" y="348" fill="#cccccc">Enumerating objects: 17, done.</text>
+    <text x="18" y="368" fill="#cccccc">Writing objects: 100% (9/9), 2.41 KiB | 2.41 MiB/s, done.</text>
+    <text x="18" y="388" fill="#61d6d6">remote: Create a pull request for 'feature/novo-kpi' on GitHub by visiting:</text>
+    <text x="18" y="408" fill="#3b78ff">remote:&#160;&#160; https://github.com/bi-latam/vendas-latam-pbip/pull/new/feature/novo-kpi</text>
+    <text x="18" y="428" fill="#cccccc">branch 'feature/novo-kpi' set up to track 'origin/feature/novo-kpi'.</text>
+
+    <text x="18" y="458"><tspan fill="#16c60c">PS ~\Vendas.pbip&gt;</tspan><tspan fill="#f2f2f2"> &#9608;</tspan></text>
+  </g>
+</svg>

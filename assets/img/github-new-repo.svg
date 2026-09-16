@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 460" role="img" aria-label="Tela de criação de novo repositório no GitHub">
+  <rect width="820" height="460" rx="12" fill="#e2e8f0"/>
+  <rect x="10" y="10" width="800" height="440" rx="10" fill="#0d1117"/>
+  <rect x="10" y="10" width="800" height="40" rx="10" fill="#161b22"/>
+  <rect x="10" y="38" width="800" height="12" fill="#161b22"/>
+  <circle cx="34" cy="30" r="6" fill="#ff5f57"/><circle cx="54" cy="30" r="6" fill="#febc2e"/><circle cx="74" cy="30" r="6" fill="#28c840"/>
+  <rect x="96" y="18" width="470" height="24" rx="12" fill="#0d1117" stroke="#30363d"/>
+  <g transform="translate(108 24)">
+    <rect x="0" y="3" width="8" height="6" rx="1.5" fill="#3fb950"/>
+    <path d="M1.6 3 V1.8 a2.4 2.4 0 0 1 4.8 0 V3" fill="none" stroke="#3fb950" stroke-width="1.2"/>
+  </g>
+  <text x="124" y="34" font-family="Consolas, monospace" font-size="11.5" fill="#7d8590">https://github.com/new</text>
+
+  <g font-family="Segoe UI, Inter, sans-serif">
+    <text x="44" y="86" font-size="19" font-weight="700" fill="#e6edf3">Create a new repository</text>
+    <text x="44" y="108" font-size="11.5" fill="#7d8590">Um repositório contém todos os arquivos do projeto e o histórico de versões.</text>
+    <rect x="44" y="120" width="732" height="1" fill="#30363d"/>
+
+    <text x="44" y="146" font-size="12" font-weight="600" fill="#e6edf3">Owner *</text>
+    <text x="200" y="146" font-size="12" font-weight="600" fill="#e6edf3">Repository name *</text>
+    <rect x="44" y="154" width="140" height="32" rx="6" fill="#0d1117" stroke="#30363d"/>
+    <circle cx="62" cy="170" r="9" fill="#6e5494"/>
+    <text x="78" y="175" font-size="11.5" fill="#e6edf3">bi-latam &#9662;</text>
+    <text x="192" y="176" font-size="15" fill="#7d8590">/</text>
+    <rect x="200" y="154" width="240" height="32" rx="6" fill="#0d1117" stroke="#2f81f7"/>
+    <text x="212" y="175" font-size="12" fill="#e6edf3">vendas-latam-pbip</text>
+    <text x="452" y="175" font-size="11.5" fill="#3fb950">&#10003; disponível</text>
+
+    <text x="44" y="212" font-size="12" font-weight="600" fill="#e6edf3">Description <tspan fill="#7d8590">(opcional)</tspan></text>
+    <rect x="44" y="220" width="396" height="32" rx="6" fill="#0d1117" stroke="#30363d"/>
+    <text x="56" y="241" font-size="11.5" fill="#7d8590">Projeto PBIP do dashboard comercial LATAM</text>
+
+    <g font-size="12">
+      <circle cx="52" cy="284" r="6.5" fill="#0d1117" stroke="#6e7681"/>
+      <text x="70" y="281" font-weight="600" fill="#e6edf3">Public</text>
+      <text x="70" y="298" font-size="11" fill="#7d8590">Qualquer pessoa na internet vê este repositório.</text>
+
+      <circle cx="52" cy="330" r="6.5" fill="#2f81f7" stroke="#2f81f7"/>
+      <circle cx="52" cy="330" r="2.6" fill="#fff"/>
+      <text x="70" y="327" font-weight="600" fill="#e6edf3">Private</text>
+      <text x="70" y="344" font-size="11" fill="#3fb950">Escolha esta opção para projetos corporativos de Power BI.</text>
+    </g>
+
+    <text x="44" y="380" font-size="12" font-weight="600" fill="#e6edf3">Initialize this repository with:</text>
+    <g font-size="11.5">
+      <rect x="46" y="392" width="13" height="13" rx="3" fill="#2f81f7"/>
+      <path d="M49 399 l3 3 l6 -6" stroke="#fff" stroke-width="1.8" fill="none"/>
+      <text x="68" y="404" fill="#e6edf3">Add a README file</text>
+
+      <rect x="230" y="392" width="13" height="13" rx="3" fill="#0d1117" stroke="#6e7681"/>
+      <text x="252" y="404" fill="#e6edf3">Add .gitignore&#160; <tspan fill="#7d8590">(template: VisualStudio)</tspan></text>
+    </g>
+
+    <rect x="44" y="418" width="150" height="30" rx="6" fill="#238636"/>
+    <text x="119" y="438" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">Create repository</text>
+
+    <rect x="516" y="212" width="260" height="236" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="536" y="238" font-size="12.5" font-weight="700" fill="#e6edf3">Depois de criar, copie a URL</text>
+    <rect x="536" y="250" width="220" height="30" rx="6" fill="#0d1117" stroke="#30363d"/>
+    <text x="546" y="266" font-family="Consolas, monospace" font-size="9.5" fill="#79c0ff">https://github.com/bi-latam/</text>
+    <text x="546" y="277" font-family="Consolas, monospace" font-size="9.5" fill="#79c0ff">vendas-latam-pbip.git</text>
+
+    <g font-size="11" fill="#c9d1d9">
+      <text x="536" y="310">Ela será usada em:</text>
+      <text x="536" y="332" font-family="Consolas, monospace" fill="#a5d6ff">git remote add origin URL</text>
+      <text x="536" y="352" font-family="Consolas, monospace" fill="#a5d6ff">git clone URL</text>
+      <text x="536" y="384">Atenção: se marcar "Add a README",</text>
+      <text x="536" y="400">o remoto já terá 1 commit. Use:</text>
+      <text x="536" y="422" font-family="Consolas, monospace" font-size="10" fill="#ffa657">git pull origin main</text>
+      <text x="536" y="436" font-family="Consolas, monospace" font-size="10" fill="#ffa657">&#160;&#160;&#160; --allow-unrelated-histories</text>
+    </g>
+  </g>
+</svg>

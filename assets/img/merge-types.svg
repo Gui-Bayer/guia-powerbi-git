@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 430" role="img" aria-label="Fast forward, merge commit e merge conflict">
+  <rect width="880" height="430" rx="14" fill="#f8fafc"/>
+  <g font-family="Segoe UI, Inter, sans-serif">
+    <text x="440" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#0f172a">Três resultados possíveis de um merge</text>
+
+    <rect x="20" y="56" width="272" height="344" rx="12" fill="#ffffff" stroke="#22c55e" stroke-width="2"/>
+    <rect x="20" y="56" width="272" height="40" rx="12" fill="#dcfce7"/>
+    <rect x="20" y="84" width="272" height="12" fill="#dcfce7"/>
+    <text x="156" y="82" text-anchor="middle" font-size="13.5" font-weight="700" fill="#166534">Fast-forward</text>
+
+    <g transform="translate(0 20)">
+      <path d="M56 160 H256" stroke="#16a34a" stroke-width="5" stroke-linecap="round"/>
+      <g stroke="#fff" stroke-width="3">
+        <circle cx="56" cy="160" r="9" fill="#16a34a"/>
+        <circle cx="122" cy="160" r="9" fill="#0891b2"/>
+        <circle cx="189" cy="160" r="9" fill="#0891b2"/>
+        <circle cx="256" cy="160" r="9" fill="#0891b2"/>
+      </g>
+      <text x="56" y="190" text-anchor="middle" font-size="10" fill="#475569">main</text>
+      <text x="189" y="190" text-anchor="middle" font-size="10" fill="#0e7490">feature</text>
+      <text x="252" y="138" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a">main aqui</text>
+    </g>
+
+    <g font-size="11.5" fill="#475569">
+      <text x="42" y="244">A main não recebeu nenhum commit</text>
+      <text x="42" y="262">novo desde que a branch nasceu.</text>
+      <text x="42" y="288" font-weight="600" fill="#166534">O Git só "empurra o ponteiro".</text>
+      <text x="42" y="316">Histórico linear, sem commit extra.</text>
+      <text x="42" y="342" font-family="Consolas, monospace" font-size="10.5" fill="#0f172a">git merge feature/novo-kpi</text>
+      <text x="42" y="362" font-family="Consolas, monospace" font-size="10.5" fill="#64748b">Fast-forward</text>
+      <text x="42" y="382" font-family="Consolas, monospace" font-size="10.5" fill="#64748b">5 files changed</text>
+    </g>
+
+    <rect x="304" y="56" width="272" height="344" rx="12" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+    <rect x="304" y="56" width="272" height="40" rx="12" fill="#dbeafe"/>
+    <rect x="304" y="84" width="272" height="12" fill="#dbeafe"/>
+    <text x="440" y="82" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1e40af">Merge commit</text>
+
+    <g transform="translate(0 20)">
+      <path d="M340 168 H540" stroke="#16a34a" stroke-width="5" stroke-linecap="round"/>
+      <path d="M400 168 C420 168 420 130 440 130 H480 C505 130 520 150 540 168" stroke="#0891b2" stroke-width="4" fill="none"/>
+      <g stroke="#fff" stroke-width="3">
+        <circle cx="340" cy="168" r="9" fill="#16a34a"/>
+        <circle cx="400" cy="168" r="9" fill="#16a34a"/>
+        <circle cx="470" cy="168" r="9" fill="#16a34a"/>
+        <circle cx="440" cy="130" r="9" fill="#0891b2"/>
+        <circle cx="490" cy="130" r="9" fill="#0891b2"/>
+        <circle cx="540" cy="168" r="11" fill="#2563eb"/>
+      </g>
+      <text x="540" y="198" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af">merge</text>
+      <text x="370" y="198" text-anchor="middle" font-size="10" fill="#475569">main seguiu</text>
+    </g>
+
+    <g font-size="11.5" fill="#475569">
+      <text x="326" y="244">Os dois lados avançaram, mas</text>
+      <text x="326" y="262">em arquivos ou linhas diferentes.</text>
+      <text x="326" y="288" font-weight="600" fill="#1e40af">O Git cria um commit de junção.</text>
+      <text x="326" y="316">Preserva a história das duas branches.</text>
+      <text x="326" y="342" font-family="Consolas, monospace" font-size="10.5" fill="#0f172a">git merge --no-ff develop</text>
+      <text x="326" y="362" font-family="Consolas, monospace" font-size="10.5" fill="#64748b">Merge made by 'ort'</text>
+      <text x="326" y="382" font-family="Consolas, monospace" font-size="10.5" fill="#64748b">Merge branch 'develop'</text>
+    </g>
+
+    <rect x="588" y="56" width="272" height="344" rx="12" fill="#ffffff" stroke="#ef4444" stroke-width="2"/>
+    <rect x="588" y="56" width="272" height="40" rx="12" fill="#fee2e2"/>
+    <rect x="588" y="84" width="272" height="12" fill="#fee2e2"/>
+    <text x="724" y="82" text-anchor="middle" font-size="13.5" font-weight="700" fill="#991b1b">Merge conflict</text>
+
+    <g transform="translate(0 20)">
+      <path d="M624 168 H700" stroke="#16a34a" stroke-width="5" stroke-linecap="round"/>
+      <path d="M700 168 C720 168 720 130 740 130 H790" stroke="#0891b2" stroke-width="4" fill="none"/>
+      <path d="M700 168 C720 168 720 206 740 206 H790" stroke="#f59e0b" stroke-width="4" fill="none"/>
+      <g stroke="#fff" stroke-width="3">
+        <circle cx="624" cy="168" r="9" fill="#16a34a"/>
+        <circle cx="700" cy="168" r="9" fill="#16a34a"/>
+        <circle cx="758" cy="130" r="9" fill="#0891b2"/>
+        <circle cx="758" cy="206" r="9" fill="#f59e0b"/>
+      </g>
+      <g transform="translate(798 148)">
+        <path d="M14 0 l14 26 H0 z" fill="#ef4444"/>
+        <text x="14" y="23" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">!</text>
+      </g>
+      <text x="738" y="116" text-anchor="middle" font-size="10" fill="#0e7490">Ana editou a linha 21</text>
+      <text x="738" y="232" text-anchor="middle" font-size="10" fill="#b45309">Bruno editou a linha 21</text>
+    </g>
+
+    <g font-size="11.5" fill="#475569">
+      <text x="610" y="244">As duas branches mudaram a</text>
+      <text x="610" y="262">MESMA linha do mesmo arquivo.</text>
+      <text x="610" y="288" font-weight="600" fill="#991b1b">O Git para e pede sua decisão.</text>
+      <text x="610" y="316">Nada é perdido &#8212; você escolhe.</text>
+      <text x="610" y="342" font-family="Consolas, monospace" font-size="10.5" fill="#0f172a">CONFLICT (content):</text>
+      <text x="610" y="362" font-family="Consolas, monospace" font-size="10" fill="#dc2626">Merge conflict in Vendas.tmdl</text>
+      <text x="610" y="382" font-family="Consolas, monospace" font-size="10.5" fill="#64748b">Automatic merge failed</text>
+    </g>
+  </g>
+</svg>

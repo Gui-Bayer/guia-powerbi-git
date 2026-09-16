@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 560" role="img" aria-label="Fluxo completo de colaboração entre Analista A e Analista B">
+  <defs>
+    <marker id="fa" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="880" height="560" rx="14" fill="#f8fafc"/>
+  <g font-family="Segoe UI, Inter, sans-serif">
+    <text x="440" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#0f172a">Analista A e Analista B no mesmo projeto PBIP</text>
+
+    <rect x="24" y="52" width="252" height="480" rx="12" fill="#eff6ff" stroke="#bfdbfe"/>
+    <rect x="314" y="52" width="252" height="480" rx="12" fill="#f5f3ff" stroke="#e9d5ff"/>
+    <rect x="604" y="52" width="252" height="480" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+
+    <circle cx="66" cy="82" r="14" fill="#2563eb"/>
+    <text x="66" y="88" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">A</text>
+    <text x="92" y="80" font-size="13.5" font-weight="700" fill="#1e40af">Analista A</text>
+    <text x="92" y="96" font-size="10.5" fill="#3b82f6">modelagem / medidas</text>
+
+    <circle cx="356" cy="82" r="14" fill="#7c3aed"/>
+    <text x="356" y="88" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">B</text>
+    <text x="382" y="80" font-size="13.5" font-weight="700" fill="#5b21b6">Analista B</text>
+    <text x="382" y="96" font-size="10.5" fill="#8b5cf6">visuais / layout</text>
+
+    <path transform="translate(636 68) scale(0.052)" fill="#24292f" d="M256 0C114.6 0 0 114.6 0 256c0 113.1 73.4 209 175.2 242.9 12.8 2.4 17.5-5.6 17.5-12.3 0-6.1-.2-26.2-.3-47.5-71.3 15.5-86.3-30.2-86.3-30.2-11.7-29.8-28.5-37.7-28.5-37.7-23.3-15.9 1.8-15.6 1.8-15.6 25.7 1.8 39.3 26.4 39.3 26.4 22.9 39.2 60 27.9 74.6 21.3 2.3-16.6 9-28.1 16.3-34.5-57-6.5-116.9-28.5-116.9-126.7 0-28 10-50.9 26.4-68.8-2.7-6.5-11.4-32.6 2.5-67.9 0 0 21.5-6.9 70.4 26.3 20.4-5.7 42.3-8.5 64.1-8.6 21.8.1 43.7 2.9 64.1 8.6 48.8-33.2 70.3-26.3 70.3-26.3 14 35.3 5.2 61.4 2.5 67.9 16.4 17.9 26.3 40.8 26.3 68.8 0 98.4-60 120-117.2 126.4 9.2 7.9 17.4 23.5 17.4 47.4 0 34.2-.3 61.8-.3 70.2 0 6.8 4.6 14.8 17.6 12.3C438.7 465 512 369.1 512 256 512 114.6 397.4 0 256 0z"/>
+    <text x="676" y="80" font-size="13.5" font-weight="700" fill="#24292f">GitHub (origin)</text>
+    <text x="676" y="96" font-size="10.5" fill="#64748b">repositório compartilhado</text>
+
+    <g font-family="Consolas, monospace" font-size="10.5">
+      <rect x="44" y="116" width="212" height="34" rx="7" fill="#fff" stroke="#93c5fd"/>
+      <text x="58" y="138" fill="#1e3a8a">git clone URL</text>
+
+      <rect x="44" y="164" width="212" height="34" rx="7" fill="#fff" stroke="#93c5fd"/>
+      <text x="58" y="186" fill="#1e3a8a">git checkout develop</text>
+
+      <rect x="44" y="212" width="212" height="34" rx="7" fill="#fff" stroke="#93c5fd"/>
+      <text x="58" y="234" fill="#1e3a8a">git pull origin develop</text>
+
+      <rect x="44" y="260" width="212" height="34" rx="7" fill="#fff" stroke="#2563eb" stroke-width="1.6"/>
+      <text x="58" y="276" fill="#1e3a8a">git checkout -b</text>
+      <text x="58" y="290" fill="#1d4ed8">&#160; feature/kpi-margem</text>
+
+      <rect x="44" y="308" width="212" height="34" rx="7" fill="#fff" stroke="#93c5fd"/>
+      <text x="58" y="330" fill="#1e3a8a">git add . &amp;&amp; git commit</text>
+
+      <rect x="44" y="356" width="212" height="34" rx="7" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+      <text x="58" y="372" fill="#1e3a8a">git push origin</text>
+      <text x="58" y="385" fill="#1e3a8a">&#160; feature/kpi-margem</text>
+    </g>
+
+    <g font-family="Consolas, monospace" font-size="10.5">
+      <rect x="334" y="116" width="212" height="34" rx="7" fill="#fff" stroke="#c4b5fd"/>
+      <text x="348" y="138" fill="#4c1d95">git clone URL</text>
+
+      <rect x="334" y="164" width="212" height="34" rx="7" fill="#fff" stroke="#c4b5fd"/>
+      <text x="348" y="186" fill="#4c1d95">git checkout develop</text>
+
+      <rect x="334" y="212" width="212" height="34" rx="7" fill="#fff" stroke="#c4b5fd"/>
+      <text x="348" y="234" fill="#4c1d95">git pull origin develop</text>
+
+      <rect x="334" y="260" width="212" height="34" rx="7" fill="#fff" stroke="#7c3aed" stroke-width="1.6"/>
+      <text x="348" y="276" fill="#4c1d95">git checkout -b</text>
+      <text x="348" y="290" fill="#6d28d9">&#160; feature/comparativo</text>
+
+      <rect x="334" y="308" width="212" height="34" rx="7" fill="#fff" stroke="#c4b5fd"/>
+      <text x="348" y="330" fill="#4c1d95">git add . &amp;&amp; git commit</text>
+
+      <rect x="334" y="356" width="212" height="34" rx="7" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+      <text x="348" y="372" fill="#4c1d95">git push origin</text>
+      <text x="348" y="385" fill="#4c1d95">&#160; feature/comparativo</text>
+    </g>
+
+    <g font-size="11">
+      <rect x="624" y="116" width="212" height="52" rx="8" fill="#fff" stroke="#d0d7de"/>
+      <text x="640" y="138" font-weight="600" fill="#1f2328">Pull Request A &#8594; develop</text>
+      <text x="640" y="156" fill="#1f883d">&#10003; revisado por B e aprovado</text>
+
+      <rect x="624" y="180" width="212" height="52" rx="8" fill="#fff" stroke="#d0d7de"/>
+      <text x="640" y="202" font-weight="600" fill="#1f2328">Pull Request B &#8594; develop</text>
+      <text x="640" y="220" fill="#1f883d">&#10003; revisado por A e aprovado</text>
+
+      <rect x="624" y="252" width="212" height="46" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+      <text x="730" y="272" text-anchor="middle" font-weight="700" fill="#1e40af">Merge em develop</text>
+      <text x="730" y="289" text-anchor="middle" font-size="10" fill="#1d4ed8">versão integrada para testes</text>
+
+      <rect x="624" y="322" width="212" height="46" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+      <text x="730" y="342" text-anchor="middle" font-weight="700" fill="#14532d">Merge em main</text>
+      <text x="730" y="359" text-anchor="middle" font-size="10" fill="#15803d">versão oficial publicada</text>
+      <path d="M730 300 V318" stroke="#64748b" stroke-width="2" marker-end="url(#fa)"/>
+    </g>
+
+    <path d="M256 373 C286 373 300 240 620 200" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#fa)" stroke-dasharray="5 4"/>
+    <path d="M546 373 C580 373 590 300 620 264" stroke="#7c3aed" stroke-width="2" fill="none" marker-end="url(#fa)" stroke-dasharray="5 4"/>
+
+    <rect x="44" y="414" width="792" height="100" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="68" y="440" font-size="13.5" font-weight="700" fill="#0f172a">Depois do merge, todos sincronizam antes de continuar</text>
+    <g font-family="Consolas, monospace" font-size="11">
+      <rect x="68" y="452" width="240" height="26" rx="6" fill="#f1f5f9"/>
+      <text x="80" y="470" fill="#0f172a">git checkout develop</text>
+      <rect x="320" y="452" width="240" height="26" rx="6" fill="#f1f5f9"/>
+      <text x="332" y="470" fill="#0f172a">git pull origin develop</text>
+      <rect x="572" y="452" width="240" height="26" rx="6" fill="#f1f5f9"/>
+      <text x="584" y="470" fill="#0f172a">git branch -d feature/kpi</text>
+    </g>
+    <text x="68" y="500" font-size="11" fill="#64748b">Regra prática: nunca comece o dia sem dar git pull &#8212; isso evita a maior parte dos conflitos.</text>
+  </g>
+</svg>

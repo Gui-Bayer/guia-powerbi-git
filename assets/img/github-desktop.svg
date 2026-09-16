@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" role="img" aria-label="GitHub Desktop mostrando alterações do projeto PBIP">
+  <rect width="820" height="420" rx="12" fill="#f6f8fa"/>
+  <rect x="0" y="0" width="820" height="52" rx="12" fill="#24292f"/>
+  <rect x="0" y="40" width="820" height="12" fill="#24292f"/>
+  <g font-family="Segoe UI, Inter, sans-serif">
+    <g font-size="10.5" fill="#ffffff">
+      <rect x="14" y="10" width="180" height="32" rx="6" fill="#32383f"/>
+      <text x="28" y="24" fill="#8b949e">Current repository</text>
+      <text x="28" y="37" font-weight="600">vendas-latam-pbip</text>
+
+      <rect x="204" y="10" width="180" height="32" rx="6" fill="#32383f"/>
+      <text x="218" y="24" fill="#8b949e">Current branch</text>
+      <text x="218" y="37" font-weight="600">&#9410; feature/novo-kpi</text>
+
+      <rect x="394" y="10" width="200" height="32" rx="6" fill="#32383f"/>
+      <text x="408" y="24" fill="#8b949e">Push origin</text>
+      <text x="408" y="37" font-weight="600">&#8593; 2 commits</text>
+    </g>
+
+    <rect x="0" y="52" width="320" height="368" fill="#ffffff"/>
+    <rect x="320" y="52" width="1" height="368" fill="#d0d7de"/>
+    <g font-size="11.5">
+      <rect x="0" y="52" width="320" height="30" fill="#f6f8fa"/>
+      <text x="16" y="72" font-weight="600" fill="#24292f">3 changed files</text>
+
+      <g font-family="Consolas, monospace" font-size="10.5">
+        <rect x="14" y="92" width="13" height="13" rx="3" fill="#0969da"/>
+        <path d="M17 99 l3 3 l6 -6" stroke="#fff" stroke-width="1.8" fill="none"/>
+        <text x="36" y="103" fill="#24292f">...tables/Vendas.tmdl</text>
+        <text x="300" y="103" text-anchor="end" fill="#bf8700">M</text>
+
+        <rect x="14" y="120" width="13" height="13" rx="3" fill="#0969da"/>
+        <path d="M17 127 l3 3 l6 -6" stroke="#fff" stroke-width="1.8" fill="none"/>
+        <text x="36" y="131" fill="#24292f">...definition/report.json</text>
+        <text x="300" y="131" text-anchor="end" fill="#bf8700">M</text>
+
+        <rect x="14" y="148" width="13" height="13" rx="3" fill="#0969da"/>
+        <path d="M17 155 l3 3 l6 -6" stroke="#fff" stroke-width="1.8" fill="none"/>
+        <text x="36" y="159" fill="#24292f">README.md</text>
+        <text x="300" y="159" text-anchor="end" fill="#1a7f37">A</text>
+      </g>
+
+      <rect x="14" y="252" width="292" height="30" rx="6" fill="#ffffff" stroke="#d0d7de"/>
+      <text x="26" y="272" fill="#24292f">feat: criação do KPI LATAM</text>
+      <rect x="14" y="288" width="292" height="52" rx="6" fill="#ffffff" stroke="#d0d7de"/>
+      <text x="26" y="306" font-size="11" fill="#6e7781">Medida calcula receita sobre meta e</text>
+      <text x="26" y="322" font-size="11" fill="#6e7781">foi adicionada ao card da página 1.</text>
+
+      <rect x="14" y="350" width="292" height="34" rx="6" fill="#1f883d"/>
+      <text x="160" y="372" text-anchor="middle" font-size="12.5" font-weight="600" fill="#ffffff">Commit to feature/novo-kpi</text>
+
+      <text x="160" y="404" text-anchor="middle" font-size="10.5" fill="#6e7781">Alternativa visual ao terminal</text>
+    </g>
+
+    <rect x="321" y="52" width="499" height="368" fill="#ffffff"/>
+    <rect x="321" y="52" width="499" height="30" fill="#f6f8fa"/>
+    <text x="340" y="72" font-family="Consolas, monospace" font-size="11" fill="#24292f">Vendas.SemanticModel/definition/tables/Vendas.tmdl</text>
+
+    <g font-family="Consolas, monospace" font-size="11">
+      <rect x="321" y="90" width="499" height="20" fill="#ddf4ff"/>
+      <text x="336" y="104" fill="#57606a">@@ -18,6 +18,12 @@ table 'Vendas'</text>
+
+      <text x="336" y="128" fill="#57606a">18</text><text x="380" y="128" fill="#24292f">measure 'Receita' = SUM( Vendas[Valor] )</text>
+      <text x="336" y="148" fill="#57606a">19</text><text x="380" y="148" fill="#24292f">&#160;&#160;&#160; formatString: #,0</text>
+      <text x="336" y="168" fill="#57606a">20</text>
+
+      <rect x="321" y="176" width="499" height="20" fill="#e6ffec"/>
+      <text x="336" y="190" fill="#1a7f37">+21</text><text x="380" y="190" fill="#24292f">measure 'KPI LATAM' =</text>
+      <rect x="321" y="196" width="499" height="20" fill="#e6ffec"/>
+      <text x="336" y="210" fill="#1a7f37">+22</text><text x="380" y="210" fill="#24292f">&#160;&#160;&#160; DIVIDE(</text>
+      <rect x="321" y="216" width="499" height="20" fill="#e6ffec"/>
+      <text x="336" y="230" fill="#1a7f37">+23</text><text x="380" y="230" fill="#24292f">&#160;&#160;&#160;&#160;&#160;&#160; SUM( Vendas[Valor] ),</text>
+      <rect x="321" y="236" width="499" height="20" fill="#e6ffec"/>
+      <text x="336" y="250" fill="#1a7f37">+24</text><text x="380" y="250" fill="#24292f">&#160;&#160;&#160;&#160;&#160;&#160; SUM( Metas[Meta] )</text>
+      <rect x="321" y="256" width="499" height="20" fill="#e6ffec"/>
+      <text x="336" y="270" fill="#1a7f37">+25</text><text x="380" y="270" fill="#24292f">&#160;&#160;&#160; )</text>
+      <rect x="321" y="276" width="499" height="20" fill="#e6ffec"/>
+      <text x="336" y="290" fill="#1a7f37">+26</text><text x="380" y="290" fill="#24292f">&#160;&#160;&#160; formatString: 0.0%</text>
+
+      <rect x="321" y="300" width="499" height="20" fill="#ffebe9"/>
+      <text x="336" y="314" fill="#cf222e">-27</text><text x="380" y="314" fill="#24292f">measure 'KPI antigo' = [Receita] / 1000</text>
+    </g>
+
+    <rect x="345" y="342" width="452" height="58" rx="8" fill="#f6f8fa" stroke="#d0d7de"/>
+    <text x="362" y="364" font-size="11.5" font-weight="600" fill="#24292f">É isso que o PBIP habilita:</text>
+    <text x="362" y="384" font-size="11" fill="#57606a">linha a linha, dá para revisar uma medida DAX antes do merge.</text>
+  </g>
+</svg>

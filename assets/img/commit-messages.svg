@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" role="img" aria-label="Exemplos de mensagens de commit boas e ruins">
+  <rect width="880" height="340" rx="14" fill="#f8fafc"/>
+  <g font-family="Segoe UI, Inter, sans-serif">
+    <text x="440" y="36" text-anchor="middle" font-size="16" font-weight="700" fill="#0f172a">O histórico só é útil se a mensagem for clara</text>
+
+    <rect x="24" y="58" width="404" height="256" rx="12" fill="#fff1f2" stroke="#fecdd3"/>
+    <text x="48" y="88" font-size="13.5" font-weight="700" fill="#9f1239">&#10007; Evite</text>
+    <g font-family="Consolas, monospace" font-size="12">
+      <rect x="48" y="102" width="356" height="30" rx="6" fill="#fff" stroke="#fda4af"/>
+      <text x="62" y="122" fill="#7f1d1d">alteracoes</text>
+      <rect x="48" y="140" width="356" height="30" rx="6" fill="#fff" stroke="#fda4af"/>
+      <text x="62" y="160" fill="#7f1d1d">ajustes finais agora vai</text>
+      <rect x="48" y="178" width="356" height="30" rx="6" fill="#fff" stroke="#fda4af"/>
+      <text x="62" y="198" fill="#7f1d1d">.</text>
+      <rect x="48" y="216" width="356" height="30" rx="6" fill="#fff" stroke="#fda4af"/>
+      <text x="62" y="236" fill="#7f1d1d">update</text>
+      <rect x="48" y="254" width="356" height="30" rx="6" fill="#fff" stroke="#fda4af"/>
+      <text x="62" y="274" fill="#7f1d1d">wip teste teste 2</text>
+    </g>
+    <text x="48" y="304" font-size="10.5" fill="#be123c">Seis meses depois, ninguém sabe o que mudou nem por quê.</text>
+
+    <rect x="452" y="58" width="404" height="256" rx="12" fill="#f0fdf4" stroke="#bbf7d0"/>
+    <text x="476" y="88" font-size="13.5" font-weight="700" fill="#166534">&#10003; Use o padrão Conventional Commits</text>
+    <g font-family="Consolas, monospace" font-size="12">
+      <rect x="476" y="102" width="356" height="30" rx="6" fill="#fff" stroke="#86efac"/>
+      <text x="490" y="122"><tspan fill="#0891b2" font-weight="700">feat:</tspan><tspan fill="#14532d"> criação do KPI LATAM</tspan></text>
+      <rect x="476" y="140" width="356" height="30" rx="6" fill="#fff" stroke="#86efac"/>
+      <text x="490" y="160"><tspan fill="#dc2626" font-weight="700">fix:</tspan><tspan fill="#14532d"> correção da medida YTD</tspan></text>
+      <rect x="476" y="178" width="356" height="30" rx="6" fill="#fff" stroke="#86efac"/>
+      <text x="490" y="198"><tspan fill="#7c3aed" font-weight="700">refactor:</tspan><tspan fill="#14532d"> reorganização do modelo</tspan></text>
+      <rect x="476" y="216" width="356" height="30" rx="6" fill="#fff" stroke="#86efac"/>
+      <text x="490" y="236"><tspan fill="#2563eb" font-weight="700">docs:</tspan><tspan fill="#14532d"> atualização da documentação</tspan></text>
+      <rect x="476" y="254" width="356" height="30" rx="6" fill="#fff" stroke="#86efac"/>
+      <text x="490" y="274"><tspan fill="#f59e0b" font-weight="700">style:</tspan><tspan fill="#14532d"> padronização das cores dos cards</tspan></text>
+    </g>
+    <text x="476" y="304" font-size="10.5" fill="#15803d">tipo: o que mudou, no imperativo e em minúsculas.</text>
+  </g>
+</svg>

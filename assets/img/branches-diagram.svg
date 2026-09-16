@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 460" role="img" aria-label="Diagrama de branches main, develop, feature, hotfix e release">
+  <rect width="880" height="460" rx="14" fill="#f8fafc"/>
+  <g font-family="Segoe UI, Inter, sans-serif">
+    <text x="440" y="36" text-anchor="middle" font-size="16" font-weight="700" fill="#0f172a">Estratégia de branches para um projeto Power BI</text>
+
+    <!-- faixas -->
+    <g font-size="11.5" font-weight="600">
+      <text x="30" y="90" fill="#dc2626">hotfix</text>
+      <text x="30" y="150" fill="#16a34a">main</text>
+      <text x="30" y="230" fill="#7c3aed">release</text>
+      <text x="30" y="300" fill="#2563eb">develop</text>
+      <text x="30" y="400" fill="#0891b2">feature</text>
+    </g>
+    <g stroke="#e2e8f0">
+      <path d="M110 84 H850 M110 144 H850 M110 224 H850 M110 294 H850 M110 394 H850"/>
+    </g>
+
+    <!-- main -->
+    <path d="M130 144 H840" stroke="#16a34a" stroke-width="5" stroke-linecap="round"/>
+    <!-- develop -->
+    <path d="M190 294 H780" stroke="#2563eb" stroke-width="5" stroke-linecap="round"/>
+    <path d="M130 144 C160 144 170 294 190 294" stroke="#2563eb" stroke-width="4" fill="none"/>
+
+    <!-- features -->
+    <path d="M250 294 C280 294 290 394 310 394 H430 C450 394 460 294 490 294" stroke="#0891b2" stroke-width="4" fill="none"/>
+    <path d="M330 294 C360 294 370 434 390 434 H520 C540 434 550 294 580 294" stroke="#22b8cf" stroke-width="4" fill="none"/>
+
+    <!-- release -->
+    <path d="M620 294 C650 294 660 224 680 224 H740 C760 224 770 144 790 144" stroke="#7c3aed" stroke-width="4" fill="none"/>
+
+    <!-- hotfix -->
+    <path d="M430 144 C455 144 460 84 480 84 H540 C560 84 565 144 585 144" stroke="#dc2626" stroke-width="4" fill="none"/>
+    <path d="M540 84 C560 84 570 294 590 294" stroke="#dc2626" stroke-width="3" fill="none" stroke-dasharray="6 4"/>
+
+    <!-- commits -->
+    <g stroke="#ffffff" stroke-width="3">
+      <circle cx="130" cy="144" r="9" fill="#16a34a"/>
+      <circle cx="430" cy="144" r="9" fill="#16a34a"/>
+      <circle cx="585" cy="144" r="9" fill="#16a34a"/>
+      <circle cx="790" cy="144" r="10" fill="#15803d"/>
+
+      <circle cx="250" cy="294" r="8" fill="#2563eb"/>
+      <circle cx="330" cy="294" r="8" fill="#2563eb"/>
+      <circle cx="490" cy="294" r="8" fill="#2563eb"/>
+      <circle cx="580" cy="294" r="8" fill="#2563eb"/>
+      <circle cx="620" cy="294" r="8" fill="#2563eb"/>
+
+      <circle cx="350" cy="394" r="7" fill="#0891b2"/>
+      <circle cx="400" cy="394" r="7" fill="#0891b2"/>
+      <circle cx="430" cy="434" r="7" fill="#22b8cf"/>
+      <circle cx="480" cy="434" r="7" fill="#22b8cf"/>
+      <circle cx="510" cy="84" r="7" fill="#dc2626"/>
+      <circle cx="710" cy="224" r="7" fill="#7c3aed"/>
+    </g>
+
+    <!-- rótulos -->
+    <g font-size="10.5">
+      <text x="375" y="380" text-anchor="middle" fill="#0e7490">feature/dashboard-latam</text>
+      <text x="455" y="458" text-anchor="middle" fill="#0e7490">feature/kpi-margem</text>
+      <text x="510" y="70" text-anchor="middle" fill="#b91c1c">hotfix/medida-ytd</text>
+      <text x="710" y="210" text-anchor="middle" fill="#6d28d9">release/2026.09</text>
+      <text x="800" y="124" text-anchor="middle" fill="#15803d" font-weight="600">v1.3 publicada</text>
+    </g>
+
+    <!-- legenda -->
+    <g font-size="11">
+      <rect x="600" y="330" width="256" height="112" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+      <text x="618" y="352" font-size="12" font-weight="700" fill="#0f172a">Leitura do diagrama</text>
+      <text x="618" y="374" fill="#475569">" feature nasce de develop e volta p/ develop</text>
+      <text x="618" y="394" fill="#475569">" release estabiliza antes de ir p/ main</text>
+      <text x="618" y="414" fill="#475569">" hotfix nasce de main e volta p/ main e develop</text>
+      <text x="618" y="434" fill="#475569">" main sempre = versão publicada</text>
+    </g>
+  </g>
+</svg>

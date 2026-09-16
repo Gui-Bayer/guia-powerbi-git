@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 380" role="img" aria-label="Terminal mostrando git --version e git config">
+  <rect width="820" height="380" rx="12" fill="#0c0c0c"/>
+  <rect x="0" y="0" width="820" height="34" rx="12" fill="#2d2d2d"/>
+  <rect x="0" y="22" width="820" height="12" fill="#2d2d2d"/>
+  <g font-family="Segoe UI, Inter, sans-serif">
+    <rect x="12" y="6" width="130" height="24" rx="5" fill="#0c0c0c"/>
+    <text x="26" y="23" font-size="11.5" fill="#cccccc">PowerShell</text>
+    <text x="152" y="23" font-size="12" fill="#8a8a8a">+</text>
+    <text x="800" y="23" text-anchor="end" font-size="12" fill="#cccccc">&#8211; &#9633; &#10005;</text>
+  </g>
+  <g font-family="Consolas, Courier New, monospace" font-size="13">
+    <text y="70" x="18">
+      <tspan fill="#16c60c">PS C:\Projetos\Vendas.pbip&gt;</tspan><tspan fill="#f2f2f2"> git --version</tspan>
+    </text>
+    <text x="18" y="94" fill="#cccccc">git version 2.47.0.windows.1</text>
+
+    <text y="128" x="18">
+      <tspan fill="#16c60c">PS C:\Projetos\Vendas.pbip&gt;</tspan><tspan fill="#f2f2f2"> git config --global user.name </tspan><tspan fill="#ce9178">"Ana Souza"</tspan>
+    </text>
+    <text y="152" x="18">
+      <tspan fill="#16c60c">PS C:\Projetos\Vendas.pbip&gt;</tspan><tspan fill="#f2f2f2"> git config --global user.email </tspan><tspan fill="#ce9178">"ana.souza@empresa.com"</tspan>
+    </text>
+    <text y="176" x="18">
+      <tspan fill="#16c60c">PS C:\Projetos\Vendas.pbip&gt;</tspan><tspan fill="#f2f2f2"> git config --global init.defaultBranch main</tspan>
+    </text>
+    <text y="200" x="18">
+      <tspan fill="#16c60c">PS C:\Projetos\Vendas.pbip&gt;</tspan><tspan fill="#f2f2f2"> git config --list</tspan>
+    </text>
+    <g fill="#9cdcfe">
+      <text x="18" y="224">user.name=Ana Souza</text>
+      <text x="18" y="246">user.email=ana.souza@empresa.com</text>
+      <text x="18" y="268">init.defaultbranch=main</text>
+      <text x="18" y="290">core.autocrlf=true</text>
+      <text x="18" y="312">credential.helper=manager</text>
+    </g>
+    <text y="346" x="18">
+      <tspan fill="#16c60c">PS C:\Projetos\Vendas.pbip&gt;</tspan><tspan fill="#f2f2f2"> &#9608;</tspan>
+    </text>
+  </g>
+</svg>

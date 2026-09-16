@@ -1,0 +1,2716 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia Power BI + Git + GitHub + VS Code | Versionamento de projetos PBIP</title>
+<meta name="description" content="Guia completo e visual para analistas de dados e desenvolvedores Power BI: como versionar projetos PBIP com Git, GitHub e VS Code, do zero até a colaboração avançada em equipe.">
+<meta name="author" content="Equipe de BI">
+<meta name="theme-color" content="#1f6feb">
+<meta property="og:title" content="Guia Power BI + Git + GitHub + VS Code">
+<meta property="og:description" content="Do primeiro commit ao Pull Request: versionamento de projetos PBIP em equipe.">
+<meta property="og:type" content="website">
+
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer">
+
+<script>
+  // Aplica o tema antes da pintura para evitar o "flash" de tela branca.
+  (function () {
+    try {
+      var saved = localStorage.getItem('guia-pbip:theme');
+      var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<!-- ======================================================= BARRA SUPERIOR -->
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menuToggle" aria-label="Abrir menu de capítulos" aria-controls="sidebar" aria-expanded="false">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <a class="brand" href="#inicio">
+    <span class="brand__mark"><i class="fa-solid fa-code-branch"></i></span>
+    <span>
+      <span class="brand__title">Power BI + Git + GitHub</span>
+      <span class="brand__sub">Guia de versionamento de projetos PBIP</span>
+    </span>
+  </a>
+
+  <div class="topbar__spacer"></div>
+
+  <div class="search" role="search">
+    <i class="fa-solid fa-magnifying-glass search__icon"></i>
+    <input type="search" id="searchInput" class="search__input" autocomplete="off" spellcheck="false"
+           placeholder="Buscar comando, conceito ou capítulo…" aria-label="Buscar no guia">
+    <span class="search__kbd">Ctrl K</span>
+    <div class="search__results" id="searchResults" role="listbox" aria-label="Resultados da busca"></div>
+  </div>
+
+  <nav class="topbar__links" aria-label="Links externos">
+    <a href="https://github.com"><i class="fa-brands fa-github"></i><span>GitHub</span></a>
+    <a href="https://learn.microsoft.com/power-bi"><i class="fa-solid fa-chart-column"></i><span>Power BI</span></a>
+  </nav>
+
+  <button class="icon-btn" id="themeToggle" aria-label="Alternar tema"><i class="fa-solid fa-moon"></i></button>
+</header>
+
+<div class="backdrop" id="backdrop"></div>
+
+<div class="layout">
+
+  <!-- ==================================================== MENU LATERAL -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__progress">
+      <div class="sidebar__progress-label">
+        <span>Progresso da leitura</span><b id="readLabel">0%</b>
+      </div>
+      <div class="bar"><div class="bar__fill" id="readProgress"></div></div>
+    </div>
+
+    <nav aria-label="Capítulos do guia">
+      <p class="nav__group">Começando</p>
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#introducao"><span class="nav__num">1</span> Introdução</a></li>
+        <li><a class="nav__link" href="#instalacao"><span class="nav__num">2</span> Instalação e configuração</a></li>
+        <li><a class="nav__link" href="#pbip-versionado"><span class="nav__num">3</span> PBIP versionado</a></li>
+        <li><a class="nav__link" href="#repositorio"><span class="nav__num">4</span> Repositório no GitHub</a></li>
+        <li><a class="nav__link" href="#clone"><span class="nav__num">5</span> Clone e sincronização</a></li>
+      </ul>
+
+      <p class="nav__group">Dia a dia</p>
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#workflow"><span class="nav__num">6</span> Workflow completo</a></li>
+        <li><a class="nav__link" href="#branches"><span class="nav__num">7</span> Branches</a></li>
+        <li><a class="nav__link" href="#pull-request"><span class="nav__num">8</span> Pull Request</a></li>
+        <li><a class="nav__link" href="#merge"><span class="nav__num">9</span> Merge</a></li>
+        <li><a class="nav__link" href="#conflitos"><span class="nav__num">10</span> Resolução de conflitos</a></li>
+        <li><a class="nav__link" href="#colaboracao"><span class="nav__num">11</span> Colaboração</a></li>
+      </ul>
+
+      <p class="nav__group">Referência</p>
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#boas-praticas"><span class="nav__num">12</span> Boas práticas</a></li>
+        <li><a class="nav__link" href="#publicacao"><span class="nav__num">13</span> Publicação e entrega</a></li>
+        <li><a class="nav__link" href="#comandos"><span class="nav__num">14</span> Comandos mais usados</a></li>
+        <li><a class="nav__link" href="#checklist"><span class="nav__num">15</span> Checklist final</a></li>
+        <li><a class="nav__link" href="#recursos"><i class="fa-solid fa-book-bookmark"></i> Recursos úteis</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- ======================================================== CONTEÚDO -->
+  <main class="content">
+  <div class="content__inner">
+
+    <!-- ------------------------------------------------------- HERO -->
+    <section class="hero" id="inicio">
+      <span class="eyebrow"><i class="fa-solid fa-graduation-cap"></i> Guia educacional e corporativo</span>
+      <h1>Versionando projetos Power BI com Git, GitHub e VS Code</h1>
+      <p class="lead">
+        Um caminho completo, do primeiro <code>git --version</code> até o Pull Request aprovado pelo time.
+        Escrito para <strong>analistas de dados e desenvolvedores Power BI</strong> que nunca usaram Git —
+        e que precisam parar de trocar arquivos <code>.pbix</code> por e-mail.
+      </p>
+
+      <div class="hero__meta">
+        <span class="chip chip--pbi"><i class="fa-solid fa-chart-column"></i> Power BI PBIP</span>
+        <span class="chip chip--git"><i class="fa-brands fa-git-alt"></i> Git</span>
+        <span class="chip chip--gh"><i class="fa-brands fa-github"></i> GitHub</span>
+        <span class="chip chip--vs"><i class="fa-solid fa-code"></i> VS Code</span>
+        <span class="chip"><i class="fa-solid fa-clock"></i> ~45 min de leitura</span>
+        <span class="chip"><i class="fa-solid fa-layer-group"></i> 15 capítulos</span>
+      </div>
+
+      <div class="btn-row">
+        <a class="btn btn--primary" href="#introducao"><i class="fa-solid fa-play"></i> Começar pelo capítulo 1</a>
+        <a class="btn btn--ghost" href="#comandos"><i class="fa-solid fa-terminal"></i> Ir direto aos comandos</a>
+        <a class="btn btn--ghost" href="#checklist"><i class="fa-solid fa-list-check"></i> Checklist final</a>
+      </div>
+
+      <figure class="fig hero__fig">
+        <div class="fig__frame">
+          <img src="assets/img/hero.svg" width="880" height="380" alt="Fluxo do projeto: Power BI Desktop gera o PBIP, VS Code edita, Git versiona, GitHub compartilha com a equipe" loading="eager">
+        </div>
+        <figcaption><i class="fa-solid fa-circle-info"></i>
+          O caminho que você vai percorrer neste guia: o projeto nasce no Power BI Desktop, é editado no VS Code,
+          versionado pelo Git, compartilhado no GitHub e revisado pela equipe.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- ================================================== SEÇÃO 1 -->
+    <section class="section reveal" id="introducao"
+             data-label="1. Introdução" data-icon="fa-solid fa-lightbulb"
+             data-keywords="git github vscode pbip pbix versionamento colaboração email o que é">
+      <span class="eyebrow"><i class="fa-solid fa-lightbulb"></i> Capítulo 1</span>
+      <h2 id="h-introducao">Introdução: as quatro ferramentas e por que elas importam</h2>
+      <p class="lead">
+        Antes de digitar qualquer comando, vale entender o papel de cada peça. São quatro ferramentas
+        independentes que, juntas, resolvem o problema mais comum de qualquer equipe de BI:
+        <strong>saber qual é a versão certa do relatório</strong>.
+      </p>
+
+      <div class="grid grid--2">
+        <article class="card">
+          <div class="card__icon card__icon--git"><i class="fa-brands fa-git-alt"></i></div>
+          <h3>O que é Git</h3>
+          <p>
+            É um <strong>sistema de controle de versão</strong> que roda na sua máquina. Ele tira "fotografias"
+            (commits) do seu projeto a cada mudança e guarda tudo num histórico: quem alterou, o que alterou,
+            quando e por quê.
+          </p>
+          <p>
+            Pense num "Ctrl+Z infinito e compartilhado". O Git é um programa de linha de comando — não tem
+            tela, não é um site e não precisa de internet para funcionar localmente.
+          </p>
+          <a class="card__link" href="https://git-scm.com">Site oficial do Git <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </article>
+
+        <article class="card">
+          <div class="card__icon card__icon--gh"><i class="fa-brands fa-github"></i></div>
+          <h3>O que é GitHub</h3>
+          <p>
+            É a <strong>nuvem onde os repositórios Git vivem</strong>. O Git cuida do histórico local; o GitHub
+            hospeda esse histórico num servidor para que o time inteiro acesse o mesmo projeto.
+          </p>
+          <p>
+            Além de armazenar, o GitHub adiciona colaboração: Pull Requests, revisão de código, comentários,
+            permissões, automações e histórico visual na web.
+          </p>
+          <a class="card__link" href="https://github.com">Acessar o GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </article>
+
+        <article class="card">
+          <div class="card__icon card__icon--vs"><i class="fa-solid fa-code"></i></div>
+          <h3>O que é VS Code</h3>
+          <p>
+            O <strong>Visual Studio Code</strong> é um editor de texto e código gratuito da Microsoft. Nele você
+            abre a pasta do projeto PBIP, lê os arquivos de modelo e relatório, vê exatamente o que mudou
+            e executa comandos Git no terminal integrado.
+          </p>
+          <p>
+            É a "sala de controle": editor, terminal, painel de alterações e Pull Requests numa única janela.
+          </p>
+          <a class="card__link" href="https://code.visualstudio.com">Baixar o VS Code <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </article>
+
+        <article class="card">
+          <div class="card__icon card__icon--pbi"><i class="fa-solid fa-chart-column"></i></div>
+          <h3>O que é Power BI PBIP</h3>
+          <p>
+            <strong>PBIP</strong> (Power BI Project) é o formato de <em>projeto</em> do Power BI Desktop. Em vez de
+            um arquivo binário fechado, ele salva o relatório e o modelo semântico como uma
+            <strong>pasta com arquivos de texto</strong> (JSON e TMDL).
+          </p>
+          <p>
+            Essa é a peça que torna tudo possível: texto é exatamente o que o Git sabe versionar, comparar e mesclar.
+          </p>
+          <a class="card__link" href="https://learn.microsoft.com/power-bi/developer/projects/projects-overview">Documentação do PBIP <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </article>
+      </div>
+
+      <h3 id="h-pbix-pbip">Diferença entre PBIX e PBIP</h3>
+      <p>
+        Essa é a distinção mais importante do guia. Os dois formatos abrem no Power BI Desktop e geram o
+        mesmo relatório — mas apenas um deles funciona bem com controle de versão.
+      </p>
+
+      <figure class="fig">
+        <div class="fig__frame">
+          <img src="assets/img/pbix-vs-pbip.svg" width="880" height="400" alt="Comparação entre PBIX, arquivo binário único, e PBIP, pasta com arquivos JSON e TMDL legíveis" loading="lazy">
+        </div>
+        <figcaption><i class="fa-solid fa-circle-info"></i>
+          À esquerda, o PBIX: uma caixa fechada. À direita, o PBIP: a mesma informação em arquivos de texto
+          que podem ser lidos, comparados linha a linha e revisados num Pull Request.
+        </figcaption>
+      </figure>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Característica</th><th>.PBIX</th><th>.PBIP</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Formato</strong></td><td>Arquivo único binário compactado</td><td>Pasta com arquivos de texto (JSON e TMDL)</td></tr>
+            <tr><td><strong>O Git consegue comparar?</strong></td><td>Não — só sabe dizer "o arquivo mudou"</td><td>Sim — mostra linha a linha o que mudou</td></tr>
+            <tr><td><strong>Revisar uma medida DAX no PR</strong></td><td>Impossível</td><td>Natural, como revisar qualquer código</td></tr>
+            <tr><td><strong>Dois analistas ao mesmo tempo</strong></td><td>Um sobrescreve o outro</td><td>Cada um numa branch, merge no fim</td></tr>
+            <tr><td><strong>Tamanho no repositório</strong></td><td>Cresce muito (cada versão é um binário novo)</td><td>Cresce pouco (só as linhas alteradas)</td></tr>
+            <tr><td><strong>Melhor uso</strong></td><td>Distribuir, arquivar, trabalho individual rápido</td><td>Trabalho em equipe, versionamento, CI/CD</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout--info">
+        <i class="fa-solid fa-circle-info"></i>
+        <div>
+          <span class="callout__title">O PBIP não substitui o PBIX no dia a dia do usuário</span>
+          <p>Você continua abrindo o projeto no Power BI Desktop e publicando no Serviço normalmente.
+             A diferença é apenas <em>como o projeto é gravado em disco</em> — e isso muda tudo para a equipe.</p>
+        </div>
+      </div>
+
+      <h3 id="h-problema-email">O problema de trabalhar com arquivos enviados por e-mail</h3>
+      <p>
+        Toda equipe de BI já viveu esta cena. O relatório circula como anexo, cada pessoa baixa uma cópia,
+        edita, renomeia e devolve. Em poucos dias existem seis versões e ninguém sabe qual é a boa.
+      </p>
+
+      <figure class="fig">
+        <div class="fig__frame">
+          <img src="assets/img/sem-git-vs-com-git.svg" width="880" height="430" alt="Comparação entre trabalho sem Git, com vários arquivos chamados final por e-mail, e trabalho com Git, com um repositório único e histórico de commits" loading="lazy">
+        </div>
+        <figcaption><i class="fa-solid fa-circle-info"></i>
+          Comparação entre trabalho sem Git e trabalho com Git. À esquerda, o "versionamento por nome de arquivo".
+          À direita, um histórico único em que cada mudança tem autor, data e motivo.
+        </figcaption>
+      </figure>
+
+      <div class="vs">
+        <div class="vs__col vs__col--bad">
+          <h4><i class="fa-solid fa-triangle-exclamation"></i> Sem versionamento</h4>
+          <ul>
+            <li><strong>Sobrescrita silenciosa:</strong> o trabalho de um colega desaparece sem aviso.</li>
+            <li><strong>Sem rastreabilidade:</strong> não há como saber quem mudou a medida de receita.</li>
+            <li><strong>Sem volta:</strong> se a alteração quebrou o relatório, não existe versão anterior confiável.</li>
+            <li><strong>Gargalo humano:</strong> só uma pessoa pode mexer no arquivo por vez.</li>
+            <li><strong>Sem revisão:</strong> o erro só aparece depois de publicado, na frente do cliente.</li>
+            <li><strong>Risco operacional:</strong> o projeto vive no notebook de alguém.</li>
+          </ul>
+        </div>
+        <div class="vs__col vs__col--good">
+          <h4><i class="fa-solid fa-circle-check"></i> Com Git e GitHub</h4>
+          <ul>
+            <li><strong>Histórico completo:</strong> cada commit registra autor, data, arquivos e motivo.</li>
+            <li><strong>Reversão segura:</strong> volte a qualquer ponto do passado em segundos.</li>
+            <li><strong>Trabalho paralelo:</strong> branches permitem duas frentes ao mesmo tempo.</li>
+            <li><strong>Revisão por pares:</strong> nada entra em produção sem alguém olhar.</li>
+            <li><strong>Backup na nuvem:</strong> a máquina pode queimar, o projeto não se perde.</li>
+            <li><strong>Padronização:</strong> o processo é o mesmo para todos, sempre.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 id="h-links-1">Links oficiais deste capítulo</h3>
+      <div class="links">
+        <a class="link-card" href="https://git-scm.com">
+          <span class="link-card__icon"><i class="fa-brands fa-git-alt"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">Git — site oficial</span>
+            <span class="link-card__url">https://git-scm.com</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://github.com">
+          <span class="link-card__icon"><i class="fa-brands fa-github"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">GitHub</span>
+            <span class="link-card__url">https://github.com</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://code.visualstudio.com">
+          <span class="link-card__icon"><i class="fa-solid fa-code"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">Visual Studio Code</span>
+            <span class="link-card__url">https://code.visualstudio.com</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://learn.microsoft.com/power-bi">
+          <span class="link-card__icon"><i class="fa-solid fa-chart-column"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">Microsoft Learn — Power BI</span>
+            <span class="link-card__url">https://learn.microsoft.com/power-bi</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- ================================================== SEÇÃO 2 -->
+    <section class="section reveal" id="instalacao"
+             data-label="2. Instalação e configuração inicial" data-icon="fa-solid fa-download"
+             data-keywords="instalar git version config global user.name user.email extensões copilot material icon theme autenticação token">
+      <span class="eyebrow"><i class="fa-solid fa-download"></i> Capítulo 2</span>
+      <h2 id="h-instalacao">Instalação e configuração inicial</h2>
+      <p class="lead">
+        Seis passos, uma vez por máquina. Ao final deste capítulo seu computador estará pronto para
+        versionar qualquer projeto Power BI.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <h4>Criar a conta no GitHub</h4>
+          <p>
+            Acesse <a href="https://github.com/signup">github.com/signup</a> e crie a conta com o
+            <strong>e-mail corporativo</strong>. O nome de usuário aparecerá em todos os commits e Pull Requests,
+            então escolha algo profissional — <code>ana-souza</code> funciona melhor que <code>aninha2010</code>.
+          </p>
+          <figure class="fig">
+            <div class="fig__frame">
+              <img src="assets/img/github-signup.svg" width="820" height="440" alt="Tela de criação de conta no GitHub com campos de usuário, e-mail e senha" loading="lazy">
+            </div>
+            <figcaption><i class="fa-solid fa-image"></i> Tela de cadastro do GitHub. Use o mesmo e-mail que você vai configurar no Git mais adiante.</figcaption>
+          </figure>
+        </li>
+
+        <li>
+          <h4>Configurar a autenticação</h4>
+          <p>
+            O GitHub não aceita mais senha na linha de comando. Existem duas formas recomendadas:
+          </p>
+          <ul>
+            <li><strong>Git Credential Manager</strong> (mais simples): já vem com o instalador do Git para Windows.
+                No primeiro <code>git push</code> abre uma janela do navegador, você entra na conta e pronto — as
+                credenciais ficam salvas no Gerenciador de Credenciais do Windows.</li>
+            <li><strong>Personal Access Token</strong>: em
+                <a href="https://github.com/settings/tokens">Settings ? Developer settings ? Tokens</a>,
+                gere um token com escopo <code>repo</code> e use-o no lugar da senha.</li>
+          </ul>
+          <div class="callout callout--tip">
+            <i class="fa-solid fa-lightbulb"></i>
+            <div>
+              <span class="callout__title">Ative a autenticação em dois fatores (2FA)</span>
+              <p>É obrigatória em muitas organizações e protege o repositório inteiro. Configure em
+                 <a href="https://github.com/settings/security">Settings ? Password and authentication</a>.</p>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <h4>Instalar o Git</h4>
+          <p>
+            Baixe em <a href="https://git-scm.com/downloads">git-scm.com/downloads</a> e execute o instalador.
+            Os padrões servem para quase tudo, mas vale ajustar quatro telas:
+          </p>
+          <figure class="fig">
+            <div class="fig__frame">
+              <img src="assets/img/git-installer.svg" width="820" height="400" alt="Instalador do Git para Windows na tela de ajuste da variável PATH, com a opção recomendada destacada" loading="lazy">
+            </div>
+            <figcaption><i class="fa-solid fa-image"></i> Escolha "Git from the command line and also from 3rd-party software" para que o VS Code e o PowerShell reconheçam o Git.</figcaption>
+          </figure>
+        </li>
+
+        <li>
+          <h4>Instalar o VS Code</h4>
+          <p>
+            Baixe em <a href="https://code.visualstudio.com">code.visualstudio.com</a>. Durante a instalação,
+            marque <strong>"Adicionar ao menu de contexto do Explorer"</strong> — isso permite clicar com o botão
+            direito numa pasta e escolher <em>"Abrir com o Code"</em>, atalho que você vai usar muito.
+          </p>
+        </li>
+
+        <li>
+          <h4>Instalar o Power BI Desktop</h4>
+          <p>
+            Prefira a versão da <strong>Microsoft Store</strong>, que se atualiza sozinha —
+            o formato PBIP evolui rápido. Depois de instalar, habilite o recurso:
+            <code>Arquivo ? Opções e configurações ? Opções ? Recursos de Versão Preliminar ?
+            Power BI Project (.pbip) save option</code> e reinicie o programa.
+          </p>
+          <div class="callout callout--warn">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div>
+              <span class="callout__title">Sem essa opção marcada, o PBIP não aparece</span>
+              <p>Se ao salvar você não vê "Power BI project files (*.pbip)" na lista de tipos,
+                 o recurso de preview ainda não foi habilitado ou o Desktop não foi reiniciado.</p>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <h4>Instalar as extensões recomendadas</h4>
+          <p>No VS Code, pressione <code>Ctrl+Shift+X</code> e instale:</p>
+          <div class="grid grid--2">
+            <article class="card">
+              <div class="card__icon card__icon--gh"><i class="fa-brands fa-github"></i></div>
+              <h4>GitHub Pull Requests</h4>
+              <p>Cria, revisa e aprova Pull Requests dentro do editor, sem abrir o navegador.</p>
+            </article>
+            <article class="card">
+              <div class="card__icon card__icon--accent"><i class="fa-solid fa-robot"></i></div>
+              <h4>GitHub Copilot</h4>
+              <p>Sugere código DAX/M e escreve mensagens de commit a partir das suas alterações.</p>
+            </article>
+            <article class="card">
+              <div class="card__icon card__icon--pbi"><i class="fa-solid fa-chart-column"></i></div>
+              <h4>Power BI / TMDL</h4>
+              <p>Realce de sintaxe e validação para os arquivos <code>.tmdl</code> do modelo semântico.</p>
+            </article>
+            <article class="card">
+              <div class="card__icon card__icon--vs"><i class="fa-solid fa-icons"></i></div>
+              <h4>Material Icon Theme</h4>
+              <p>Ícones por tipo de arquivo — essencial para não se perder na árvore do PBIP.</p>
+            </article>
+          </div>
+          <figure class="fig">
+            <div class="fig__frame">
+              <img src="assets/img/vscode-extensions.svg" width="820" height="440" alt="Painel de extensões do VS Code com GitHub Pull Requests, GitHub Copilot, Power BI TMDL e Material Icon Theme" loading="lazy">
+            </div>
+            <figcaption><i class="fa-solid fa-image"></i> Painel de extensões do VS Code (<code>Ctrl+Shift+X</code>) com as quatro extensões recomendadas.</figcaption>
+          </figure>
+        </li>
+      </ol>
+
+      <h3 id="h-verificar-git">Verificando a instalação</h3>
+      <p>
+        Abra o PowerShell (ou o terminal do VS Code com <code>Ctrl+'</code>) e confirme que o Git responde.
+        Se aparecer um número de versão, está tudo certo.
+      </p>
+
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — verificar versão</span>
+        </div>
+        <pre class="code__body"><code><span class="t-prompt">PS C:\&gt;</span> <span class="t-cmd">git --version</span>
+<span class="t-out">git version 2.47.0.windows.1</span></code></pre>
+      </div>
+
+      <div class="callout callout--danger">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <div>
+          <span class="callout__title">"git não é reconhecido como um comando"</span>
+          <p>O Git foi instalado mas não entrou no PATH. Feche <strong>todos</strong> os terminais e o VS Code,
+             abra de novo e teste. Se persistir, reinstale marcando a opção de PATH recomendada.</p>
+        </div>
+      </div>
+
+      <h3 id="h-config-inicial">Configuração inicial obrigatória</h3>
+      <p>
+        O Git precisa saber quem você é para assinar os commits. Essas três linhas rodam
+        <strong>uma única vez por computador</strong> — a flag <code>--global</code> vale para todos os projetos.
+      </p>
+
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — identidade do autor</span>
+        </div>
+        <pre class="code__body"><code><span class="t-cmd">git config</span> <span class="t-flag">--global</span> user.name <span class="t-str">"Seu Nome"</span>
+<span class="t-cmd">git config</span> <span class="t-flag">--global</span> user.email <span class="t-str">"seu@email.com"</span>
+<span class="t-cmd">git config</span> <span class="t-flag">--list</span></code></pre>
+      </div>
+
+      <p>Vale também padronizar três comportamentos que evitam dor de cabeça em equipe:</p>
+
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — configurações recomendadas</span>
+        </div>
+        <pre class="code__body"><code><span class="t-com"># branch principal chamada "main" em todo projeto novo</span>
+<span class="t-cmd">git config</span> <span class="t-flag">--global</span> init.defaultBranch main
+
+<span class="t-com"># VS Code como editor padrão de mensagens e conflitos</span>
+<span class="t-cmd">git config</span> <span class="t-flag">--global</span> core.editor <span class="t-str">"code --wait"</span>
+
+<span class="t-com"># evita o aviso de divergência no git pull</span>
+<span class="t-cmd">git config</span> <span class="t-flag">--global</span> pull.rebase false</code></pre>
+      </div>
+
+      <figure class="fig">
+        <div class="fig__frame">
+          <img src="assets/img/terminal-git-config.svg" width="820" height="380" alt="Terminal PowerShell mostrando a saída de git --version, git config --global e git config --list" loading="lazy">
+        </div>
+        <figcaption><i class="fa-solid fa-terminal"></i>
+          Terminal após a configuração. O <code>git config --list</code> confirma que nome, e-mail e branch padrão
+          foram gravados corretamente.
+        </figcaption>
+      </figure>
+
+      <div class="links">
+        <a class="link-card" href="https://git-scm.com/downloads">
+          <span class="link-card__icon"><i class="fa-solid fa-download"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">Download do Git</span>
+            <span class="link-card__url">https://git-scm.com/downloads</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://docs.github.com/pt/authentication">
+          <span class="link-card__icon"><i class="fa-solid fa-key"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">GitHub Docs — Autenticação</span>
+            <span class="link-card__url">docs.github.com/pt/authentication</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github">
+          <span class="link-card__icon"><i class="fa-solid fa-puzzle-piece"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">Extensão GitHub Pull Requests</span>
+            <span class="link-card__url">marketplace.visualstudio.com</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://learn.microsoft.com/power-bi/developer/projects/projects-overview">
+          <span class="link-card__icon"><i class="fa-solid fa-folder-tree"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">Power BI Desktop projects (PBIP)</span>
+            <span class="link-card__url">learn.microsoft.com/power-bi/developer/projects</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- ================================================== SEÇÃO 3 -->
+    <section class="section reveal" id="pbip-versionado"
+             data-label="3. Transformando um PBIP em projeto versionado" data-icon="fa-solid fa-folder-tree"
+             data-keywords="git init gitignore primeiro commit add estrutura report semanticmodel tmdl">
+      <span class="eyebrow"><i class="fa-solid fa-folder-tree"></i> Capítulo 3</span>
+      <h2 id="h-pbip">Transformando um PBIP em projeto versionado</h2>
+      <p class="lead">
+        Agora o projeto sai do "arquivo solto" e ganha histórico. São quatro passos: abrir no VS Code,
+        inicializar o Git, criar o <code>.gitignore</code> e fazer o primeiro commit.
+      </p>
+
+      <h3 id="h-o-que-e-pbip">O que é, na prática, um projeto PBIP</h3>
+      <p>
+        Quando você salva como <code>.pbip</code>, o Power BI Desktop não grava um arquivo: grava uma
+        <strong>pasta</strong>. Dentro dela ficam o relatório e o modelo semântico separados, em texto puro.
+      </p>
+
+      <figure class="fig">
+        <div class="fig__frame">
+          <img src="assets/img/powerbi-desktop-pbip.svg" width="820" height="440" alt="Power BI Desktop com a caixa Salvar como e o tipo Power BI project files pbip selecionado" loading="lazy">
+        </div>
+        <figcaption><i class="fa-solid fa-image"></i>
+          No Power BI Desktop: <code>Arquivo ? Salvar como</code> e escolha
+          <strong>Power BI project files (*.pbip)</strong>.
+        </figcaption>
+      </figure>
+
+      <h3 id="h-estrutura">Estrutura de pastas do projeto</h3>
+      <p>Esta é a árvore que o Git vai versionar — simplificada primeiro, real depois:</p>
+
+      <div class="tree code--nocopy">
+<span class="d">Projeto/</span>
+<span class="s">?</span>
+<span class="s">???</span> <span class="d">Relatorio.Report</span>        <span class="c"># visuais, páginas e layout (JSON)</span>
+<span class="s">???</span> <span class="p">SemanticModel</span>           <span class="c"># tabelas, relações e medidas DAX (TMDL)</span>
+<span class="s">???</span> <span class="g">.gitignore</span>              <span class="c"># o que o Git deve ignorar</span>
+<span class="s">???</span> <span class="f">outros arquivos</span>         <span class="c"># .pbip, README, .platform</span>
+      </div>
+
+      <div class="tree code--nocopy">
+<span class="d">Vendas-LATAM/</span>
+<span class="s">?</span>
+<span class="s">???</span> <span class="g">Vendas.pbip</span>                                  <span class="c"># abra ESTE arquivo no Power BI</span>
+<span class="s">???</span> <span class="d">Vendas.Report/</span>
+<span class="s">?   ???</span> <span class="d">definition/</span>
+<span class="s">?   ?   ???</span> <span class="f">report.json</span>                      <span class="c"># tema, filtros, configurações</span>
+<span class="s">?   ?   ???</span> <span class="d">pages/</span><span class="f">pages.json</span>                <span class="c"># páginas e visuais</span>
+<span class="s">?   ???</span> <span class="f">.platform</span>
+<span class="s">?</span>
+<span class="s">???</span> <span class="p">Vendas.SemanticModel/</span>
+<span class="s">?   ???</span> <span class="d">definition/</span>
+<span class="s">?   ?   ???</span> <span class="f">model.tmdl</span>                       <span class="c"># modelo, culture, anotações</span>
+<span class="s">?   ?   ???</span> <span class="d">tables/</span><span class="f">Vendas.tmdl</span>              <span class="c"># colunas e medidas DAX</span>
+<span class="s">?   ?   ???</span> <span class="d">tables/</span><span class="f">Calendario.tmdl</span>
+<span class="s">?   ???</span> <span class="f">diagramLayout.json</span>
+<span class="s">?</span>
+<span class="s">???</span> <span class="g">.gitignore</span>
+<span class="s">???</span> <span class="f">README.md</span>
+      </div>
+
+      <figure class="fig">
+        <div class="fig__frame">
+          <img src="assets/img/pbip-structure.svg" width="820" height="420" alt="Explorador do VS Code mostrando a estrutura de um projeto PBIP com pastas Report e SemanticModel" loading="lazy">
+        </div>
+        <figcaption><i class="fa-solid fa-image"></i>
+          A mesma estrutura vista no explorador do VS Code, com a explicação do papel de cada pasta.
+        </figcaption>
+      </figure>
+
+      <h3 id="h-passos-init">Passo a passo</h3>
+
+      <ol class="steps">
+        <li>
+          <h4>Abrir a pasta no VS Code</h4>
+          <p>
+            Clique com o botão direito na pasta do projeto e escolha <em>"Abrir com o Code"</em>, ou use
+            <code>Arquivo ? Abrir Pasta</code>. Importante: abra a <strong>pasta raiz</strong> (a que contém o
+            <code>.pbip</code>), não uma subpasta.
+          </p>
+          <div class="code">
+            <div class="code__head">
+              <span class="code__dots"><span></span><span></span><span></span></span>
+              <span class="code__label">PowerShell — pelo terminal</span>
+            </div>
+            <pre class="code__body"><code><span class="t-cmd">cd</span> <span class="t-str">"C:\Projetos\Vendas-LATAM"</span>
+<span class="t-cmd">code</span> .</code></pre>
+          </div>
+        </li>
+
+        <li>
+          <h4>Inicializar o repositório</h4>
+          <p>
+            No terminal integrado (<code>Ctrl+'</code>), transforme a pasta num repositório Git. O comando cria
+            uma subpasta oculta <code>.git</code> onde todo o histórico será guardado.
+          </p>
+          <div class="code">
+            <div class="code__head">
+              <span class="code__dots"><span></span><span></span><span></span></span>
+              <span class="code__label">PowerShell — inicializar</span>
+            </div>
+            <pre class="code__body"><code><span class="t-prompt">PS ~\Vendas-LATAM&gt;</span> <span class="t-cmd">git init</span>
+<span class="t-out">Initialized empty Git repository in C:/Projetos/Vendas-LATAM/.git/</span></code></pre>
+          </div>
+          <div class="callout callout--warn">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div>
+              <span class="callout__title">Nunca apague a pasta <code>.git</code></span>
+              <p>Ela é o repositório. Apagá-la remove todo o histórico local de uma vez.</p>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <h4>Criar o <code>.gitignore</code></h4>
+          <p>
+            Arquivos de cache e credenciais não devem ir para o repositório. Crie um arquivo chamado
+            <code>.gitignore</code> na raiz com o conteúdo abaixo:
+          </p>
+          <div class="code">
+            <div class="code__head">
+              <span class="code__dots"><span></span><span></span><span></span></span>
+              <span class="code__label">.gitignore</span>
+            </div>
+            <pre class="code__body"><code><span class="t-com"># --- Power BI ---------------------------------------</span>
+<span class="t-com"># cache local do modelo (pesado e específico da máquina)</span>
+.pbi/localSettings.json
+.pbi/cache.abf
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+
+<span class="t-com"># não versione o binário junto do projeto</span>
+*.pbix
+
+<span class="t-com"># --- Credenciais e dados ----------------------------</span>
+*.env
+credenciais*
+*.xlsx
+*.csv
+
+<span class="t-com"># --- Sistema operacional ----------------------------</span>
+Thumbs.db
+desktop.ini
+.DS_Store
+
+<span class="t-com"># --- Temporários ------------------------------------</span>
+~$*
+*.tmp</code></pre>
+          </div>
+          <div class="callout callout--tip">
+            <i class="fa-solid fa-lightbulb"></i>
+            <div>
+              <span class="callout__title">Gere o arquivo automaticamente</span>
+              <p>O <a href="https://www.toptal.com/developers/gitignore">gitignore.io da Toptal</a> monta o
+                 arquivo a partir das tecnologias que você usa. Combine o resultado com as regras de Power BI acima.</p>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <h4>Primeiro commit</h4>
+          <p>
+            <code>git add .</code> coloca as alterações na "área de preparo" (staging) e
+            <code>git commit</code> grava a fotografia no histórico.
+          </p>
+          <div class="code">
+            <div class="code__head">
+              <span class="code__dots"><span></span><span></span><span></span></span>
+              <span class="code__label">PowerShell — primeiro commit</span>
+            </div>
+            <pre class="code__body"><code><span class="t-cmd">git add</span> .
+<span class="t-cmd">git commit</span> <span class="t-flag">-m</span> <span class="t-str">"Primeiro commit"</span></code></pre>
+          </div>
+          <div class="code">
+            <div class="code__head">
+              <span class="code__dots"><span></span><span></span><span></span></span>
+              <span class="code__label">Saída esperada</span>
+            </div>
+            <pre class="code__body"><code><span class="t-out">[main (root-commit) a1b2c3d] Primeiro commit</span>
+<span class="t-out"> 24 files changed, 1843 insertions(+)</span>
+<span class="t-out"> create mode 100644 Vendas.pbip</span>
+<span class="t-out"> create mode 100644 Vendas.Report/definition/report.json</span>
+<span class="t-out"> create mode 100644 Vendas.SemanticModel/definition/model.tmdl</span></code></pre>
+          </div>
+        </li>
+      </ol>
+
+      <h3 id="h-diagrama-pipeline">O caminho da informação</h3>
+      <p>
+        Vale fixar o sentido do fluxo. Cada ferramenta entrega o resultado para a próxima:
+      </p>
+
+      <figure class="fig">
+        <div class="fig__frame">
+          <img src="assets/img/pipeline-powerbi-github.svg" width="560" height="520" alt="Diagrama vertical: Power BI gera o PBIP, VS Code edita, Git versiona, GitHub compartilha" loading="lazy">
+        </div>
+        <figcaption><i class="fa-solid fa-diagram-project"></i>
+          Power BI ? VS Code ? Git ? GitHub. O projeto nasce no Desktop, é revisado no editor,
+          ganha histórico no Git e chega à equipe pelo GitHub.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- ================================================== SEÇÃO 4 -->
+    <section class="section reveal" id="repositorio"
+             data-label="4. Criando repositório no GitHub" data-icon="fa-brands fa-github"
+             data-keywords="novo repositório público privado readme url remote add origin push -u main">
+      <span class="eyebrow"><i class="fa-brands fa-github"></i> Capítulo 4</span>
+      <h2 id="h-repositorio">Criando o repositório no GitHub</h2>
+      <p class="lead">
+        O histórico já existe na sua máquina. Agora ele precisa de um endereço na nuvem para que a equipe
+        acesse o mesmo projeto.
+      </p>
+
+      <figure class="fig">
+        <div class="fig__frame">
+          <img src="assets/img/github-new-repo.svg" width="820" height="460" alt="Tela github.com/new com nome do repositório, opção privada marcada e botão Create repository" loading="lazy">
+        </div>
+        <figcaption><i class="fa-solid fa-image"></i>
+          Tela <a href="https://github.com/new">github.com/new</a>. Para projetos corporativos, escolha
+          <strong>Private</strong>.
+        </figcaption>
+      </figure>
+
+      <h3 id="h-novo-repo">Criando o novo repositório</h3>
+      <div class="grid grid--3">
+        <article class="card">
+          <div class="card__icon"><i class="fa-solid fa-signature"></i></div>
+          <h4>Nome</h4>
+          <p>Minúsculas, sem acentos, com hífens: <code>vendas-latam-pbip</code>. O nome entra na URL e é difícil de mudar depois.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon card__icon--green"><i class="fa-solid fa-lock"></i></div>
+          <h4>Privado</h4>
+          <p>Só quem você convidar acessa. É a escolha certa para dados e regras de negócio da empresa.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon card__icon--amber"><i class="fa-solid fa-globe"></i></div>
+          <h4>Público</h4>
+          <p>Visível para a internet inteira. Use apenas em projetos de estudo, demonstração ou open source.</p>
+        </article>
+      </div>
+
+      <div class="callout callout--danger">
+        <i class="fa-solid fa-user-secret"></i>
+        <div>
+          <span class="callout__title">Público significa público de verdade</span>
+          <p>Um repositório público expõe medidas DAX, nomes de tabelas, strings de conexão e qualquer
+             credencial esquecida num arquivo. Em ambiente corporativo, <strong>sempre privado</strong>.</p>
+        </div>
+      </div>
+
+      <h3 id="h-readme">README: a porta de entrada do projeto</h3>
+      <p>
+        O <code>README.md</code> é exibido automaticamente na página do repositório. É onde quem chega descobre
+        o que é o projeto e como rodá-lo. Um bom README de projeto Power BI responde:
+      </p>
+      <ul>
+        <li><strong>O que este relatório mostra</strong> e para qual área.</li>
+        <li><strong>Fontes de dados</strong> e onde ficam as credenciais (nunca no repositório).</li>
+        <li><strong>Como abrir</strong>: qual arquivo <code>.pbip</code> e qual versão do Desktop.</li>
+        <li><strong>Convenção de branches</strong> e quem aprova os Pull Requests.</li>
+      </ul>
+
+      <h3 id="h-url">A URL do repositório</h3>
+      <p>
+        Depois de criar, o GitHub mostra a URL na caixa <em>"Quick setup"</em>. É esse endereço que conecta
+        o local ao remoto. Existem dois formatos:
+      </p>
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">Formatos de URL</span>
+        </div>
+        <pre class="code__body"><code><span class="t-com"># HTTPS — recomendado para começar (usa o Credential Manager)</span>
+https://github.com/bi-latam/vendas-latam-pbip.git
+
+<span class="t-com"># SSH — exige gerar e cadastrar uma chave, mas não pede senha</span>
+git@github.com:bi-latam/vendas-latam-pbip.git</code></pre>
+      </div>
+
+      <h3 id="h-conectar-remoto">Conectando o repositório remoto</h3>
+      <p>
+        <code>origin</code> é apenas um apelido para a URL — é a convenção universal para "o repositório
+        principal na nuvem".
+      </p>
+
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — conectar o remoto</span>
+        </div>
+        <pre class="code__body"><code><span class="t-cmd">git remote add</span> origin <span class="t-str">https://github.com/bi-latam/vendas-latam-pbip.git</span>
+<span class="t-cmd">git remote</span> <span class="t-flag">-v</span></code></pre>
+      </div>
+
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">Saída esperada</span>
+        </div>
+        <pre class="code__body"><code><span class="t-out">origin  https://github.com/bi-latam/vendas-latam-pbip.git (fetch)</span>
+<span class="t-out">origin  https://github.com/bi-latam/vendas-latam-pbip.git (push)</span></code></pre>
+      </div>
+
+      <h3 id="h-primeiro-push">O primeiro push</h3>
+      <p>
+        A flag <code>-u</code> (de <em>upstream</em>) vincula a branch local <code>main</code> à
+        <code>origin/main</code>. Depois disso, um simples <code>git push</code> já sabe para onde enviar.
+      </p>
+
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — primeiro push</span>
+        </div>
+        <pre class="code__body"><code><span class="t-com"># garante que a branch local se chama main</span>
+<span class="t-cmd">git branch</span> <span class="t-flag">-M</span> main
+
+<span class="t-cmd">git push</span> <span class="t-flag">-u</span> origin main</code></pre>
+      </div>
+
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">Saída esperada</span>
+        </div>
+        <pre class="code__body"><code><span class="t-out">Enumerating objects: 31, done.</span>
+<span class="t-out">Writing objects: 100% (31/31), 18.42 KiB | 4.61 MiB/s, done.</span>
+<span class="t-out">To https://github.com/bi-latam/vendas-latam-pbip.git</span>
+<span class="t-out"> * [new branch]      main -&gt; main</span>
+<span class="t-out">branch 'main' set up to track 'origin/main'.</span></code></pre>
+      </div>
+
+      <div class="callout callout--warn">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <div>
+          <span class="callout__title">Erro "Updates were rejected"?</span>
+          <p>Acontece quando você marcou "Add a README" ao criar o repositório: o remoto já tem um commit que
+             você não possui. Traga esse commit antes de empurrar os seus:</p>
+          <p><code>git pull origin main --allow-unrelated-histories</code></p>
+        </div>
+      </div>
+
+      <div class="links">
+        <a class="link-card" href="https://github.com/new">
+          <span class="link-card__icon"><i class="fa-solid fa-plus"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">Criar novo repositório</span>
+            <span class="link-card__url">https://github.com/new</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://docs.github.com/pt/repositories/creating-and-managing-repositories/about-repositories">
+          <span class="link-card__icon"><i class="fa-solid fa-book"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">GitHub Docs — Sobre repositórios</span>
+            <span class="link-card__url">docs.github.com/pt/repositories</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://www.toptal.com/developers/gitignore">
+          <span class="link-card__icon"><i class="fa-solid fa-filter"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">Gerador de .gitignore</span>
+            <span class="link-card__url">toptal.com/developers/gitignore</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- ================================================== SEÇÃO 5 -->
+    <section class="section reveal" id="clone"
+             data-label="5. Clone e sincronização" data-icon="fa-solid fa-clone"
+             data-keywords="git clone novo integrante sincronizar pull fetch quando usar github desktop">
+      <span class="eyebrow"><i class="fa-solid fa-clone"></i> Capítulo 5</span>
+      <h2 id="h-clone">Clone e sincronização</h2>
+      <p class="lead">
+        <code>git clone</code> baixa o projeto <em>e todo o histórico</em> para uma máquina nova.
+        É uma operação de primeira vez — e é aqui que muita gente se confunde.
+      </p>
+
+      <h3 id="h-quando-clonar">Caso de uso: novo integrante na equipe</h3>
+      <p>
+        Carla entrou no time hoje. Ela não tem nada da pasta do projeto. Depois de receber acesso ao
+        repositório, três comandos resolvem:
+      </p>
+
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — primeira máquina</span>
+        </div>
+        <pre class="code__body"><code><span class="t-com"># 1. vá para a pasta onde os projetos ficam</span>
+<span class="t-cmd">cd</span> <span class="t-str">"C:\Projetos"</span>
+
+<span class="t-com"># 2. clone — cria a pasta vendas-latam-pbip já com o .git dentro</span>
+<span class="t-cmd">git clone</span> <span class="t-str">https://github.com/bi-latam/vendas-latam-pbip.git</span>
+
+<span class="t-com"># 3. entre e abra no VS Code</span>
+<span class="t-cmd">cd</span> vendas-latam-pbip
+<span class="t-cmd">code</span> .</code></pre>
+      </div>
+
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">Saída esperada</span>
+        </div>
+        <pre class="code__body"><code><span class="t-out">Cloning into 'vendas-latam-pbip'...</span>
+<span class="t-out">remote: Enumerating objects: 128, done.</span>
+<span class="t-out">Receiving objects: 100% (128/128), 96.18 KiB | 1.92 MiB/s, done.</span>
+<span class="t-out">Resolving deltas: 100% (44/44), done.</span></code></pre>
+      </div>
+
+      <p>
+        Pronto: Carla agora tem os arquivos, o histórico completo e o <code>origin</code> já configurado.
+        Ela pode abrir o <code>.pbip</code> no Power BI Desktop e começar a trabalhar.
+      </p>
+
+      <h3 id="h-nao-clonar">Por que quem já tem o projeto NÃO deve clonar de novo</h3>
+      <p>
+        Esta é a confusão mais frequente entre quem está começando. Clone <strong>não é sinônimo de
+        atualizar</strong>. Clonar cria uma <em>segunda pasta independente</em>, e isso costuma causar
+        três problemas:
+      </p>
+      <ul>
+        <li><strong>Duas pastas do mesmo projeto</strong> na máquina — e você inevitavelmente vai editar a errada.</li>
+        <li><strong>Commits locais que ainda não foram enviados</strong> ficam presos na pasta antiga.</li>
+        <li><strong>Branches locais em andamento</strong> não aparecem na cópia nova.</li>
+      </ul>
+      <p>Quem já tem o projeto atualiza com <code>git pull</code>, que traz apenas o que mudou:</p>
+
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — atualizar quem já tem o projeto</span>
+        </div>
+        <pre class="code__body"><code><span class="t-com"># ver em que branch você está e se há algo pendente</span>
+<span class="t-cmd">git status</span>
+
+<span class="t-com"># trazer as novidades do remoto para a branch atual</span>
+<span class="t-cmd">git pull</span>
+
+<span class="t-com"># só consultar o que mudou, sem alterar seus arquivos</span>
+<span class="t-cmd">git fetch</span></code></pre>
+      </div>
+
+      <figure class="fig">
+        <div class="fig__frame">
+          <img src="assets/img/clone-flow.svg" width="820" height="420" alt="Fluxograma: GitHub, git clone, computador local; ao lado, quando usar clone e quando usar pull" loading="lazy">
+        </div>
+        <figcaption><i class="fa-solid fa-diagram-project"></i>
+          GitHub ? <code>git clone</code> ? computador local. À direita, a regra prática:
+          clone uma vez, <code>pull</code> todos os dias.
+        </figcaption>
+      </figure>
+
+      <div class="flow">
+        <div class="flow__node" data-detail="<b>GitHub (origin)</b> — o repositório na nuvem guarda todos os commits e todas as branches. É a fonte da verdade do time. Nada aqui depende da sua máquina.">
+          <i class="fa-brands fa-github"></i><b>GitHub</b><small>repositório remoto</small>
+        </div>
+        <div class="flow__arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="flow__node" data-detail="<b>git clone URL</b> — baixa arquivos + histórico + configuração do <code>origin</code> de uma vez, criando uma pasta nova. Rode <b>uma única vez por máquina</b>.">
+          <i class="fa-solid fa-download"></i><b>git clone</b><small>uma vez por máquina</small>
+        </div>
+        <div class="flow__arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="flow__node" data-detail="<b>Computador local</b> — agora você tem a pasta do projeto com a subpasta <code>.git</code>. Abra o <code>.pbip</code> no Power BI Desktop e a pasta no VS Code.">
+          <i class="fa-solid fa-laptop-code"></i><b>Computador local</b><small>pasta + .git</small>
+        </div>
+        <div class="flow__arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="flow__node" data-detail="<b>git pull</b> — a partir daqui, é assim que você se mantém atualizado. Traz do remoto apenas os commits novos e preserva seu trabalho local em andamento.">
+          <i class="fa-solid fa-rotate"></i><b>git pull</b><small>todos os dias</small>
+        </div>
+        <div class="flow__detail"></div>
+      </div>
+
+      <h3 id="h-github-desktop">Alternativa visual: GitHub Desktop</h3>
+      <p>
+        Se a linha de comando ainda intimida, o <a href="https://desktop.github.com">GitHub Desktop</a> faz
+        clone, commit, pull e push por botões. Ele executa exatamente os mesmos comandos por baixo —
+        e mostra o <em>diff</em> das alterações, que é onde o PBIP brilha.
+      </p>
+
+      <figure class="fig">
+        <div class="fig__frame">
+          <img src="assets/img/github-desktop.svg" width="820" height="420" alt="GitHub Desktop mostrando arquivos alterados do projeto PBIP e o diff de uma medida DAX no arquivo TMDL" loading="lazy">
+        </div>
+        <figcaption><i class="fa-solid fa-image"></i>
+          GitHub Desktop com o diff de um arquivo <code>.tmdl</code>: dá para revisar uma medida DAX
+          linha a linha antes de commitar.
+        </figcaption>
+      </figure>
+
+      <div class="links">
+        <a class="link-card" href="https://desktop.github.com">
+          <span class="link-card__icon"><i class="fa-brands fa-github"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">GitHub Desktop</span>
+            <span class="link-card__url">https://desktop.github.com</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://git-scm.com/docs/git-clone">
+          <span class="link-card__icon"><i class="fa-solid fa-terminal"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">Documentação do git clone</span>
+            <span class="link-card__url">git-scm.com/docs/git-clone</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- ================================================== SEÇÃO 6 -->
+    <section class="section reveal" id="workflow"
+             data-label="6. Workflow completo de desenvolvimento" data-icon="fa-solid fa-timeline"
+             data-keywords="checkout -b feature novo kpi status add commit push origin workflow diário">
+      <span class="eyebrow"><i class="fa-solid fa-timeline"></i> Capítulo 6</span>
+      <h2 id="h-workflow">Workflow completo de desenvolvimento</h2>
+      <p class="lead">
+        Este é o ciclo que você vai repetir todos os dias. Seis passos, sempre na mesma ordem.
+        Decore este capítulo e o resto vira detalhe.
+      </p>
+
+      <div class="timeline">
+        <div class="tl">
+          <div class="tl__dot"><i class="fa-solid fa-code-branch"></i></div>
+          <p class="tl__title">1. Criar branch</p>
+          <span class="tl__cmd">git checkout -b</span>
+          <p class="tl__desc">Isola sua tarefa do resto do time</p>
+        </div>
+        <div class="tl">
+          <div class="tl__dot"><i class="fa-solid fa-pen-ruler"></i></div>
+          <p class="tl__title">2. Alterar</p>
+          <span class="tl__cmd">Power BI Desktop</span>
+          <p class="tl__desc">Edite, salve e feche o projeto</p>
+        </div>
+        <div class="tl">
+          <div class="tl__dot"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <p class="tl__title">3. Verificar</p>
+          <span class="tl__cmd">git status</span>
+          <p class="tl__desc">Confira o que mudou antes de gravar</p>
+        </div>
+        <div class="tl">
+          <div class="tl__dot"><i class="fa-solid fa-plus"></i></div>
+          <p class="tl__title">4. Adicionar</p>
+          <span class="tl__cmd">git add .</span>
+          <p class="tl__desc">Prepara os arquivos para o commit</p>
+        </div>
+        <div class="tl">
+          <div class="tl__dot"><i class="fa-solid fa-camera"></i></div>
+          <p class="tl__title">5. Commitar</p>
+          <span class="tl__cmd">git commit -m</span>
+          <p class="tl__desc">Grava a fotografia no histórico</p>
+        </div>
+        <div class="tl">
+          <div class="tl__dot"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+          <p class="tl__title">6. Enviar</p>
+          <span class="tl__cmd">git push origin</span>
+          <p class="tl__desc">Publica a branch no GitHub</p>
+        </div>
+      </div>
+
+      <h3 id="h-passo1">1. Criar a branch</h3>
+      <p>
+        Nunca trabalhe direto na <code>main</code>. <code>git checkout -b</code> cria a branch e já muda para ela.
+        Antes disso, garanta que você está partindo de uma base atualizada.
+      </p>
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — nova branch</span>
+        </div>
+        <pre class="code__body"><code><span class="t-com"># parta sempre da base atualizada</span>
+<span class="t-cmd">git checkout</span> develop
+<span class="t-cmd">git pull</span> origin develop
+
+<span class="t-com"># crie e entre na branch da sua tarefa</span>
+<span class="t-cmd">git checkout</span> <span class="t-flag">-b</span> <span class="t-branch">feature/novo-kpi</span></code></pre>
+      </div>
+
+      <h3 id="h-passo2">2. Fazer as alterações</h3>
+      <p>
+        Abra o <code>.pbip</code> no Power BI Desktop, crie a medida, ajuste o visual, salve
+        (<code>Ctrl+S</code>) e <strong>feche o Desktop</strong>. Fechar é importante: o Power BI só grava
+        todos os arquivos do projeto ao salvar, e arquivos abertos podem gerar alterações "fantasmas".
+      </p>
+
+      <h3 id="h-passo3">3. Verificar o status</h3>
+      <p>
+        O <code>git status</code> é o comando que você vai digitar mais vezes na vida. Ele responde:
+        em que branch estou, o que mudou, o que está preparado para commit.
+      </p>
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — status</span>
+        </div>
+        <pre class="code__body"><code><span class="t-prompt">PS ~\Vendas-LATAM&gt;</span> <span class="t-cmd">git status</span>
+<span class="t-out">On branch feature/novo-kpi</span>
+<span class="t-out">Changes not staged for commit:</span>
+<span class="t-out">  modified:   Vendas.SemanticModel/definition/tables/Vendas.tmdl</span>
+<span class="t-out">  modified:   Vendas.Report/definition/pages/pages.json</span>
+<span class="t-out">no changes added to commit (use "git add" ...)</span></code></pre>
+      </div>
+
+      <h3 id="h-passo4">4. Adicionar as alterações</h3>
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — staging</span>
+        </div>
+        <pre class="code__body"><code><span class="t-com"># tudo o que mudou</span>
+<span class="t-cmd">git add</span> .
+
+<span class="t-com"># ou apenas um arquivo específico</span>
+<span class="t-cmd">git add</span> Vendas.SemanticModel/definition/tables/Vendas.tmdl</code></pre>
+      </div>
+
+      <h3 id="h-passo5">5. Criar o commit</h3>
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — commit</span>
+        </div>
+        <pre class="code__body"><code><span class="t-cmd">git commit</span> <span class="t-flag">-m</span> <span class="t-str">"Adicionando novo KPI"</span></code></pre>
+      </div>
+      <p>
+        Na prática, prefira o padrão com prefixo — fica muito mais fácil ler o histórico depois:
+      </p>
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — commit com contexto</span>
+        </div>
+        <pre class="code__body"><code><span class="t-cmd">git commit</span> <span class="t-flag">-m</span> <span class="t-str">"feat: criação do KPI LATAM"</span> <span class="t-flag">-m</span> <span class="t-str">"Medida DIVIDE(Receita, Meta) e card na página Visão Geral."</span></code></pre>
+      </div>
+
+      <h3 id="h-passo6">6. Enviar para o GitHub</h3>
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — push</span>
+        </div>
+        <pre class="code__body"><code><span class="t-cmd">git push</span> origin <span class="t-branch">feature/novo-kpi</span></code></pre>
+      </div>
+
+      <figure class="fig">
+        <div class="fig__frame">
+          <img src="assets/img/workflow-terminal.svg" width="820" height="470" alt="Terminal com a sequência completa: git checkout -b, git status, git add, git commit e git push com o link do Pull Request" loading="lazy">
+        </div>
+        <figcaption><i class="fa-solid fa-terminal"></i>
+          O ciclo completo em um terminal. Note a última linha: o GitHub já devolve o link para abrir o
+          Pull Request — próximo capítulo.
+        </figcaption>
+      </figure>
+
+      <div class="callout callout--tip">
+        <i class="fa-solid fa-bolt"></i>
+        <div>
+          <span class="callout__title">Sequência resumida para colar no bloco de notas</span>
+          <p>São os seis passos em quatro linhas de comando.</p>
+        </div>
+      </div>
+
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — ciclo diário</span>
+        </div>
+        <pre class="code__body"><code><span class="t-cmd">git checkout</span> <span class="t-flag">-b</span> <span class="t-branch">feature/minha-tarefa</span>
+<span class="t-cmd">git status</span>
+<span class="t-cmd">git add</span> .
+<span class="t-cmd">git commit</span> <span class="t-flag">-m</span> <span class="t-str">"feat: descrição curta da mudança"</span>
+<span class="t-cmd">git push</span> origin <span class="t-branch">feature/minha-tarefa</span></code></pre>
+      </div>
+    </section>
+
+    <!-- ================================================== SEÇÃO 7 -->
+    <section class="section reveal" id="branches"
+             data-label="7. Branches" data-icon="fa-solid fa-code-branch"
+             data-keywords="main develop feature hotfix release nomenclatura boas práticas branch">
+      <span class="eyebrow"><i class="fa-solid fa-code-branch"></i> Capítulo 7</span>
+      <h2 id="h-branches">Branches: trabalhando em paralelo sem colisão</h2>
+      <p class="lead">
+        Uma branch é uma linha de trabalho independente. Ela permite que você experimente, quebre e refaça
+        sem afetar o relatório que está em produção.
+      </p>
+
+      <div class="grid grid--3">
+        <article class="card">
+          <div class="card__icon card__icon--green"><i class="fa-solid fa-shield-halved"></i></div>
+          <h4><code>main</code></h4>
+          <p><strong>A versão oficial.</strong> É o que está publicado e funcionando. Só recebe código
+             aprovado, sempre via Pull Request. Deve ser protegida no GitHub.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon"><i class="fa-solid fa-flask"></i></div>
+          <h4><code>develop</code></h4>
+          <p><strong>A integração do time.</strong> Reúne as features concluídas para teste conjunto antes
+             de virar versão oficial. É a base de onde nascem as features.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon card__icon--accent"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <h4><code>feature/*</code></h4>
+          <p><strong>Uma tarefa, uma branch.</strong> Nasce de <code>develop</code>, vive dias e volta para
+             <code>develop</code>. Exemplo: <code>feature/kpi-margem</code>.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon card__icon--red"><i class="fa-solid fa-fire-extinguisher"></i></div>
+          <h4><code>hotfix/*</code></h4>
+          <p><strong>Correção urgente em produção.</strong> Nasce da <code>main</code> (não de develop) e
+             volta para <code>main</code> <em>e</em> <code>develop</code>. Exemplo: <code>hotfix/medida-ytd</code>.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon card__icon--amber"><i class="fa-solid fa-box-open"></i></div>
+          <h4><code>release/*</code></h4>
+          <p><strong>Preparação da entrega.</strong> Congela o escopo para ajustes finais e validação do
+             negócio. Exemplo: <code>release/2026.09</code>.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon card__icon--vs"><i class="fa-solid fa-diagram-project"></i></div>
+          <h4>Time pequeno?</h4>
+          <p>Use só <code>main</code> + <code>feature/*</code> (GitHub Flow). Adicione <code>develop</code>
+             e <code>release</code> quando houver homologação formal.</p>
+        </article>
+      </div>
+
+      <h3 id="h-diagrama-branches">Diagrama visual das branches</h3>
+      <div class="tree code--nocopy">
+<span class="p">main</span>
+<span class="s">?</span>
+<span class="s">???</span> <span class="d">develop</span>
+<span class="s">?    ???</span> <span class="f">feature/dashboard</span>
+<span class="s">?    ???</span> <span class="f">feature/kpi</span>
+<span class="s">?    ???</span> <span class="f">feature/modelagem</span>
+<span class="s">?</span>
+<span class="s">???</span> <span class="g">release/2026.09</span>
+<span class="s">???</span> <span class="f">hotfix/medida-ytd</span>
+      </div>
+
+      <figure class="fig">
+        <div class="fig__frame">
+          <img src="assets/img/branches-diagram.svg" width="880" height="460" alt="Diagrama de commits mostrando main, develop, duas features, um release e um hotfix com suas junções" loading="lazy">
+        </div>
+        <figcaption><i class="fa-solid fa-diagram-project"></i>
+          O mesmo modelo com commits reais: veja como cada feature nasce de <code>develop</code> e volta para ela,
+          enquanto o <code>hotfix</code> parte direto da <code>main</code>.
+        </figcaption>
+      </figure>
+
+      <h3 id="h-comandos-branch">Comandos essenciais de branch</h3>
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — gerenciando branches</span>
+        </div>
+        <pre class="code__body"><code><span class="t-com"># listar branches locais (o * marca a atual)</span>
+<span class="t-cmd">git branch</span>
+
+<span class="t-com"># listar TODAS, inclusive as do remoto</span>
+<span class="t-cmd">git branch</span> <span class="t-flag">-a</span>
+
+<span class="t-com"># criar e mudar para a nova branch</span>
+<span class="t-cmd">git checkout</span> <span class="t-flag">-b</span> <span class="t-branch">feature/dashboard-latam</span>
+
+<span class="t-com"># apenas mudar para uma branch existente</span>
+<span class="t-cmd">git checkout</span> develop
+
+<span class="t-com"># renomear a branch atual</span>
+<span class="t-cmd">git branch</span> <span class="t-flag">-m</span> <span class="t-branch">feature/nome-correto</span>
+
+<span class="t-com"># apagar branch local já mesclada</span>
+<span class="t-cmd">git branch</span> <span class="t-flag">-d</span> <span class="t-branch">feature/dashboard-latam</span>
+
+<span class="t-com"># apagar a branch no GitHub</span>
+<span class="t-cmd">git push</span> origin <span class="t-flag">--delete</span> <span class="t-branch">feature/dashboard-latam</span></code></pre>
+      </div>
+
+      <h3 id="h-vantagens-branch">Vantagens de trabalhar com branches</h3>
+      <ul>
+        <li><strong>Isolamento:</strong> sua medida pela metade não quebra o relatório de ninguém.</li>
+        <li><strong>Paralelismo real:</strong> três pessoas em três frentes, sem fila de espera pelo arquivo.</li>
+        <li><strong>Revisão natural:</strong> a branch se torna um Pull Request, que se torna uma conversa.</li>
+        <li><strong>Reversão barata:</strong> se a ideia não prestou, apaga-se a branch e nada foi perdido.</li>
+        <li><strong>Rastreabilidade:</strong> o nome da branch liga a mudança à demanda ou ao ticket.</li>
+      </ul>
+
+      <h3 id="h-boas-praticas-branch">Boas práticas</h3>
+      <div class="vs">
+        <div class="vs__col vs__col--good">
+          <h4><i class="fa-solid fa-circle-check"></i> Faça</h4>
+          <ul>
+            <li><strong>Nunca desenvolva direto na main.</strong> Proteja-a nas configurações do repositório.</li>
+            <li><strong>Uma feature branch por atividade</strong> — não junte três demandas na mesma branch.</li>
+            <li><strong>Commits pequenos e frequentes</strong>, cada um com um propósito claro.</li>
+            <li><strong>Nomes padronizados:</strong> <code>tipo/descricao-curta-em-kebab-case</code>.</li>
+            <li><strong>Atualize a branch</strong> com <code>git pull origin develop</code> a cada dia ou dois.</li>
+            <li><strong>Apague a branch</strong> depois do merge — o histórico já está preservado.</li>
+          </ul>
+        </div>
+        <div class="vs__col vs__col--bad">
+          <h4><i class="fa-solid fa-circle-xmark"></i> Evite</h4>
+          <ul>
+            <li>Branches com nomes como <code>teste</code>, <code>minha-branch</code> ou <code>ana</code>.</li>
+            <li>Branches que vivem semanas sem sincronizar — o conflito cresce junto.</li>
+            <li>Um único commit gigante no fim do trabalho ("subi tudo").</li>
+            <li>Commitar direto na <code>main</code> "porque era rápido".</li>
+            <li>Deixar dezenas de branches mortas no repositório.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">Convenção de nomes</span>
+        </div>
+        <pre class="code__body"><code><span class="t-com"># bons nomes de branch</span>
+feature/kpi-margem-latam
+feature/pagina-comparativo-anual
+fix/relacionamento-calendario
+hotfix/medida-ytd-duplicando
+refactor/modelo-estrela
+release/2026.09
+
+<span class="t-com"># nomes que atrapalham a equipe</span>
+teste2
+ana
+branch-nova
+correcoes-finais-v3</code></pre>
+      </div>
+    </section>
+
+    <!-- ================================================== SEÇÃO 8 -->
+    <section class="section reveal" id="pull-request"
+             data-label="8. Pull Request" data-icon="fa-solid fa-code-pull-request"
+             data-keywords="pull request review approval merge revisão pares descrição template">
+      <span class="eyebrow"><i class="fa-solid fa-code-pull-request"></i> Capítulo 8</span>
+      <h2 id="h-pr">Pull Request: pedindo para juntar o trabalho</h2>
+      <p class="lead">
+        O Pull Request (PR) é um pedido formal: <em>"terminei minha parte, por favor revisem e incorporem
+        ao projeto"</em>. É onde a revisão por pares acontece — e onde o PBIP mostra seu valor.
+      </p>
+
+      <h3 id="h-o-que-e-pr">O que é um Pull Request</h3>
+      <p>
+        Tecnicamente, é um pedido de merge de uma branch em outra. Na prática, é muito mais:
+        uma página no GitHub que reúne a lista de commits, o diff completo de cada arquivo, os comentários
+        da equipe, as verificações automáticas e o botão que executa o merge.
+      </p>
+      <p>
+        Para um projeto Power BI, isso significa que um colega consegue ler exatamente a medida DAX que você
+        escreveu, comentar na linha específica e sugerir ajustes <strong>antes</strong> de a mudança chegar
+        ao relatório oficial.
+      </p>
+
+      <h3 id="h-fluxo-pr">Fluxo do Pull Request</h3>
+      <div class="flow">
+        <div class="flow__node" data-detail="<b>Feature Branch</b> — você desenvolveu a tarefa isoladamente, com commits pequenos e mensagens claras. Nada disso afetou a <code>main</code> ainda.">
+          <i class="fa-solid fa-code-branch"></i><b>Feature Branch</b><small>trabalho isolado</small>
+        </div>
+        <div class="flow__arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="flow__node" data-detail="<b>Push</b> — <code>git push origin feature/novo-kpi</code> publica a branch no GitHub. O próprio Git devolve no terminal o link para abrir o Pull Request.">
+          <i class="fa-solid fa-cloud-arrow-up"></i><b>Push</b><small>publica a branch</small>
+        </div>
+        <div class="flow__arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="flow__node" data-detail="<b>Pull Request</b> — você abre o PR escolhendo a branch de destino (<code>develop</code>), escreve o título e a descrição, e indica os revisores.">
+          <i class="fa-solid fa-code-pull-request"></i><b>Pull Request</b><small>pedido de merge</small>
+        </div>
+        <div class="flow__arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="flow__node" data-detail="<b>Review</b> — o revisor lê o diff, comenta linhas específicas e pode pedir mudanças (<i>Request changes</i>). Você responde com novos commits na mesma branch, que aparecem automaticamente no PR.">
+          <i class="fa-solid fa-magnifying-glass"></i><b>Review</b><small>revisão por pares</small>
+        </div>
+        <div class="flow__arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="flow__node" data-detail="<b>Approval</b> — o revisor clica em <i>Approve</i>. Se o repositório exigir aprovações, o botão de merge só é liberado aqui.">
+          <i class="fa-solid fa-circle-check"></i><b>Approval</b><small>aprovação</small>
+        </div>
+        <div class="flow__arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="flow__node" data-detail="<b>Merge</b> — o GitHub junta a branch ao destino e oferece apagar a feature branch. Depois disso, todos rodam <code>git pull</code> para receber a novidade.">
+          <i class="fa-solid fa-code-merge"></i><b>Merge</b><small>incorporado</small>
+        </div>
+        <div class="flow__detail"></div>
+      </div>
+
+      <figure class="fig">
+        <div class="fig__frame">
+          <img src="assets/img/pull-request-ui.svg" width="820" height="480" alt="Interface de Pull Request no GitHub com título, descrição, checks aprovados, revisor que aprovou e botão de merge" loading="lazy">
+        </div>
+        <figcaption><i class="fa-solid fa-image"></i>
+          Um Pull Request real: branch de origem e destino, descrição, verificações automáticas,
+          aprovação do revisor e o botão <strong>Merge pull request</strong>.
+        </figcaption>
+      </figure>
+
+      <h3 id="h-abrir-pr">Como abrir o Pull Request</h3>
+      <ol class="steps">
+        <li>
+          <h4>Dê o push da sua branch</h4>
+          <div class="code">
+            <div class="code__head">
+              <span class="code__dots"><span></span><span></span><span></span></span>
+              <span class="code__label">PowerShell</span>
+            </div>
+            <pre class="code__body"><code><span class="t-cmd">git push</span> origin <span class="t-branch">feature/novo-kpi</span></code></pre>
+          </div>
+        </li>
+        <li>
+          <h4>Abra o link que o Git devolveu</h4>
+          <p>Ou vá ao repositório no GitHub e clique em <strong>Compare &amp; pull request</strong>.</p>
+        </li>
+        <li>
+          <h4>Confira as branches: <code>base</code> ? <code>compare</code></h4>
+          <p>
+            <code>base</code> é para onde o código vai (<code>develop</code>) e <code>compare</code> é de onde
+            vem (<code>feature/novo-kpi</code>). Trocar as duas é o erro mais comum de quem começa.
+          </p>
+        </li>
+        <li>
+          <h4>Escreva título e descrição</h4>
+          <p>O título segue o padrão do commit. A descrição responde <em>o que</em>, <em>por que</em> e <em>como testar</em>.</p>
+        </li>
+        <li>
+          <h4>Adicione revisores e crie</h4>
+          <p>Marque pelo menos um colega em <strong>Reviewers</strong> e clique em <strong>Create pull request</strong>.</p>
+        </li>
+      </ol>
+
+      <h3 id="h-exemplo-pr">Exemplo completo de descrição de PR</h3>
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">Markdown — descrição do Pull Request</span>
+        </div>
+        <pre class="code__body"><code><span class="t-key">## O que muda</span>
+- Nova medida `[KPI LATAM]` = DIVIDE( [Receita], [Meta] )
+- Card do KPI adicionado na página "Visão Geral"
+- Formatação percentual com uma casa decimal
+
+<span class="t-key">## Por que</span>
+Demanda #38 — a diretoria comercial precisa acompanhar o
+atingimento de meta por país no mesmo painel de receita.
+
+<span class="t-key">## Arquivos afetados</span>
+- `Vendas.SemanticModel/definition/tables/Vendas.tmdl`
+- `Vendas.Report/definition/pages/pages.json`
+
+<span class="t-key">## Como testar</span>
+1. `git checkout feature/novo-kpi` e abra o `Vendas.pbip`
+2. Atualize os dados e vá para a página "Visão Geral"
+3. Confira o card: deve exibir 104,2% para set/2026
+4. Valide contra a planilha de metas do Comercial
+
+<span class="t-key">## Checklist</span>
+- [x] Testado no Power BI Desktop
+- [x] Medida documentada com descrição no modelo
+- [x] Sem credenciais ou dados sensíveis no commit
+- [ ] Validado pelo time de negócio</code></pre>
+      </div>
+
+      <div class="callout callout--tip">
+        <i class="fa-solid fa-lightbulb"></i>
+        <div>
+          <span class="callout__title">Crie um template de PR para o time</span>
+          <p>Salve o modelo acima em <code>.github/pull_request_template.md</code> no repositório.
+             O GitHub vai preencher automaticamente a descrição de todo novo Pull Request.</p>
+        </div>
+      </div>
+
+      <div class="links">
+        <a class="link-card" href="https://docs.github.com/pt/pull-requests">
+          <span class="link-card__icon"><i class="fa-solid fa-code-pull-request"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">GitHub Docs — Pull Requests</span>
+            <span class="link-card__url">docs.github.com/pt/pull-requests</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://docs.github.com/en/get-started/quickstart/github-flow">
+          <span class="link-card__icon"><i class="fa-solid fa-diagram-project"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">GitHub Flow</span>
+            <span class="link-card__url">docs.github.com/en/get-started/quickstart/github-flow</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- ================================================== SEÇÃO 9 -->
+    <section class="section reveal" id="merge"
+             data-label="9. Merge" data-icon="fa-solid fa-code-merge"
+             data-keywords="git merge fast forward merge commit conflict squash no-ff">
+      <span class="eyebrow"><i class="fa-solid fa-code-merge"></i> Capítulo 9</span>
+      <h2 id="h-merge">Merge: juntando as linhas de trabalho</h2>
+      <p class="lead">
+        Merge é a operação que traz os commits de uma branch para outra. O Git tenta fazer isso sozinho —
+        e consegue na maioria das vezes.
+      </p>
+
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — merge local</span>
+        </div>
+        <pre class="code__body"><code><span class="t-com"># 1. vá para a branch que vai RECEBER as alterações</span>
+<span class="t-cmd">git checkout</span> develop
+
+<span class="t-com"># 2. garanta que ela está atualizada</span>
+<span class="t-cmd">git pull</span> origin develop
+
+<span class="t-com"># 3. traga a branch de origem</span>
+<span class="t-cmd">git merge</span> <span class="t-branch">feature/novo-kpi</span></code></pre>
+      </div>
+
+      <div class="callout callout--info">
+        <i class="fa-solid fa-circle-info"></i>
+        <div>
+          <span class="callout__title">O sentido do merge importa</span>
+          <p>Você sempre entra na branch de <strong>destino</strong> e pede o merge da branch de
+             <strong>origem</strong>. Estar na <code>feature</code> e rodar <code>git merge develop</code>
+             faz o contrário: traz develop para dentro da sua feature (o que também é útil, para atualizar).</p>
+        </div>
+      </div>
+
+      <figure class="fig">
+        <div class="fig__frame">
+          <img src="assets/img/merge-types.svg" width="880" height="430" alt="Três diagramas comparando fast-forward, merge commit e merge conflict" loading="lazy">
+        </div>
+        <figcaption><i class="fa-solid fa-diagram-project"></i>
+          Os três resultados possíveis de um <code>git merge</code>, com o comando e a saída típica de cada um.
+        </figcaption>
+      </figure>
+
+      <h3 id="h-fast-forward">Fast-forward</h3>
+      <p>
+        Acontece quando a branch de destino <strong>não recebeu nenhum commit novo</strong> desde que a feature
+        nasceu. Não há nada para reconciliar: o Git simplesmente move o ponteiro da branch para a frente.
+        O histórico fica linear, sem commit extra.
+      </p>
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">Saída típica</span>
+        </div>
+        <pre class="code__body"><code><span class="t-out">Updating a1b2c3d..7c4f1ab</span>
+<span class="t-out">Fast-forward</span>
+<span class="t-out"> Vendas.SemanticModel/definition/tables/Vendas.tmdl | 12 ++++++++++--</span>
+<span class="t-out"> 1 file changed, 12 insertions(+), 2 deletions(-)</span></code></pre>
+      </div>
+      <p>
+        Se você quiser registrar explicitamente que houve uma integração (útil para auditoria em projetos
+        corporativos), force um commit de merge:
+      </p>
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell</span>
+        </div>
+        <pre class="code__body"><code><span class="t-cmd">git merge</span> <span class="t-flag">--no-ff</span> <span class="t-branch">feature/novo-kpi</span></code></pre>
+      </div>
+
+      <h3 id="h-merge-commit">Merge commit</h3>
+      <p>
+        É o caso mais comum no dia a dia de uma equipe: as duas branches avançaram, mas em
+        <strong>arquivos ou linhas diferentes</strong>. O Git junta tudo automaticamente e cria um commit
+        especial com <em>dois pais</em>, preservando as duas histórias.
+      </p>
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">Saída típica</span>
+        </div>
+        <pre class="code__body"><code><span class="t-out">Merge made by the 'ort' strategy.</span>
+<span class="t-out"> Vendas.Report/definition/pages/pages.json          | 28 ++++++++++++++--</span>
+<span class="t-out"> Vendas.SemanticModel/definition/tables/Vendas.tmdl |  9 +++++++</span>
+<span class="t-out"> 2 files changed, 34 insertions(+), 3 deletions(-)</span></code></pre>
+      </div>
+
+      <h3 id="h-merge-conflict">Merge conflict</h3>
+      <p>
+        O Git para quando as duas branches alteraram <strong>a mesma linha do mesmo arquivo</strong>. Ele não
+        tem como adivinhar qual versão está certa, então entrega a decisão para você. Nada é perdido e
+        nada é sobrescrito — o próximo capítulo mostra como resolver.
+      </p>
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">Saída típica</span>
+        </div>
+        <pre class="code__body"><code><span class="t-out">Auto-merging Vendas.SemanticModel/definition/tables/Vendas.tmdl</span>
+<span class="t-del">CONFLICT (content): Merge conflict in Vendas.SemanticModel/definition/tables/Vendas.tmdl</span>
+<span class="t-out">Automatic merge failed; fix conflicts and then commit the result.</span></code></pre>
+      </div>
+
+      <h3 id="h-estrategias-merge">Qual estratégia usar no botão do GitHub</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Opção</th><th>O que faz</th><th>Quando usar em projetos Power BI</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Create a merge commit</strong></td>
+              <td>Mantém todos os commits da branch e adiciona um commit de junção.</td>
+              <td>Padrão recomendado. Preserva o rastro completo de quem fez o quê.</td>
+            </tr>
+            <tr>
+              <td><strong>Squash and merge</strong></td>
+              <td>Comprime todos os commits da branch em um só.</td>
+              <td>Ótimo quando a branch tem muitos commits de "ajuste" e você quer um histórico limpo.</td>
+            </tr>
+            <tr>
+              <td><strong>Rebase and merge</strong></td>
+              <td>Reaplica os commits no topo da base, sem commit de junção.</td>
+              <td>Histórico linear elegante, mas reescreve hashes — evite se o time é iniciante.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout--warn">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <div>
+          <span class="callout__title">Feche o Power BI Desktop antes de qualquer merge</span>
+          <p>Com o projeto aberto, o Desktop pode reescrever arquivos durante a operação e você acaba com um
+             estado inconsistente. Depois do merge, abra o <code>.pbip</code> e confira o relatório.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== SEÇÃO 10 -->
+    <section class="section reveal" id="conflitos"
+             data-label="10. Resolução de conflitos" data-icon="fa-solid fa-triangle-exclamation"
+             data-keywords="conflito HEAD marcadores resolver abort merge editor testar antes">
+      <span class="eyebrow"><i class="fa-solid fa-triangle-exclamation"></i> Capítulo 10</span>
+      <h2 id="h-conflitos">Resolução de conflitos</h2>
+      <p class="lead">
+        Conflito não é erro nem defeito: é o Git avisando que duas pessoas tiveram ideias diferentes sobre
+        a mesma linha. Resolver é escolher — e testar.
+      </p>
+
+      <h3 id="h-simular-conflito">Simulando um conflito real</h3>
+      <p>
+        Ana e Bruno receberam a mesma demanda de formas diferentes. Os dois editaram a medida
+        <code>[KPI LATAM]</code> no arquivo <code>Vendas.tmdl</code>, cada um na sua branch.
+      </p>
+
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — o conflito aparece</span>
+        </div>
+        <pre class="code__body"><code><span class="t-com"># Ana está na branch dela e traz as novidades de develop</span>
+<span class="t-prompt">PS&gt;</span> <span class="t-cmd">git checkout</span> <span class="t-branch">feature/novo-kpi</span>
+<span class="t-prompt">PS&gt;</span> <span class="t-cmd">git pull</span> origin develop
+<span class="t-out">Auto-merging Vendas.SemanticModel/definition/tables/Vendas.tmdl</span>
+<span class="t-del">CONFLICT (content): Merge conflict in .../tables/Vendas.tmdl</span>
+<span class="t-out">Automatic merge failed; fix conflicts and then commit the result.</span>
+
+<span class="t-com"># ver exatamente quais arquivos precisam de decisão</span>
+<span class="t-prompt">PS&gt;</span> <span class="t-cmd">git status</span>
+<span class="t-out">You have unmerged paths.</span>
+<span class="t-out">Unmerged paths:</span>
+<span class="t-del">  both modified:   Vendas.SemanticModel/definition/tables/Vendas.tmdl</span></code></pre>
+      </div>
+
+      <h3 id="h-marcadores">Entendendo os marcadores de conflito</h3>
+      <p>
+        O Git escreve as duas versões dentro do arquivo, separadas por três marcadores. Eles não são código:
+        são sinalização temporária que você precisa remover.
+      </p>
+
+      <div class="code code--nocopy">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">Vendas.tmdl — com marcadores de conflito</span>
+        </div>
+        <pre class="code__body"><code>    measure 'Receita' = SUM( Vendas[Valor] )
+
+<span class="t-add">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span>
+    measure 'KPI LATAM' =
+        DIVIDE( [Receita], [Meta] )
+        formatString: 0.0%
+<span class="t-out">=======</span>
+    measure 'KPI LATAM' =
+        DIVIDE( [Receita YTD], [Meta YTD] )
+        formatString: 0.00%
+<span class="t-del">&gt;&gt;&gt;&gt;&gt;&gt;&gt; develop</span></code></pre>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Marcador</th><th>Significa</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code class="cmd">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code></td>
+                <td>Início da <strong>sua</strong> versão — o que está na branch em que você está agora (<em>Current Change</em>).</td></tr>
+            <tr><td><code class="cmd">=======</code></td>
+                <td>A linha divisória entre as duas versões.</td></tr>
+            <tr><td><code class="cmd">&gt;&gt;&gt;&gt;&gt;&gt;&gt; develop</code></td>
+                <td>Fim da versão <strong>que está chegando</strong>, vinda da outra branch (<em>Incoming Change</em>).</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="h-como-resolver">Como resolver</h3>
+      <p>
+        O VS Code detecta os marcadores e oferece botões no topo do arquivo. Você tem quatro caminhos:
+      </p>
+      <div class="grid grid--4">
+        <article class="card">
+          <div class="card__icon card__icon--green"><i class="fa-solid fa-hand-point-left"></i></div>
+          <h4>Accept Current</h4>
+          <p>Mantém a sua versão e descarta a que chegou.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon"><i class="fa-solid fa-hand-point-right"></i></div>
+          <h4>Accept Incoming</h4>
+          <p>Mantém a versão do colega e descarta a sua.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon card__icon--amber"><i class="fa-solid fa-object-group"></i></div>
+          <h4>Accept Both</h4>
+          <p>Fica com as duas. Cuidado: pode duplicar medidas no TMDL.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon card__icon--accent"><i class="fa-solid fa-pen"></i></div>
+          <h4>Editar à mão</h4>
+          <p>O mais comum em DAX: escrever a versão correta combinando as duas.</p>
+        </article>
+      </div>
+
+      <figure class="fig">
+        <div class="fig__frame">
+          <img src="assets/img/conflict-vscode.svg" width="820" height="440" alt="VS Code mostrando um conflito de merge no arquivo Vendas.tmdl com os marcadores HEAD e develop destacados em verde e azul" loading="lazy">
+        </div>
+        <figcaption><i class="fa-solid fa-image"></i>
+          O conflito no VS Code: em verde a sua versão, em azul a que está chegando, e os botões de
+          resolução no topo do editor.
+        </figcaption>
+      </figure>
+
+      <ol class="steps">
+        <li>
+          <h4>Converse antes de escolher</h4>
+          <p>
+            No exemplo, a versão correta era a terceira: usar <code>[Receita YTD]</code> (decisão do Bruno) com
+            formatação de uma casa decimal (padrão do time). Um conflito quase sempre revela uma
+            <strong>divergência de entendimento</strong>, não um problema técnico.
+          </p>
+        </li>
+        <li>
+          <h4>Edite o arquivo e remova TODOS os marcadores</h4>
+          <div class="code">
+            <div class="code__head">
+              <span class="code__dots"><span></span><span></span><span></span></span>
+              <span class="code__label">Vendas.tmdl — resolvido</span>
+            </div>
+            <pre class="code__body"><code>    measure 'Receita' = SUM( Vendas[Valor] )
+
+    measure 'KPI LATAM' =
+        DIVIDE( [Receita YTD], [Meta YTD] )
+        formatString: 0.0%
+        displayFolder: KPIs
+        description: Atingimento de meta acumulado no ano.</code></pre>
+          </div>
+          <div class="callout callout--danger">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <div>
+              <span class="callout__title">Marcador esquecido = projeto corrompido</span>
+              <p>Se sobrar um <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> no arquivo TMDL ou JSON, o Power BI Desktop
+                 se recusa a abrir o projeto. Use <code>Ctrl+F</code> e busque por <code>&lt;&lt;&lt;</code> antes de commitar.</p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <h4>Teste antes do merge — o passo que ninguém pode pular</h4>
+          <p>
+            Arquivo resolvido não significa relatório funcionando. Abra o projeto e valide:
+          </p>
+          <ul>
+            <li>O <code>.pbip</code> <strong>abre</strong> no Power BI Desktop sem erro de leitura.</li>
+            <li>O modelo <strong>atualiza</strong> os dados sem erro de DAX.</li>
+            <li>A medida devolve o <strong>número esperado</strong>, conferido contra uma fonte conhecida.</li>
+            <li>Os visuais que usavam a medida continuam renderizando.</li>
+            <li>Nenhuma medida ficou <strong>duplicada</strong> (efeito colateral do "Accept Both").</li>
+          </ul>
+        </li>
+        <li>
+          <h4>Marque como resolvido e conclua o merge</h4>
+          <div class="code">
+            <div class="code__head">
+              <span class="code__dots"><span></span><span></span><span></span></span>
+              <span class="code__label">PowerShell — finalizar</span>
+            </div>
+            <pre class="code__body"><code><span class="t-com"># sinaliza ao Git que o arquivo está resolvido</span>
+<span class="t-cmd">git add</span> Vendas.SemanticModel/definition/tables/Vendas.tmdl
+
+<span class="t-com"># confirme que não há mais nada em "unmerged paths"</span>
+<span class="t-cmd">git status</span>
+
+<span class="t-com"># conclui o merge</span>
+<span class="t-cmd">git commit</span> <span class="t-flag">-m</span> <span class="t-str">"merge: resolve conflito na medida KPI LATAM"</span>
+
+<span class="t-cmd">git push</span> origin <span class="t-branch">feature/novo-kpi</span></code></pre>
+          </div>
+        </li>
+      </ol>
+
+      <h3 id="h-abortar">Quando quiser desistir e voltar atrás</h3>
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — abortar com segurança</span>
+        </div>
+        <pre class="code__body"><code><span class="t-com"># cancela o merge e volta tudo ao estado anterior</span>
+<span class="t-cmd">git merge</span> <span class="t-flag">--abort</span>
+
+<span class="t-com"># descarta a resolução de um arquivo e traz os marcadores de volta</span>
+<span class="t-cmd">git checkout</span> <span class="t-flag">--merge</span> Vendas.SemanticModel/definition/tables/Vendas.tmdl
+
+<span class="t-com"># ver o conflito lado a lado no terminal</span>
+<span class="t-cmd">git diff</span> <span class="t-flag">--diff-filter=U</span></code></pre>
+      </div>
+
+      <div class="callout callout--tip">
+        <i class="fa-solid fa-shield-halved"></i>
+        <div>
+          <span class="callout__title">A melhor forma de resolver conflito é preveni-lo</span>
+          <p>Divida as tarefas por área do projeto (um cuida do modelo, outro dos visuais), faça
+             <code>git pull</code> todos os dias e mantenha as branches curtas. Conflito de duas semanas
+             é sempre mais difícil que conflito de duas horas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== SEÇÃO 11 -->
+    <section class="section reveal" id="colaboracao"
+             data-label="11. Colaboração entre desenvolvedores" data-icon="fa-solid fa-users"
+             data-keywords="analista A B cenário real pull fetch push origin main develop equipe">
+      <span class="eyebrow"><i class="fa-solid fa-users"></i> Capítulo 11</span>
+      <h2 id="h-colaboracao">Colaboração entre desenvolvedores</h2>
+      <p class="lead">
+        Vamos juntar tudo num cenário real: dois analistas, um projeto, uma semana de trabalho.
+        Ana cuida do modelo semântico; Bruno cuida dos visuais.
+      </p>
+
+      <figure class="fig">
+        <div class="fig__frame">
+          <img src="assets/img/collab-flow.svg" width="880" height="560" alt="Fluxograma completo com as colunas Analista A, Analista B e GitHub, mostrando clone, branches, commits, push, Pull Requests e merges" loading="lazy">
+        </div>
+        <figcaption><i class="fa-solid fa-diagram-project"></i>
+          O fluxo completo da colaboração: cada analista na sua branch, encontro apenas no Pull Request.
+        </figcaption>
+      </figure>
+
+      <h3 id="h-cenario">O cenário, passo a passo</h3>
+      <ol class="steps">
+        <li>
+          <h4>Ambos clonam o projeto</h4>
+          <p>Uma vez por máquina. A partir daqui, ninguém clona de novo.</p>
+          <div class="code">
+            <div class="code__head">
+              <span class="code__dots"><span></span><span></span><span></span></span>
+              <span class="code__label">Ana e Bruno — cada um na sua máquina</span>
+            </div>
+            <pre class="code__body"><code><span class="t-cmd">git clone</span> <span class="t-str">https://github.com/bi-latam/vendas-latam-pbip.git</span>
+<span class="t-cmd">cd</span> vendas-latam-pbip
+<span class="t-cmd">git checkout</span> develop</code></pre>
+          </div>
+        </li>
+        <li>
+          <h4>Criam as próprias branches</h4>
+          <div class="code">
+            <div class="code__head">
+              <span class="code__dots"><span></span><span></span><span></span></span>
+              <span class="code__label">Ana</span>
+            </div>
+            <pre class="code__body"><code><span class="t-cmd">git pull</span> origin develop
+<span class="t-cmd">git checkout</span> <span class="t-flag">-b</span> <span class="t-branch">feature/kpi-margem</span></code></pre>
+          </div>
+          <div class="code">
+            <div class="code__head">
+              <span class="code__dots"><span></span><span></span><span></span></span>
+              <span class="code__label">Bruno</span>
+            </div>
+            <pre class="code__body"><code><span class="t-cmd">git pull</span> origin develop
+<span class="t-cmd">git checkout</span> <span class="t-flag">-b</span> <span class="t-branch">feature/pagina-comparativo</span></code></pre>
+          </div>
+        </li>
+        <li>
+          <h4>Realizam commits ao longo do dia</h4>
+          <p>Commits pequenos, um por ideia concluída. Não espere o fim da semana.</p>
+          <div class="code">
+            <div class="code__head">
+              <span class="code__dots"><span></span><span></span><span></span></span>
+              <span class="code__label">Ana — durante o trabalho</span>
+            </div>
+            <pre class="code__body"><code><span class="t-cmd">git add</span> .
+<span class="t-cmd">git commit</span> <span class="t-flag">-m</span> <span class="t-str">"feat: medida de margem bruta por país"</span>
+
+<span class="t-com"># mais tarde, outra entrega</span>
+<span class="t-cmd">git add</span> .
+<span class="t-cmd">git commit</span> <span class="t-flag">-m</span> <span class="t-str">"docs: descrição das medidas no modelo"</span></code></pre>
+          </div>
+        </li>
+        <li>
+          <h4>Fazem push das branches</h4>
+          <div class="code">
+            <div class="code__head">
+              <span class="code__dots"><span></span><span></span><span></span></span>
+              <span class="code__label">Cada um envia a sua</span>
+            </div>
+            <pre class="code__body"><code><span class="t-cmd">git push</span> origin <span class="t-branch">feature/kpi-margem</span>
+<span class="t-cmd">git push</span> origin <span class="t-branch">feature/pagina-comparativo</span></code></pre>
+          </div>
+        </li>
+        <li>
+          <h4>Criam os Pull Requests e revisam um ao outro</h4>
+          <p>
+            Ana abre PR de <code>feature/kpi-margem</code> ? <code>develop</code> e coloca Bruno como revisor.
+            Bruno faz o mesmo com a branch dele. <strong>Revisão cruzada</strong>: cada um olha o trabalho do outro.
+          </p>
+        </li>
+        <li>
+          <h4>Merge para develop</h4>
+          <p>
+            Aprovados, os dois PRs entram em <code>develop</code>. O primeiro merge costuma ser
+            fast-forward; o segundo gera um merge commit — comportamento normal e esperado.
+          </p>
+        </li>
+        <li>
+          <h4>Merge para main</h4>
+          <p>
+            Depois de <code>develop</code> ser validado (dados conferidos, visuais aprovados pelo negócio),
+            abre-se um PR de <code>develop</code> ? <code>main</code>. A <code>main</code> passa a ser a versão oficial.
+          </p>
+        </li>
+      </ol>
+
+      <h3 id="h-comandos-sincronia">Os comandos de sincronização, explicados</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Comando</th><th>O que faz</th><th>Altera seus arquivos?</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="cmd">git fetch</code></td>
+              <td>Consulta o remoto e baixa as informações sobre commits e branches novas.</td>
+              <td><strong>Não.</strong> É a forma segura de "espiar" antes de integrar.</td>
+            </tr>
+            <tr>
+              <td><code class="cmd">git pull</code></td>
+              <td>Faz <code>fetch</code> e já integra (merge) na sua branch atual.</td>
+              <td><strong>Sim.</strong> Feche o Power BI Desktop antes.</td>
+            </tr>
+            <tr>
+              <td><code class="cmd">git push</code></td>
+              <td>Envia seus commits locais para o repositório remoto.</td>
+              <td>Altera o remoto, não o seu local.</td>
+            </tr>
+            <tr>
+              <td><code class="cmd">git pull origin main</code></td>
+              <td>Traz especificamente a <code>main</code> do remoto para a branch em que você está.</td>
+              <td><strong>Sim.</strong> Usado para alinhar a feature com a versão oficial.</td>
+            </tr>
+            <tr>
+              <td><code class="cmd">git pull origin develop</code></td>
+              <td>Traz a <code>develop</code> atualizada para a sua branch de trabalho.</td>
+              <td><strong>Sim.</strong> É o comando do "atualize sua branch frequentemente".</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — rotina de sincronização</span>
+        </div>
+        <pre class="code__body"><code><span class="t-com"># === TODA MANHÃ, antes de abrir o Power BI ===</span>
+<span class="t-cmd">git status</span>
+<span class="t-cmd">git fetch</span>
+<span class="t-cmd">git pull</span> origin develop
+
+<span class="t-com"># === A CADA DOIS DIAS, alinhe sua feature com a base ===</span>
+<span class="t-cmd">git checkout</span> <span class="t-branch">feature/kpi-margem</span>
+<span class="t-cmd">git pull</span> origin develop
+
+<span class="t-com"># === DEPOIS DE UM MERGE APROVADO ===</span>
+<span class="t-cmd">git checkout</span> develop
+<span class="t-cmd">git pull</span> origin develop
+<span class="t-cmd">git branch</span> <span class="t-flag">-d</span> <span class="t-branch">feature/kpi-margem</span></code></pre>
+      </div>
+
+      <div class="callout callout--tip">
+        <i class="fa-solid fa-people-arrows"></i>
+        <div>
+          <span class="callout__title">Combinem a divisão de trabalho antes de começar</span>
+          <p>Se Ana mexe só em <code>*.SemanticModel/</code> e Bruno só em <code>*.Report/</code>,
+             os conflitos praticamente desaparecem. Quando os dois precisam mexer no mesmo arquivo,
+             o melhor é fazer em sequência, não em paralelo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== SEÇÃO 12 -->
+    <section class="section reveal" id="boas-praticas"
+             data-label="12. Boas práticas para equipes Power BI" data-icon="fa-solid fa-star"
+             data-keywords="boas práticas commits conventional feat fix refactor docs revisão pares sincronizar">
+      <span class="eyebrow"><i class="fa-solid fa-star"></i> Capítulo 12</span>
+      <h2 id="h-boas-praticas">Boas práticas para equipes Power BI</h2>
+      <p class="lead">
+        Oito acordos simples que transformam Git de "ferramenta que atrapalha" em processo que a equipe
+        nem percebe mais.
+      </p>
+
+      <div class="grid grid--2">
+        <article class="card">
+          <div class="card__icon card__icon--pbi"><i class="fa-solid fa-file-code"></i></div>
+          <h4>1. Trabalhe com PBIP</h4>
+          <p>É o pré-requisito de tudo. Com PBIX você tem backup na nuvem; com PBIP você tem
+             versionamento de verdade — diff, revisão e merge.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon card__icon--red"><i class="fa-solid fa-envelope-open-text"></i></div>
+          <h4>2. Nunca troque arquivos por e-mail</h4>
+          <p>Nem por WhatsApp, Teams ou pen drive. Se não passou pelo repositório, não existe.
+             O repositório é a única fonte da verdade.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon"><i class="fa-solid fa-code-pull-request"></i></div>
+          <h4>3. Toda mudança via Pull Request</h4>
+          <p>Inclusive as suas. Proteja a <code>main</code> nas configurações do repositório exigindo
+             pelo menos uma aprovação.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon card__icon--green"><i class="fa-solid fa-rotate"></i></div>
+          <h4>4. Atualize a branch frequentemente</h4>
+          <p>Um <code>git pull origin develop</code> a cada dois dias mantém o conflito pequeno e
+             administrável.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon card__icon--accent"><i class="fa-solid fa-scissors"></i></div>
+          <h4>5. Commits pequenos</h4>
+          <p>Um commit = uma ideia concluída. "Criei a medida" e "ajustei o visual" são dois commits,
+             não um só.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon card__icon--amber"><i class="fa-solid fa-comment-dots"></i></div>
+          <h4>6. Escreva mensagens claras</h4>
+          <p>A mensagem é para o colega de dentro de seis meses — que pode ser você mesmo, sem lembrar
+             de nada.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon card__icon--vs"><i class="fa-solid fa-user-check"></i></div>
+          <h4>7. Use revisão por pares</h4>
+          <p>Quem revisa verifica a lógica DAX, a nomenclatura e o impacto nos visuais. Duas cabeças
+             pegam erro que uma não pega.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon card__icon--gh"><i class="fa-solid fa-sun"></i></div>
+          <h4>8. Sincronize antes de começar</h4>
+          <p><code>git pull</code> é o primeiro comando do dia, antes de abrir o Power BI Desktop.
+             Sempre.</p>
+        </article>
+      </div>
+
+      <h3 id="h-exemplos-commit">Exemplos de bons commits</h3>
+      <p>
+        O padrão <a href="https://www.conventionalcommits.org/pt-br/">Conventional Commits</a> usa um prefixo
+        que diz a natureza da mudança. Lê-se o histórico como um changelog.
+      </p>
+
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">Mensagens de commit — exemplos reais</span>
+        </div>
+        <pre class="code__body"><code><span class="t-cmd">git commit</span> <span class="t-flag">-m</span> <span class="t-str">"feat: criação do KPI LATAM"</span>
+<span class="t-cmd">git commit</span> <span class="t-flag">-m</span> <span class="t-str">"fix: correção da medida YTD"</span>
+<span class="t-cmd">git commit</span> <span class="t-flag">-m</span> <span class="t-str">"refactor: reorganização do modelo"</span>
+<span class="t-cmd">git commit</span> <span class="t-flag">-m</span> <span class="t-str">"docs: atualização da documentação"</span></code></pre>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Prefixo</th><th>Quando usar em Power BI</th><th>Exemplo</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code class="cmd">feat</code></td><td>Nova medida, nova página, nova tabela</td><td><code>feat: criação do KPI LATAM</code></td></tr>
+            <tr><td><code class="cmd">fix</code></td><td>Correção de cálculo, relacionamento ou filtro</td><td><code>fix: correção da medida YTD</code></td></tr>
+            <tr><td><code class="cmd">refactor</code></td><td>Reorganização sem mudar resultado</td><td><code>refactor: reorganização do modelo</code></td></tr>
+            <tr><td><code class="cmd">docs</code></td><td>README, descrições de medidas, dicionário de dados</td><td><code>docs: atualização da documentação</code></td></tr>
+            <tr><td><code class="cmd">style</code></td><td>Cores, fontes, formatação de visuais</td><td><code>style: padronização das cores dos cards</code></td></tr>
+            <tr><td><code class="cmd">perf</code></td><td>Otimização de desempenho do modelo</td><td><code>perf: remoção de colunas não utilizadas</code></td></tr>
+            <tr><td><code class="cmd">chore</code></td><td>Manutenção, .gitignore, configuração</td><td><code>chore: ajuste no gitignore do cache</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="fig">
+        <div class="fig__frame">
+          <img src="assets/img/commit-messages.svg" width="880" height="340" alt="Comparação entre mensagens de commit ruins como alteracoes e update, e boas mensagens com prefixos feat, fix, refactor, docs e style" loading="lazy">
+        </div>
+        <figcaption><i class="fa-solid fa-image"></i>
+          À esquerda, mensagens que não dizem nada. À direita, o padrão que faz o histórico virar documentação.
+        </figcaption>
+      </figure>
+
+      <h3 id="h-regras-ouro">Combinados adicionais que funcionam bem</h3>
+      <ul>
+        <li><strong>Feche o Power BI Desktop</strong> antes de <code>pull</code>, <code>merge</code> ou troca de branch.</li>
+        <li><strong>Nunca commite credenciais</strong> nem planilhas de origem — para isso existe o <code>.gitignore</code>.</li>
+        <li><strong>Documente as medidas no próprio modelo</strong> (campo <em>description</em>): a documentação viaja com o projeto.</li>
+        <li><strong>Padronize a nomenclatura</strong> de tabelas, colunas e medidas antes de escalar o time.</li>
+        <li><strong>Uma demanda, uma branch, um PR.</strong> PRs gigantes não são revisados de verdade.</li>
+        <li><strong>Proteja a main</strong>: exija PR, aprovação e branch atualizada antes do merge.</li>
+      </ul>
+    </section>
+
+    <!-- ================================================== SEÇÃO 13 -->
+    <section class="section reveal" id="publicacao"
+             data-label="13. Publicação e entrega final" data-icon="fa-solid fa-rocket"
+             data-keywords="publicação entrega final checkout main pull tag versão oficial apagar branch">
+      <span class="eyebrow"><i class="fa-solid fa-rocket"></i> Capítulo 13</span>
+      <h2 id="h-publicacao">Publicação e entrega final</h2>
+      <p class="lead">
+        O projeto foi aprovado pelo negócio. Agora a mudança precisa percorrer o último trecho:
+        de <code>develop</code> para <code>main</code> e da <code>main</code> para o Serviço do Power BI.
+      </p>
+
+      <h3 id="h-fluxo-entrega">O fluxo da entrega</h3>
+      <figure class="fig">
+        <div class="fig__frame">
+          <img src="assets/img/release-flow.svg" width="880" height="340" alt="Diagrama do fluxo feature para develop para main e publicação no workspace de produção do Power BI" loading="lazy">
+        </div>
+        <figcaption><i class="fa-solid fa-diagram-project"></i>
+          <code>feature</code> ? <code>develop</code> ? <code>main</code> ? workspace de produção.
+          Cada seta é um Pull Request revisado.
+        </figcaption>
+      </figure>
+
+      <div class="flow">
+        <div class="flow__node" data-detail="<b>feature</b> — desenvolvimento e teste individual. A pessoa valida a própria mudança no Power BI Desktop antes de pedir revisão.">
+          <i class="fa-solid fa-code-branch"></i><b>feature</b><small>desenvolvimento</small>
+        </div>
+        <div class="flow__arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="flow__node" data-detail="<b>develop</b> — integração de todas as features do ciclo. É aqui que o time testa o conjunto: dados conferidos, visuais revisados, desempenho aceitável. Normalmente publicado num workspace de homologação.">
+          <i class="fa-solid fa-flask"></i><b>develop</b><small>homologação</small>
+        </div>
+        <div class="flow__arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="flow__node" data-detail="<b>main</b> — a versão oficial. Recebe merge só depois da aprovação do negócio. Marque a entrega com uma tag (<code>git tag -a v1.3</code>) para saber exatamente o que foi publicado.">
+          <i class="fa-solid fa-shield-halved"></i><b>main</b><small>versão oficial</small>
+        </div>
+        <div class="flow__arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="flow__node" data-detail="<b>Publicação</b> — o relatório vai para o workspace de produção, manualmente pelo Desktop ou automaticamente via integração Git do Fabric / Deployment Pipelines.">
+          <i class="fa-solid fa-rocket"></i><b>Publicação</b><small>produção</small>
+        </div>
+        <div class="flow__detail"></div>
+      </div>
+
+      <h3 id="h-pos-merge">Depois do merge final</h3>
+      <p>
+        Com o PR de <code>develop</code> ? <code>main</code> aprovado e mesclado, todo mundo precisa alinhar
+        a máquina local com a nova versão oficial:
+      </p>
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — alinhar com a versão oficial</span>
+        </div>
+        <pre class="code__body"><code><span class="t-cmd">git checkout</span> main
+<span class="t-cmd">git pull</span></code></pre>
+      </div>
+
+      <p>E, opcionalmente, marque a versão entregue com uma tag:</p>
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — marcar a versão</span>
+        </div>
+        <pre class="code__body"><code><span class="t-cmd">git tag</span> <span class="t-flag">-a</span> v1.3 <span class="t-flag">-m</span> <span class="t-str">"Release 1.3 — KPI LATAM e página comparativa"</span>
+<span class="t-cmd">git push</span> origin v1.3</code></pre>
+      </div>
+
+      <h3 id="h-tres-regras">Três regras depois da entrega</h3>
+      <div class="grid grid--3">
+        <article class="card">
+          <div class="card__icon card__icon--green"><i class="fa-solid fa-certificate"></i></div>
+          <h4>A main é a versão oficial</h4>
+          <p>O que está na <code>main</code> é o que está publicado. Se alguém pergunta "qual é o relatório
+             certo?", a resposta é sempre: o da <code>main</code>.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon card__icon--amber"><i class="fa-solid fa-broom"></i></div>
+          <h4>Branches concluídas podem sair</h4>
+          <p>O histórico da feature já vive dentro de <code>develop</code> e <code>main</code>. Apagar a branch
+             não apaga os commits — só limpa a lista.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon"><i class="fa-solid fa-seedling"></i></div>
+          <h4>Melhoria nova, branch nova</h4>
+          <p>Nunca reabra uma branch antiga. Toda demanda seguinte nasce de uma
+             <code>develop</code> atualizada.</p>
+        </article>
+      </div>
+
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — limpeza e próximo ciclo</span>
+        </div>
+        <pre class="code__body"><code><span class="t-com"># apagar a branch local já mesclada</span>
+<span class="t-cmd">git branch</span> <span class="t-flag">-d</span> <span class="t-branch">feature/novo-kpi</span>
+
+<span class="t-com"># apagar a branch no GitHub</span>
+<span class="t-cmd">git push</span> origin <span class="t-flag">--delete</span> <span class="t-branch">feature/novo-kpi</span>
+
+<span class="t-com"># limpar referências de branches que já não existem no remoto</span>
+<span class="t-cmd">git fetch</span> <span class="t-flag">--prune</span>
+
+<span class="t-com"># === começar a próxima demanda ===</span>
+<span class="t-cmd">git checkout</span> develop
+<span class="t-cmd">git pull</span> origin develop
+<span class="t-cmd">git checkout</span> <span class="t-flag">-b</span> <span class="t-branch">feature/proxima-melhoria</span></code></pre>
+      </div>
+
+      <div class="callout callout--info">
+        <i class="fa-solid fa-circle-nodes"></i>
+        <div>
+          <span class="callout__title">Próximo passo: automatizar a publicação</span>
+          <p>O Microsoft Fabric permite conectar um workspace diretamente a uma branch do GitHub
+             (<em>Git integration</em>). O merge na <code>main</code> passa a atualizar o relatório em produção
+             sem ninguém clicar em "Publicar".
+             Veja a <a href="https://learn.microsoft.com/fabric/cicd/git-integration/intro-to-git-integration">documentação de integração Git do Fabric</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== SEÇÃO 14 -->
+    <section class="section reveal" id="comandos"
+             data-label="14. Comandos Git mais utilizados" data-icon="fa-solid fa-terminal"
+             data-keywords="init clone status add commit push pull fetch branch checkout merge log remote -v tabela referência">
+      <span class="eyebrow"><i class="fa-solid fa-terminal"></i> Capítulo 14</span>
+      <h2 id="h-comandos">Comandos Git mais utilizados</h2>
+      <p class="lead">
+        A referência rápida para consultar no dia a dia. Treze comandos cobrem mais de 95% do trabalho
+        em um projeto Power BI.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th style="width:150px">Comando</th><th>Descrição</th><th>Exemplo real</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="cmd">git init</code></td>
+              <td>Transforma a pasta atual em um repositório Git, criando a subpasta <code>.git</code>.</td>
+              <td><code>git init</code></td>
+            </tr>
+            <tr>
+              <td><code class="cmd">git clone</code></td>
+              <td>Baixa um repositório remoto com todo o histórico. Use uma vez por máquina.</td>
+              <td><code>git clone https://github.com/bi-latam/vendas-latam-pbip.git</code></td>
+            </tr>
+            <tr>
+              <td><code class="cmd">git status</code></td>
+              <td>Mostra a branch atual, o que mudou e o que está preparado para commit.</td>
+              <td><code>git status</code></td>
+            </tr>
+            <tr>
+              <td><code class="cmd">git add</code></td>
+              <td>Coloca as alterações na área de preparo (staging).</td>
+              <td><code>git add .</code><br><code>git add Vendas.SemanticModel/</code></td>
+            </tr>
+            <tr>
+              <td><code class="cmd">git commit</code></td>
+              <td>Grava as alterações preparadas no histórico, com uma mensagem.</td>
+              <td><code>git commit -m "feat: criação do KPI LATAM"</code></td>
+            </tr>
+            <tr>
+              <td><code class="cmd">git push</code></td>
+              <td>Envia os commits locais para o repositório remoto.</td>
+              <td><code>git push origin feature/novo-kpi</code></td>
+            </tr>
+            <tr>
+              <td><code class="cmd">git pull</code></td>
+              <td>Baixa e já integra as alterações do remoto na branch atual.</td>
+              <td><code>git pull origin develop</code></td>
+            </tr>
+            <tr>
+              <td><code class="cmd">git fetch</code></td>
+              <td>Consulta o remoto sem alterar seus arquivos. O jeito seguro de espiar.</td>
+              <td><code>git fetch --prune</code></td>
+            </tr>
+            <tr>
+              <td><code class="cmd">git branch</code></td>
+              <td>Lista, cria, renomeia ou apaga branches.</td>
+              <td><code>git branch -a</code><br><code>git branch -d feature/kpi</code></td>
+            </tr>
+            <tr>
+              <td><code class="cmd">git checkout</code></td>
+              <td>Troca de branch ou cria uma nova com <code>-b</code>.</td>
+              <td><code>git checkout -b feature/novo-kpi</code></td>
+            </tr>
+            <tr>
+              <td><code class="cmd">git merge</code></td>
+              <td>Traz os commits de outra branch para a branch atual.</td>
+              <td><code>git merge feature/novo-kpi</code></td>
+            </tr>
+            <tr>
+              <td><code class="cmd">git log</code></td>
+              <td>Exibe o histórico de commits. Com <code>--oneline --graph</code> fica visual.</td>
+              <td><code>git log --oneline --graph --all</code></td>
+            </tr>
+            <tr>
+              <td><code class="cmd">git remote -v</code></td>
+              <td>Mostra os endereços remotos configurados (fetch e push).</td>
+              <td><code>git remote -v</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="h-log-visual">Vendo o histórico como um gráfico</h3>
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — histórico visual</span>
+        </div>
+        <pre class="code__body"><code><span class="t-cmd">git log</span> <span class="t-flag">--oneline --graph --all --decorate</span></code></pre>
+      </div>
+      <div class="code code--nocopy">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">Saída</span>
+        </div>
+        <pre class="code__body"><code><span class="t-out">*   9f2c1de (HEAD -&gt; main, origin/main) Merge pull request #44 from develop</span>
+<span class="t-out">|\</span>
+<span class="t-out">| * 7c4f1ab (develop) feat: criação do KPI LATAM</span>
+<span class="t-out">| * 3e8a2b9 style: padronização das cores dos cards</span>
+<span class="t-out">|/</span>
+<span class="t-out">* a1b2c3d fix: correção da medida YTD</span>
+<span class="t-out">* 5d9e7f1 Primeiro commit</span></code></pre>
+      </div>
+
+      <h3 id="h-comandos-extra">Comandos de emergência que vale conhecer</h3>
+      <div class="code">
+        <div class="code__head">
+          <span class="code__dots"><span></span><span></span><span></span></span>
+          <span class="code__label">PowerShell — salvando o dia</span>
+        </div>
+        <pre class="code__body"><code><span class="t-com"># descartar alterações de um arquivo (CUIDADO: não tem volta)</span>
+<span class="t-cmd">git restore</span> Vendas.Report/definition/report.json
+
+<span class="t-com"># desfazer o último commit, mantendo as alterações nos arquivos</span>
+<span class="t-cmd">git reset</span> <span class="t-flag">--soft</span> HEAD~1
+
+<span class="t-com"># guardar temporariamente o que você está fazendo</span>
+<span class="t-cmd">git stash</span>
+<span class="t-cmd">git stash pop</span>
+
+<span class="t-com"># corrigir a mensagem do último commit (antes do push)</span>
+<span class="t-cmd">git commit</span> <span class="t-flag">--amend</span> <span class="t-flag">-m</span> <span class="t-str">"feat: mensagem corrigida"</span>
+
+<span class="t-com"># ver quem alterou cada linha de um arquivo</span>
+<span class="t-cmd">git blame</span> Vendas.SemanticModel/definition/tables/Vendas.tmdl
+
+<span class="t-com"># o histórico de TUDO que você fez — o salva-vidas do Git</span>
+<span class="t-cmd">git reflog</span></code></pre>
+      </div>
+
+      <div class="callout callout--warn">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <div>
+          <span class="callout__title">Antes de rodar qualquer comando destrutivo</span>
+          <p>Copie a pasta do projeto para outro lugar. Leva dez segundos e evita um dia ruim.
+             <code>git restore</code>, <code>git reset --hard</code> e <code>git clean</code> apagam trabalho
+             que nunca foi commitado — e o Git não consegue recuperar o que nunca viu.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== SEÇÃO 15 -->
+    <section class="section reveal" id="checklist"
+             data-label="15. Checklist final" data-icon="fa-solid fa-list-check"
+             data-keywords="checklist interativo git instalado github configurado repositório branch commit push pull request merge sincronizado">
+      <span class="eyebrow"><i class="fa-solid fa-list-check"></i> Capítulo 15</span>
+      <h2 id="h-checklist">Checklist final</h2>
+      <p class="lead">
+        Marque cada item conforme avança. O progresso fica salvo no seu navegador, então você pode
+        fechar a página e voltar depois.
+      </p>
+
+      <div class="checklist-bar">
+        <span class="checklist-bar__count" id="checkCount">0 de 10 concluídos</span>
+        <div class="bar"><div class="bar__fill" id="checkProgress"></div></div>
+        <button class="btn btn--ghost" id="checkReset" type="button">
+          <i class="fa-solid fa-rotate-left"></i> Limpar
+        </button>
+      </div>
+
+      <ul class="checklist">
+        <li>
+          <label class="check">
+            <input type="checkbox" id="ck1">
+            <span class="check__box"><i class="fa-solid fa-check"></i></span>
+            <span class="check__text">Git instalado
+              <span class="check__hint"><code>git --version</code> responde com um número de versão</span>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label class="check">
+            <input type="checkbox" id="ck2">
+            <span class="check__box"><i class="fa-solid fa-check"></i></span>
+            <span class="check__text">GitHub configurado
+              <span class="check__hint">Conta criada, 2FA ativo e <code>user.name</code> / <code>user.email</code> definidos</span>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label class="check">
+            <input type="checkbox" id="ck3">
+            <span class="check__box"><i class="fa-solid fa-check"></i></span>
+            <span class="check__text">VS Code instalado
+              <span class="check__hint">Com as extensões GitHub Pull Requests, Copilot, TMDL e Material Icon Theme</span>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label class="check">
+            <input type="checkbox" id="ck4">
+            <span class="check__box"><i class="fa-solid fa-check"></i></span>
+            <span class="check__text">Repositório conectado
+              <span class="check__hint"><code>git remote -v</code> mostra o <code>origin</code> correto</span>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label class="check">
+            <input type="checkbox" id="ck5">
+            <span class="check__box"><i class="fa-solid fa-check"></i></span>
+            <span class="check__text">Branch criada
+              <span class="check__hint"><code>git checkout -b feature/minha-tarefa</code> com nome padronizado</span>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label class="check">
+            <input type="checkbox" id="ck6">
+            <span class="check__box"><i class="fa-solid fa-check"></i></span>
+            <span class="check__text">Commit realizado
+              <span class="check__hint">Mensagem no padrão <code>feat:</code>, <code>fix:</code>, <code>docs:</code>…</span>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label class="check">
+            <input type="checkbox" id="ck7">
+            <span class="check__box"><i class="fa-solid fa-check"></i></span>
+            <span class="check__text">Push realizado
+              <span class="check__hint">A branch já aparece na aba <em>Branches</em> do GitHub</span>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label class="check">
+            <input type="checkbox" id="ck8">
+            <span class="check__box"><i class="fa-solid fa-check"></i></span>
+            <span class="check__text">Pull Request criado
+              <span class="check__hint">Com descrição, revisor indicado e branch de destino correta</span>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label class="check">
+            <input type="checkbox" id="ck9">
+            <span class="check__box"><i class="fa-solid fa-check"></i></span>
+            <span class="check__text">Merge concluído
+              <span class="check__hint">PR aprovado e mesclado; conflitos resolvidos e testados no Desktop</span>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label class="check">
+            <input type="checkbox" id="ck10">
+            <span class="check__box"><i class="fa-solid fa-check"></i></span>
+            <span class="check__text">Projeto sincronizado
+              <span class="check__hint"><code>git checkout main</code> + <code>git pull</code> e branch antiga removida</span>
+            </span>
+          </label>
+        </li>
+      </ul>
+
+      <div class="callout callout--tip">
+        <i class="fa-solid fa-trophy"></i>
+        <div>
+          <span class="callout__title">Dez itens marcados = ciclo completo dominado</span>
+          <p>Você saiu de "arquivo por e-mail" para um fluxo versionado, revisado e rastreável.
+             A partir daqui, o próximo nível é automatizar: integração Git do Fabric, validação
+             automática de TMDL e Deployment Pipelines.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ SEÇÃO EXTRA -->
+    <section class="section reveal" id="recursos"
+             data-label="Recursos úteis" data-icon="fa-solid fa-book-bookmark"
+             data-keywords="links documentação oficial git docs github docs github flow vscode power bi gitignore generator">
+      <span class="eyebrow"><i class="fa-solid fa-book-bookmark"></i> Seção extra</span>
+      <h2 id="h-recursos">Recursos úteis</h2>
+      <p class="lead">
+        Documentação oficial para consultar quando este guia não for suficiente. Todos os links abrem
+        em nova aba.
+      </p>
+
+      <div class="links">
+        <a class="link-card" href="https://git-scm.com/doc">
+          <span class="link-card__icon"><i class="fa-brands fa-git-alt"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">Git — documentação e livro Pro Git</span>
+            <span class="link-card__url">https://git-scm.com/doc</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://docs.github.com">
+          <span class="link-card__icon"><i class="fa-brands fa-github"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">GitHub Docs</span>
+            <span class="link-card__url">https://docs.github.com</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://docs.github.com/en/get-started/quickstart/github-flow">
+          <span class="link-card__icon"><i class="fa-solid fa-diagram-project"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">GitHub Flow</span>
+            <span class="link-card__url">docs.github.com/en/get-started/quickstart/github-flow</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://code.visualstudio.com/docs">
+          <span class="link-card__icon"><i class="fa-solid fa-code"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">VS Code — documentação</span>
+            <span class="link-card__url">https://code.visualstudio.com/docs</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://learn.microsoft.com/power-bi">
+          <span class="link-card__icon"><i class="fa-solid fa-chart-column"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">Microsoft Learn — Power BI</span>
+            <span class="link-card__url">https://learn.microsoft.com/power-bi</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://www.toptal.com/developers/gitignore">
+          <span class="link-card__icon"><i class="fa-solid fa-filter"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">Git Ignore Generator</span>
+            <span class="link-card__url">https://www.toptal.com/developers/gitignore</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+      </div>
+
+      <h3 id="h-recursos-extra">Para ir além</h3>
+      <div class="links">
+        <a class="link-card" href="https://learn.microsoft.com/power-bi/developer/projects/projects-overview">
+          <span class="link-card__icon"><i class="fa-solid fa-folder-tree"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">Power BI Desktop projects (PBIP)</span>
+            <span class="link-card__url">learn.microsoft.com/power-bi/developer/projects</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://learn.microsoft.com/analysis-services/tmdl/tmdl-overview">
+          <span class="link-card__icon"><i class="fa-solid fa-diagram-successor"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">TMDL — Tabular Model Definition Language</span>
+            <span class="link-card__url">learn.microsoft.com/analysis-services/tmdl</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://learn.microsoft.com/fabric/cicd/git-integration/intro-to-git-integration">
+          <span class="link-card__icon"><i class="fa-solid fa-circle-nodes"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">Integração Git do Microsoft Fabric</span>
+            <span class="link-card__url">learn.microsoft.com/fabric/cicd/git-integration</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://www.conventionalcommits.org/pt-br/">
+          <span class="link-card__icon"><i class="fa-solid fa-comment-dots"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">Conventional Commits (pt-BR)</span>
+            <span class="link-card__url">conventionalcommits.org/pt-br</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://learn.microsoft.com/training/paths/introduction-to-version-control-with-git/">
+          <span class="link-card__icon"><i class="fa-solid fa-graduation-cap"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">Microsoft Learn — trilha de Git</span>
+            <span class="link-card__url">learn.microsoft.com/training (Git)</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+        <a class="link-card" href="https://desktop.github.com">
+          <span class="link-card__icon"><i class="fa-solid fa-desktop"></i></span>
+          <span class="link-card__body">
+            <span class="link-card__title">GitHub Desktop</span>
+            <span class="link-card__url">https://desktop.github.com</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
+        </a>
+      </div>
+
+      <footer class="footer">
+        <span>
+          Guia Power BI + Git + GitHub + VS Code — material educacional e corporativo.
+          Pronto para publicar no GitHub Pages.
+        </span>
+        <span class="footer__links">
+          <a href="#inicio">Voltar ao início</a>
+          <a href="#comandos">Comandos</a>
+          <a href="#checklist">Checklist</a>
+        </span>
+      </footer>
+    </section>
+
+  </div>
+  </main>
+</div>
+
+<button class="to-top" id="toTop" aria-label="Voltar ao topo"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

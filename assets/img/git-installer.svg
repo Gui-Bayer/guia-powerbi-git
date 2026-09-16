@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 400" role="img" aria-label="Instalador do Git para Windows">
+  <rect width="820" height="400" rx="12" fill="#f1f5f9"/>
+  <g font-family="Segoe UI, Inter, sans-serif">
+    <rect x="24" y="30" width="470" height="340" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect x="24" y="30" width="470" height="34" rx="8" fill="#F05032"/>
+    <rect x="24" y="52" width="470" height="12" fill="#F05032"/>
+    <text x="44" y="52" font-size="13" font-weight="600" fill="#ffffff">Git 2.47.0 Setup</text>
+    <text x="470" y="52" text-anchor="end" font-size="13" fill="#ffffff">&#10005;</text>
+
+    <text x="48" y="94" font-size="14.5" font-weight="700" fill="#0f172a">Adjusting your PATH environment</text>
+    <text x="48" y="116" font-size="11.5" fill="#64748b">Como você quer usar o Git na linha de comando?</text>
+
+    <g font-size="12" fill="#334155">
+      <circle cx="56" cy="144" r="6" fill="#fff" stroke="#94a3b8"/>
+      <text x="72" y="148">Use Git from Git Bash only</text>
+
+      <circle cx="56" cy="176" r="6" fill="#F05032" stroke="#F05032"/>
+      <circle cx="56" cy="176" r="2.4" fill="#fff"/>
+      <text x="72" y="180" font-weight="700" fill="#0f172a">Git from the command line and also from 3rd-party software</text>
+      <text x="72" y="197" font-size="11" fill="#16a34a">&#10003; recomendado &#8212; habilita o Git no VS Code e no PowerShell</text>
+
+      <circle cx="56" cy="226" r="6" fill="#fff" stroke="#94a3b8"/>
+      <text x="72" y="230">Use Git and optional Unix tools from the Command Prompt</text>
+    </g>
+
+    <rect x="48" y="252" width="422" height="1" fill="#e2e8f0"/>
+    <g font-size="11.5" fill="#475569">
+      <text x="48" y="276">Outras telas: deixe os padrões, exceto:</text>
+      <text x="48" y="296">&#8226; Default editor &#8594; Visual Studio Code</text>
+      <text x="48" y="316">&#8226; Default branch name &#8594; main</text>
+      <text x="48" y="336">&#8226; Credential Manager &#8594; Git Credential Manager</text>
+    </g>
+
+    <g>
+      <rect x="250" y="336" width="70" height="26" rx="4" fill="#f1f5f9" stroke="#94a3b8"/>
+      <text x="285" y="354" text-anchor="middle" font-size="11.5" fill="#334155">Back</text>
+      <rect x="328" y="336" width="70" height="26" rx="4" fill="#F05032"/>
+      <text x="363" y="354" text-anchor="middle" font-size="11.5" font-weight="600" fill="#fff">Next</text>
+      <rect x="406" y="336" width="70" height="26" rx="4" fill="#f1f5f9" stroke="#94a3b8"/>
+      <text x="441" y="354" text-anchor="middle" font-size="11.5" fill="#334155">Cancel</text>
+    </g>
+
+    <g font-size="12.5">
+      <rect x="520" y="30" width="276" height="340" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+      <text x="544" y="60" font-size="14" font-weight="700" fill="#0f172a">Sequência da instalação</text>
+      <g fill="#334155">
+        <circle cx="552" cy="88" r="11" fill="#fee2e2"/><text x="552" y="92" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">1</text>
+        <text x="572" y="92">Baixar em git-scm.com</text>
+        <circle cx="552" cy="128" r="11" fill="#fee2e2"/><text x="552" y="132" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">2</text>
+        <text x="572" y="132">Executar o .exe</text>
+        <circle cx="552" cy="168" r="11" fill="#fee2e2"/><text x="552" y="172" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">3</text>
+        <text x="572" y="172">Aceitar a licença</text>
+        <circle cx="552" cy="208" r="11" fill="#fee2e2"/><text x="552" y="212" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">4</text>
+        <text x="572" y="212">Editor &#8594; VS Code</text>
+        <circle cx="552" cy="248" r="11" fill="#fee2e2"/><text x="552" y="252" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">5</text>
+        <text x="572" y="252">Branch padrão &#8594; main</text>
+        <circle cx="552" cy="288" r="11" fill="#fee2e2"/><text x="552" y="292" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">6</text>
+        <text x="572" y="292">PATH &#8594; opção recomendada</text>
+        <circle cx="552" cy="328" r="11" fill="#dcfce7"/><text x="552" y="332" text-anchor="middle" font-size="11" font-weight="700" fill="#166534">7</text>
+        <text x="572" y="332" font-weight="600">Install &#8594; reiniciar terminal</text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" role="img" aria-label="Fluxograma GitHub, git clone, computador local">
+  <defs>
+    <marker id="ca" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="cg" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#16a34a"/>
+    </marker>
+  </defs>
+  <rect width="820" height="420" rx="14" fill="#f8fafc"/>
+  <g font-family="Segoe UI, Inter, sans-serif">
+    <text x="410" y="36" text-anchor="middle" font-size="16" font-weight="700" fill="#0f172a">Clone: apenas na primeira vez</text>
+
+    <rect x="46" y="70" width="200" height="110" rx="12" fill="#ffffff" stroke="#6e5494" stroke-width="2"/>
+    <path transform="translate(132 84) scale(0.056)" fill="#24292f" d="M256 0C114.6 0 0 114.6 0 256c0 113.1 73.4 209 175.2 242.9 12.8 2.4 17.5-5.6 17.5-12.3 0-6.1-.2-26.2-.3-47.5-71.3 15.5-86.3-30.2-86.3-30.2-11.7-29.8-28.5-37.7-28.5-37.7-23.3-15.9 1.8-15.6 1.8-15.6 25.7 1.8 39.3 26.4 39.3 26.4 22.9 39.2 60 27.9 74.6 21.3 2.3-16.6 9-28.1 16.3-34.5-57-6.5-116.9-28.5-116.9-126.7 0-28 10-50.9 26.4-68.8-2.7-6.5-11.4-32.6 2.5-67.9 0 0 21.5-6.9 70.4 26.3 20.4-5.7 42.3-8.5 64.1-8.6 21.8.1 43.7 2.9 64.1 8.6 48.8-33.2 70.3-26.3 70.3-26.3 14 35.3 5.2 61.4 2.5 67.9 16.4 17.9 26.3 40.8 26.3 68.8 0 98.4-60 120-117.2 126.4 9.2 7.9 17.4 23.5 17.4 47.4 0 34.2-.3 61.8-.3 70.2 0 6.8 4.6 14.8 17.6 12.3C438.7 465 512 369.1 512 256 512 114.6 397.4 0 256 0z"/>
+    <text x="146" y="136" text-anchor="middle" font-size="13.5" font-weight="700" fill="#3b0764">GitHub</text>
+    <text x="146" y="156" text-anchor="middle" font-size="11" fill="#64748b">repositório remoto (origin)</text>
+    <text x="146" y="172" text-anchor="middle" font-size="11" fill="#64748b">main / develop / features</text>
+
+    <path d="M250 125 H322" stroke="#2563eb" stroke-width="3" marker-end="url(#ca)"/>
+    <rect x="330" y="96" width="160" height="58" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <text x="410" y="120" text-anchor="middle" font-family="Consolas, monospace" font-size="13" font-weight="700" fill="#1e40af">git clone URL</text>
+    <text x="410" y="140" text-anchor="middle" font-size="10.5" fill="#1d4ed8">baixa arquivos + histórico</text>
+
+    <path d="M494 125 H566" stroke="#2563eb" stroke-width="3" marker-end="url(#ca)"/>
+    <rect x="574" y="70" width="200" height="110" rx="12" fill="#ffffff" stroke="#0ea5e9" stroke-width="2"/>
+    <g transform="translate(646 86)">
+      <rect x="0" y="0" width="56" height="34" rx="4" fill="#0f172a"/>
+      <rect x="4" y="4" width="48" height="26" rx="2" fill="#0ea5e9" opacity=".35"/>
+      <path d="M-8 38 h72 l-6 6 h-60z" fill="#334155"/>
+    </g>
+    <text x="674" y="152" text-anchor="middle" font-size="13.5" font-weight="700" fill="#075985">Computador local</text>
+    <text x="674" y="170" text-anchor="middle" font-size="11" fill="#64748b">pasta do projeto + .git</text>
+
+    <rect x="46" y="228" width="340" height="156" rx="12" fill="#fef9c3" stroke="#facc15" stroke-width="2"/>
+    <text x="70" y="256" font-size="13.5" font-weight="700" fill="#713f12">Quando usar git clone</text>
+    <g font-size="11.5" fill="#854d0e">
+      <text x="70" y="282">&#10003; Novo integrante entrando no projeto</text>
+      <text x="70" y="304">&#10003; Você formatou / trocou de máquina</text>
+      <text x="70" y="326">&#10003; Precisa de uma segunda cópia isolada</text>
+      <text x="70" y="348">&#10003; Apagou a pasta local por engano</text>
+      <text x="70" y="370">&#8594; É uma operação de UMA VEZ por máquina</text>
+    </g>
+
+    <rect x="434" y="228" width="340" height="156" rx="12" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+    <text x="458" y="256" font-size="13.5" font-weight="700" fill="#14532d">Quem já tem o projeto usa</text>
+    <g font-size="11.5">
+      <text x="458" y="282" font-family="Consolas, monospace" fill="#166534">git pull</text>
+      <text x="560" y="282" fill="#15803d">traz o que mudou no remoto</text>
+      <text x="458" y="304" font-family="Consolas, monospace" fill="#166534">git fetch</text>
+      <text x="560" y="304" fill="#15803d">só consulta, não altera</text>
+      <text x="458" y="326" font-family="Consolas, monospace" fill="#166534">git checkout</text>
+      <text x="560" y="326" fill="#15803d">troca de branch</text>
+      <text x="458" y="356" font-size="11" fill="#166534">Clonar de novo apagaria branches locais e</text>
+      <text x="458" y="372" font-size="11" fill="#166534">commits que ainda não foram enviados.</text>
+    </g>
+
+    <path d="M674 190 C674 208 620 210 604 226" stroke="#16a34a" stroke-width="2.5" fill="none" marker-end="url(#cg)" stroke-dasharray="6 4"/>
+  </g>
+</svg>

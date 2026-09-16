@@ -573,7 +573,7 @@ html[data-theme="dark"] .steps > li::before { color: #04121f; }
 .flow__detail b { color: var(--text); }
 .flow__detail code { background: var(--surface-2); padding: 1.5px 6px; border-radius: 5px; color: var(--accent); font-size: 12.5px; }
 
-/* --- 15. Ýrvore de arquivos --------------------------------------------- */
+/* --- 15. Árvore de arquivos --------------------------------------------- */
 .tree {
   background: var(--code-bg);
   border: 1px solid var(--border);
@@ -773,67 +773,4 @@ td .cmd {
   .content { margin: 0; padding: 0; }
   .layout { padding-top: 0; }
   .card, .code, .fig__frame { break-inside: avoid; }
-}
-
-/* --- 24. Seletor de idioma ------------------------------------------------ */
-.lang { position: relative; flex: 0 0 auto; }
-
-.lang__btn {
-  width: auto; padding: 0 10px; gap: 6px;
-  display: inline-flex; align-items: center;
-  font-weight: 600; font-size: 13px;
-}
-.lang__btn:hover { color: var(--brand); border-color: var(--brand-soft); }
-.lang__code { letter-spacing: .04em; }
-
-.lang__menu {
-  position: absolute; top: calc(100% + 8px); right: 0;
-  min-width: 232px;
-  list-style: none; margin: 0; padding: 6px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  box-shadow: var(--shadow-lg);
-  display: none;
-  z-index: 60;
-}
-.lang.is-open .lang__menu { display: block; }
-
-.lang__menu button {
-  width: 100%;
-  display: flex; align-items: center; gap: 10px;
-  padding: 9px 10px;
-  border: 0; border-radius: 9px;
-  background: transparent;
-  color: var(--text);
-  font: inherit; font-size: 13.5px;
-  text-align: left; cursor: pointer;
-  transition: background .15s ease;
-}
-.lang__menu button:hover { background: var(--bg-alt); }
-.lang__menu button[aria-selected="true"] { background: var(--brand-soft); color: var(--brand-strong); font-weight: 600; }
-
-.lang__flag {
-  flex: 0 0 auto;
-  min-width: 26px; padding: 2px 5px;
-  border: 1px solid var(--border-soft);
-  border-radius: 5px;
-  background: var(--bg-alt);
-  font-family: var(--mono); font-size: 10.5px; font-weight: 700;
-  letter-spacing: .04em; text-align: center;
-  color: var(--text-mute);
-}
-.lang__menu button[aria-selected="true"] .lang__flag { color: var(--brand-strong); border-color: var(--brand-soft); }
-
-/* O subtitulo da marca varia de tamanho conforme o idioma; some antes de quebrar linha. */
-@media (max-width: 1100px) {
-  .brand__sub { display: none; }
-}
-@media (max-width: 900px) {
-  .lang__btn { padding: 0 8px; }
-  .lang__menu { right: -6px; min-width: 210px; }
-}
-@media (max-width: 620px) {
-  .lang__code { display: none; }
-  .lang__btn { width: 38px; padding: 0; }
 }

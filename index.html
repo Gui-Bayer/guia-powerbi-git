@@ -11,10 +11,6 @@
 <meta property="og:description" content="Do primeiro commit ao Pull Request: versionamento de projetos PBIP em equipe.">
 <meta property="og:type" content="website">
 
-<link rel="alternate" hreflang="pt-BR" href="./?lang=pt-BR">
-<link rel="alternate" hreflang="en-US" href="./?lang=en-US">
-<link rel="alternate" hreflang="es-MX" href="./?lang=es-MX">
-<link rel="alternate" hreflang="x-default" href="./">
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -37,7 +33,7 @@
 
 <!-- ======================================================= BARRA SUPERIOR -->
 <header class="topbar">
-  <button class="icon-btn menu-btn" id="menuToggle" data-i18n-attr="aria-label:ui.menu.aria" aria-label="Abrir menu de capítulos" aria-controls="sidebar" aria-expanded="false">
+  <button class="icon-btn menu-btn" id="menuToggle" aria-label="Abrir menu de capítulos" aria-controls="sidebar" aria-expanded="false">
     <i class="fa-solid fa-bars"></i>
   </button>
 
@@ -45,7 +41,7 @@
     <span class="brand__mark"><i class="fa-solid fa-code-branch"></i></span>
     <span>
       <span class="brand__title">Power BI + Git + GitHub</span>
-      <span class="brand__sub" data-i18n="ui.brand.sub">Guia de versionamento de projetos PBIP</span>
+      <span class="brand__sub">Guia de versionamento de projetos PBIP</span>
     </span>
   </a>
 
@@ -54,28 +50,17 @@
   <div class="search" role="search">
     <i class="fa-solid fa-magnifying-glass search__icon"></i>
     <input type="search" id="searchInput" class="search__input" autocomplete="off" spellcheck="false"
-           data-i18n-attr="placeholder:ui.search.placeholder|aria-label:ui.search.aria" placeholder="Buscar comando, conceito ou capítulo…" aria-label="Buscar no guia">
+           placeholder="Buscar comando, conceito ou capítulo…" aria-label="Buscar no guia">
     <span class="search__kbd">Ctrl K</span>
-    <div class="search__results" id="searchResults" role="listbox" data-i18n-attr="aria-label:ui.search.resultsAria" aria-label="Resultados da busca"></div>
+    <div class="search__results" id="searchResults" role="listbox" aria-label="Resultados da busca"></div>
   </div>
 
-  <nav class="topbar__links" data-i18n-attr="aria-label:ui.extLinks.aria" aria-label="Links externos">
+  <nav class="topbar__links" aria-label="Links externos">
     <a href="https://github.com"><i class="fa-brands fa-github"></i><span>GitHub</span></a>
     <a href="https://learn.microsoft.com/power-bi"><i class="fa-solid fa-chart-column"></i><span>Power BI</span></a>
   </nav>
 
-  <div class="lang" id="langSwitch">
-    <button class="icon-btn lang__btn" id="langToggle" type="button" aria-haspopup="listbox" aria-expanded="false"
-            data-i18n-attr="aria-label:ui.lang.aria" aria-label="Escolher idioma">
-      <i class="fa-solid fa-language"></i><span class="lang__code" id="langCode">PT</span>
-    </button>
-    <ul class="lang__menu" id="langMenu" role="listbox" data-i18n-attr="aria-label:ui.lang.listAria" aria-label="Idiomas disponíveis">
-      <li><button type="button" role="option" data-lang="pt-BR"><span class="lang__flag">BR</span> Portugu&#234;s (Brasil)</button></li>
-      <li><button type="button" role="option" data-lang="en-US"><span class="lang__flag">US</span> English (United States)</button></li>
-      <li><button type="button" role="option" data-lang="es-MX"><span class="lang__flag">MX</span> Espa&#241;ol (M&#233;xico)</button></li>
-    </ul>
-  </div>
-  <button class="icon-btn" id="themeToggle" data-i18n-attr="aria-label:ui.theme.aria" aria-label="Alternar tema"><i class="fa-solid fa-moon"></i></button>
+  <button class="icon-btn" id="themeToggle" aria-label="Alternar tema"><i class="fa-solid fa-moon"></i></button>
 </header>
 
 <div class="backdrop" id="backdrop"></div>
@@ -86,38 +71,38 @@
   <aside class="sidebar" id="sidebar">
     <div class="sidebar__progress">
       <div class="sidebar__progress-label">
-        <span data-i18n="ui.progress.label">Progresso da leitura</span><b id="readLabel">0%</b>
+        <span>Progresso da leitura</span><b id="readLabel">0%</b>
       </div>
       <div class="bar"><div class="bar__fill" id="readProgress"></div></div>
     </div>
 
-    <nav data-i18n-attr="aria-label:ui.nav.aria" aria-label="Capítulos do guia">
-      <p class="nav__group" data-i18n="nav.group.start">Começando</p>
+    <nav aria-label="Capítulos do guia">
+      <p class="nav__group">Começando</p>
       <ul class="nav__list">
-        <li><a class="nav__link" href="#introducao"><span class="nav__num">1</span> <span data-i18n="nav.introducao">Introdução</span></a></li>
-        <li><a class="nav__link" href="#instalacao"><span class="nav__num">2</span> <span data-i18n="nav.instalacao">Instalação e configuração</span></a></li>
-        <li><a class="nav__link" href="#pbip-versionado"><span class="nav__num">3</span> <span data-i18n="nav.pbip-versionado">PBIP versionado</span></a></li>
-        <li><a class="nav__link" href="#repositorio"><span class="nav__num">4</span> <span data-i18n="nav.repositorio">Repositório no GitHub</span></a></li>
-        <li><a class="nav__link" href="#clone"><span class="nav__num">5</span> <span data-i18n="nav.clone">Clone e sincronização</span></a></li>
+        <li><a class="nav__link" href="#introducao"><span class="nav__num">1</span> Introdução</a></li>
+        <li><a class="nav__link" href="#instalacao"><span class="nav__num">2</span> Instalação e configuração</a></li>
+        <li><a class="nav__link" href="#pbip-versionado"><span class="nav__num">3</span> PBIP versionado</a></li>
+        <li><a class="nav__link" href="#repositorio"><span class="nav__num">4</span> Repositório no GitHub</a></li>
+        <li><a class="nav__link" href="#clone"><span class="nav__num">5</span> Clone e sincronização</a></li>
       </ul>
 
-      <p class="nav__group" data-i18n="nav.group.daily">Dia a dia</p>
+      <p class="nav__group">Dia a dia</p>
       <ul class="nav__list">
-        <li><a class="nav__link" href="#workflow"><span class="nav__num">6</span> <span data-i18n="nav.workflow">Workflow completo</span></a></li>
-        <li><a class="nav__link" href="#branches"><span class="nav__num">7</span> <span data-i18n="nav.branches">Branches</span></a></li>
-        <li><a class="nav__link" href="#pull-request"><span class="nav__num">8</span> <span data-i18n="nav.pull-request">Pull Request</span></a></li>
-        <li><a class="nav__link" href="#merge"><span class="nav__num">9</span> <span data-i18n="nav.merge">Merge</span></a></li>
-        <li><a class="nav__link" href="#conflitos"><span class="nav__num">10</span> <span data-i18n="nav.conflitos">Resolução de conflitos</span></a></li>
-        <li><a class="nav__link" href="#colaboracao"><span class="nav__num">11</span> <span data-i18n="nav.colaboracao">Colaboração</span></a></li>
+        <li><a class="nav__link" href="#workflow"><span class="nav__num">6</span> Workflow completo</a></li>
+        <li><a class="nav__link" href="#branches"><span class="nav__num">7</span> Branches</a></li>
+        <li><a class="nav__link" href="#pull-request"><span class="nav__num">8</span> Pull Request</a></li>
+        <li><a class="nav__link" href="#merge"><span class="nav__num">9</span> Merge</a></li>
+        <li><a class="nav__link" href="#conflitos"><span class="nav__num">10</span> Resolução de conflitos</a></li>
+        <li><a class="nav__link" href="#colaboracao"><span class="nav__num">11</span> Colaboração</a></li>
       </ul>
 
-      <p class="nav__group" data-i18n="nav.group.reference">Referência</p>
+      <p class="nav__group">Referência</p>
       <ul class="nav__list">
-        <li><a class="nav__link" href="#boas-praticas"><span class="nav__num">12</span> <span data-i18n="nav.boas-praticas">Boas práticas</span></a></li>
-        <li><a class="nav__link" href="#publicacao"><span class="nav__num">13</span> <span data-i18n="nav.publicacao">Publicação e entrega</span></a></li>
-        <li><a class="nav__link" href="#comandos"><span class="nav__num">14</span> <span data-i18n="nav.comandos">Comandos mais usados</span></a></li>
-        <li><a class="nav__link" href="#checklist"><span class="nav__num">15</span> <span data-i18n="nav.checklist">Checklist final</span></a></li>
-        <li><a class="nav__link" href="#recursos"><i class="fa-solid fa-book-bookmark"></i> <span data-i18n="nav.recursos">Recursos úteis</span></a></li>
+        <li><a class="nav__link" href="#boas-praticas"><span class="nav__num">12</span> Boas práticas</a></li>
+        <li><a class="nav__link" href="#publicacao"><span class="nav__num">13</span> Publicação e entrega</a></li>
+        <li><a class="nav__link" href="#comandos"><span class="nav__num">14</span> Comandos mais usados</a></li>
+        <li><a class="nav__link" href="#checklist"><span class="nav__num">15</span> Checklist final</a></li>
+        <li><a class="nav__link" href="#recursos"><i class="fa-solid fa-book-bookmark"></i> Recursos úteis</a></li>
       </ul>
     </nav>
   </aside>
@@ -128,9 +113,9 @@
 
     <!-- ------------------------------------------------------- HERO -->
     <section class="hero" id="inicio">
-      <span class="eyebrow"><i class="fa-solid fa-graduation-cap"></i> <span data-i18n="hero.eyebrow">Guia educacional e corporativo</span></span>
-      <h1 data-i18n="hero.title">Versionando projetos Power BI com Git, GitHub e VS Code</h1>
-      <p class="lead" data-i18n-html="hero.lead">
+      <span class="eyebrow"><i class="fa-solid fa-graduation-cap"></i> Guia educacional e corporativo</span>
+      <h1>Versionando projetos Power BI com Git, GitHub e VS Code</h1>
+      <p class="lead">
         Um caminho completo, do primeiro <code>git --version</code> até o Pull Request aprovado pelo time.
         Escrito para <strong>analistas de dados e desenvolvedores Power BI</strong> que nunca usaram Git —
         e que precisam parar de trocar arquivos <code>.pbix</code> por e-mail.
@@ -141,21 +126,21 @@
         <span class="chip chip--git"><i class="fa-brands fa-git-alt"></i> Git</span>
         <span class="chip chip--gh"><i class="fa-brands fa-github"></i> GitHub</span>
         <span class="chip chip--vs"><i class="fa-solid fa-code"></i> VS Code</span>
-        <span class="chip"><i class="fa-solid fa-clock"></i> <span data-i18n="hero.chip.time">~45 min de leitura</span></span>
-        <span class="chip"><i class="fa-solid fa-layer-group"></i> <span data-i18n="hero.chip.chapters">15 capítulos</span></span>
+        <span class="chip"><i class="fa-solid fa-clock"></i> ~45 min de leitura</span>
+        <span class="chip"><i class="fa-solid fa-layer-group"></i> 15 capítulos</span>
       </div>
 
       <div class="btn-row">
-        <a class="btn btn--primary" href="#introducao"><i class="fa-solid fa-play"></i> <span data-i18n="hero.btn.start">Começar pelo capítulo 1</span></a>
-        <a class="btn btn--ghost" href="#comandos"><i class="fa-solid fa-terminal"></i> <span data-i18n="hero.btn.commands">Ir direto aos comandos</span></a>
-        <a class="btn btn--ghost" href="#checklist"><i class="fa-solid fa-list-check"></i> <span data-i18n="hero.btn.checklist">Checklist final</span></a>
+        <a class="btn btn--primary" href="#introducao"><i class="fa-solid fa-play"></i> Começar pelo capítulo 1</a>
+        <a class="btn btn--ghost" href="#comandos"><i class="fa-solid fa-terminal"></i> Ir direto aos comandos</a>
+        <a class="btn btn--ghost" href="#checklist"><i class="fa-solid fa-list-check"></i> Checklist final</a>
       </div>
 
       <figure class="fig hero__fig">
         <div class="fig__frame">
           <img src="assets/img/hero.svg" width="880" height="380" alt="Fluxo do projeto: Power BI Desktop gera o PBIP, VS Code edita, Git versiona, GitHub compartilha com a equipe" loading="eager">
         </div>
-        <figcaption data-i18n-html="hero.caption"><i class="fa-solid fa-diagram-project"></i>
+        <figcaption><i class="fa-solid fa-circle-info"></i>
           O caminho que você vai percorrer neste guia: o projeto nasce no Power BI Desktop, é editado no VS Code,
           versionado pelo Git, compartilhado no GitHub e revisado pela equipe.
         </figcaption>
@@ -164,11 +149,11 @@
 
     <!-- ================================================== SEÇÃO 1 -->
     <section class="section reveal" id="introducao"
-             data-i18n-attr="data-label:sec.introducao.label" data-label="1. Introdução" data-icon="fa-solid fa-lightbulb"
+             data-label="1. Introdução" data-icon="fa-solid fa-lightbulb"
              data-keywords="git github vscode pbip pbix versionamento colaboração email o que é">
-      <span class="eyebrow"><i class="fa-solid fa-lightbulb"></i> <span data-i18n="sec.introducao.eyebrow">Capítulo 1</span></span>
-      <h2 id="h-introducao" data-i18n="sec.introducao.title">Introdução: as quatro ferramentas e por que elas importam</h2>
-      <p class="lead" data-i18n-html="sec.introducao.lead">
+      <span class="eyebrow"><i class="fa-solid fa-lightbulb"></i> Capítulo 1</span>
+      <h2 id="h-introducao">Introdução: as quatro ferramentas e por que elas importam</h2>
+      <p class="lead">
         Antes de digitar qualquer comando, vale entender o papel de cada peça. São quatro ferramentas
         independentes que, juntas, resolvem o problema mais comum de qualquer equipe de BI:
         <strong>saber qual é a versão certa do relatório</strong>.
@@ -354,11 +339,11 @@
 
     <!-- ================================================== SEÇÃO 2 -->
     <section class="section reveal" id="instalacao"
-             data-i18n-attr="data-label:sec.instalacao.label" data-label="2. Instalação e configuração inicial" data-icon="fa-solid fa-download"
+             data-label="2. Instalação e configuração inicial" data-icon="fa-solid fa-download"
              data-keywords="instalar git version config global user.name user.email extensões copilot material icon theme autenticação token">
-      <span class="eyebrow"><i class="fa-solid fa-download"></i> <span data-i18n="sec.instalacao.eyebrow">Capítulo 2</span></span>
-      <h2 id="h-instalacao" data-i18n="sec.instalacao.title">Instalação e configuração inicial</h2>
-      <p class="lead" data-i18n-html="sec.instalacao.lead">
+      <span class="eyebrow"><i class="fa-solid fa-download"></i> Capítulo 2</span>
+      <h2 id="h-instalacao">Instalação e configuração inicial</h2>
+      <p class="lead">
         Seis passos, uma vez por máquina. Ao final deste capítulo seu computador estará pronto para
         versionar qualquer projeto Power BI.
       </p>
@@ -582,11 +567,11 @@
 
     <!-- ================================================== SEÇÃO 3 -->
     <section class="section reveal" id="pbip-versionado"
-             data-i18n-attr="data-label:sec.pbip-versionado.label" data-label="3. Transformando um PBIP em projeto versionado" data-icon="fa-solid fa-folder-tree"
+             data-label="3. Transformando um PBIP em projeto versionado" data-icon="fa-solid fa-folder-tree"
              data-keywords="git init gitignore primeiro commit add estrutura report semanticmodel tmdl">
-      <span class="eyebrow"><i class="fa-solid fa-folder-tree"></i> <span data-i18n="sec.pbip-versionado.eyebrow">Capítulo 3</span></span>
-      <h2 id="h-pbip" data-i18n="sec.pbip-versionado.title">Transformando um PBIP em projeto versionado</h2>
-      <p class="lead" data-i18n-html="sec.pbip-versionado.lead">
+      <span class="eyebrow"><i class="fa-solid fa-folder-tree"></i> Capítulo 3</span>
+      <h2 id="h-pbip">Transformando um PBIP em projeto versionado</h2>
+      <p class="lead">
         Agora o projeto sai do "arquivo solto" e ganha histórico. São quatro passos: abrir no VS Code,
         inicializar o Git, criar o <code>.gitignore</code> e fazer o primeiro commit.
       </p>
@@ -784,11 +769,11 @@ desktop.ini
 
     <!-- ================================================== SEÇÃO 4 -->
     <section class="section reveal" id="repositorio"
-             data-i18n-attr="data-label:sec.repositorio.label" data-label="4. Criando repositório no GitHub" data-icon="fa-brands fa-github"
+             data-label="4. Criando repositório no GitHub" data-icon="fa-brands fa-github"
              data-keywords="novo repositório público privado readme url remote add origin push -u main">
-      <span class="eyebrow"><i class="fa-brands fa-github"></i> <span data-i18n="sec.repositorio.eyebrow">Capítulo 4</span></span>
-      <h2 id="h-repositorio" data-i18n="sec.repositorio.title">Criando o repositório no GitHub</h2>
-      <p class="lead" data-i18n-html="sec.repositorio.lead">
+      <span class="eyebrow"><i class="fa-brands fa-github"></i> Capítulo 4</span>
+      <h2 id="h-repositorio">Criando o repositório no GitHub</h2>
+      <p class="lead">
         O histórico já existe na sua máquina. Agora ele precisa de um endereço na nuvem para que a equipe
         acesse o mesmo projeto.
       </p>
@@ -953,11 +938,11 @@ git@github.com:bi-latam/vendas-latam-pbip.git</code></pre>
 
     <!-- ================================================== SEÇÃO 5 -->
     <section class="section reveal" id="clone"
-             data-i18n-attr="data-label:sec.clone.label" data-label="5. Clone e sincronização" data-icon="fa-solid fa-clone"
+             data-label="5. Clone e sincronização" data-icon="fa-solid fa-clone"
              data-keywords="git clone novo integrante sincronizar pull fetch quando usar github desktop">
-      <span class="eyebrow"><i class="fa-solid fa-clone"></i> <span data-i18n="sec.clone.eyebrow">Capítulo 5</span></span>
-      <h2 id="h-clone" data-i18n="sec.clone.title">Clone e sincronização</h2>
-      <p class="lead" data-i18n-html="sec.clone.lead">
+      <span class="eyebrow"><i class="fa-solid fa-clone"></i> Capítulo 5</span>
+      <h2 id="h-clone">Clone e sincronização</h2>
+      <p class="lead">
         <code>git clone</code> baixa o projeto <em>e todo o histórico</em> para uma máquina nova.
         É uma operação de primeira vez — e é aqui que muita gente se confunde.
       </p>
@@ -1096,11 +1081,11 @@ git@github.com:bi-latam/vendas-latam-pbip.git</code></pre>
 
     <!-- ================================================== SEÇÃO 6 -->
     <section class="section reveal" id="workflow"
-             data-i18n-attr="data-label:sec.workflow.label" data-label="6. Workflow completo de desenvolvimento" data-icon="fa-solid fa-timeline"
+             data-label="6. Workflow completo de desenvolvimento" data-icon="fa-solid fa-timeline"
              data-keywords="checkout -b feature novo kpi status add commit push origin workflow diário">
-      <span class="eyebrow"><i class="fa-solid fa-timeline"></i> <span data-i18n="sec.workflow.eyebrow">Capítulo 6</span></span>
-      <h2 id="h-workflow" data-i18n="sec.workflow.title">Workflow completo de desenvolvimento</h2>
-      <p class="lead" data-i18n-html="sec.workflow.lead">
+      <span class="eyebrow"><i class="fa-solid fa-timeline"></i> Capítulo 6</span>
+      <h2 id="h-workflow">Workflow completo de desenvolvimento</h2>
+      <p class="lead">
         Este é o ciclo que você vai repetir todos os dias. Seis passos, sempre na mesma ordem.
         Decore este capítulo e o resto vira detalhe.
       </p>
@@ -1261,11 +1246,11 @@ git@github.com:bi-latam/vendas-latam-pbip.git</code></pre>
 
     <!-- ================================================== SEÇÃO 7 -->
     <section class="section reveal" id="branches"
-             data-i18n-attr="data-label:sec.branches.label" data-label="7. Branches" data-icon="fa-solid fa-code-branch"
+             data-label="7. Branches" data-icon="fa-solid fa-code-branch"
              data-keywords="main develop feature hotfix release nomenclatura boas práticas branch">
-      <span class="eyebrow"><i class="fa-solid fa-code-branch"></i> <span data-i18n="sec.branches.eyebrow">Capítulo 7</span></span>
-      <h2 id="h-branches" data-i18n="sec.branches.title">Branches: trabalhando em paralelo sem colisão</h2>
-      <p class="lead" data-i18n-html="sec.branches.lead">
+      <span class="eyebrow"><i class="fa-solid fa-code-branch"></i> Capítulo 7</span>
+      <h2 id="h-branches">Branches: trabalhando em paralelo sem colisão</h2>
+      <p class="lead">
         Uma branch é uma linha de trabalho independente. Ela permite que você experimente, quebre e refaça
         sem afetar o relatório que está em produção.
       </p>
@@ -1417,11 +1402,11 @@ correcoes-finais-v3</code></pre>
 
     <!-- ================================================== SEÇÃO 8 -->
     <section class="section reveal" id="pull-request"
-             data-i18n-attr="data-label:sec.pull-request.label" data-label="8. Pull Request" data-icon="fa-solid fa-code-pull-request"
+             data-label="8. Pull Request" data-icon="fa-solid fa-code-pull-request"
              data-keywords="pull request review approval merge revisão pares descrição template">
-      <span class="eyebrow"><i class="fa-solid fa-code-pull-request"></i> <span data-i18n="sec.pull-request.eyebrow">Capítulo 8</span></span>
-      <h2 id="h-pr" data-i18n="sec.pull-request.title">Pull Request: pedindo para juntar o trabalho</h2>
-      <p class="lead" data-i18n-html="sec.pull-request.lead">
+      <span class="eyebrow"><i class="fa-solid fa-code-pull-request"></i> Capítulo 8</span>
+      <h2 id="h-pr">Pull Request: pedindo para juntar o trabalho</h2>
+      <p class="lead">
         O Pull Request (PR) é um pedido formal: <em>"terminei minha parte, por favor revisem e incorporem
         ao projeto"</em>. É onde a revisão por pares acontece — e onde o PBIP mostra seu valor.
       </p>
@@ -1572,11 +1557,11 @@ atingimento de meta por país no mesmo painel de receita.
 
     <!-- ================================================== SEÇÃO 9 -->
     <section class="section reveal" id="merge"
-             data-i18n-attr="data-label:sec.merge.label" data-label="9. Merge" data-icon="fa-solid fa-code-merge"
+             data-label="9. Merge" data-icon="fa-solid fa-code-merge"
              data-keywords="git merge fast forward merge commit conflict squash no-ff">
-      <span class="eyebrow"><i class="fa-solid fa-code-merge"></i> <span data-i18n="sec.merge.eyebrow">Capítulo 9</span></span>
-      <h2 id="h-merge" data-i18n="sec.merge.title">Merge: juntando as linhas de trabalho</h2>
-      <p class="lead" data-i18n-html="sec.merge.lead">
+      <span class="eyebrow"><i class="fa-solid fa-code-merge"></i> Capítulo 9</span>
+      <h2 id="h-merge">Merge: juntando as linhas de trabalho</h2>
+      <p class="lead">
         Merge é a operação que traz os commits de uma branch para outra. O Git tenta fazer isso sozinho —
         e consegue na maioria das vezes.
       </p>
@@ -1714,11 +1699,11 @@ atingimento de meta por país no mesmo painel de receita.
 
     <!-- ================================================== SEÇÃO 10 -->
     <section class="section reveal" id="conflitos"
-             data-i18n-attr="data-label:sec.conflitos.label" data-label="10. Resolução de conflitos" data-icon="fa-solid fa-triangle-exclamation"
+             data-label="10. Resolução de conflitos" data-icon="fa-solid fa-triangle-exclamation"
              data-keywords="conflito HEAD marcadores resolver abort merge editor testar antes">
-      <span class="eyebrow"><i class="fa-solid fa-triangle-exclamation"></i> <span data-i18n="sec.conflitos.eyebrow">Capítulo 10</span></span>
-      <h2 id="h-conflitos" data-i18n="sec.conflitos.title">Resolução de conflitos</h2>
-      <p class="lead" data-i18n-html="sec.conflitos.lead">
+      <span class="eyebrow"><i class="fa-solid fa-triangle-exclamation"></i> Capítulo 10</span>
+      <h2 id="h-conflitos">Resolução de conflitos</h2>
+      <p class="lead">
         Conflito não é erro nem defeito: é o Git avisando que duas pessoas tiveram ideias diferentes sobre
         a mesma linha. Resolver é escolher — e testar.
       </p>
@@ -1921,11 +1906,11 @@ atingimento de meta por país no mesmo painel de receita.
 
     <!-- ================================================== SEÇÃO 11 -->
     <section class="section reveal" id="colaboracao"
-             data-i18n-attr="data-label:sec.colaboracao.label" data-label="11. Colaboração entre desenvolvedores" data-icon="fa-solid fa-users"
+             data-label="11. Colaboração entre desenvolvedores" data-icon="fa-solid fa-users"
              data-keywords="analista A B cenário real pull fetch push origin main develop equipe">
-      <span class="eyebrow"><i class="fa-solid fa-users"></i> <span data-i18n="sec.colaboracao.eyebrow">Capítulo 11</span></span>
-      <h2 id="h-colaboracao" data-i18n="sec.colaboracao.title">Colaboração entre desenvolvedores</h2>
-      <p class="lead" data-i18n-html="sec.colaboracao.lead">
+      <span class="eyebrow"><i class="fa-solid fa-users"></i> Capítulo 11</span>
+      <h2 id="h-colaboracao">Colaboração entre desenvolvedores</h2>
+      <p class="lead">
         Vamos juntar tudo num cenário real: dois analistas, um projeto, uma semana de trabalho.
         Ana cuida do modelo semântico; Bruno cuida dos visuais.
       </p>
@@ -2092,11 +2077,11 @@ atingimento de meta por país no mesmo painel de receita.
 
     <!-- ================================================== SEÇÃO 12 -->
     <section class="section reveal" id="boas-praticas"
-             data-i18n-attr="data-label:sec.boas-praticas.label" data-label="12. Boas práticas para equipes Power BI" data-icon="fa-solid fa-star"
+             data-label="12. Boas práticas para equipes Power BI" data-icon="fa-solid fa-star"
              data-keywords="boas práticas commits conventional feat fix refactor docs revisão pares sincronizar">
-      <span class="eyebrow"><i class="fa-solid fa-star"></i> <span data-i18n="sec.boas-praticas.eyebrow">Capítulo 12</span></span>
-      <h2 id="h-boas-praticas" data-i18n="sec.boas-praticas.title">Boas práticas para equipes Power BI</h2>
-      <p class="lead" data-i18n-html="sec.boas-praticas.lead">
+      <span class="eyebrow"><i class="fa-solid fa-star"></i> Capítulo 12</span>
+      <h2 id="h-boas-praticas">Boas práticas para equipes Power BI</h2>
+      <p class="lead">
         Oito acordos simples que transformam Git de "ferramenta que atrapalha" em processo que a equipe
         nem percebe mais.
       </p>
@@ -2208,11 +2193,11 @@ atingimento de meta por país no mesmo painel de receita.
 
     <!-- ================================================== SEÇÃO 13 -->
     <section class="section reveal" id="publicacao"
-             data-i18n-attr="data-label:sec.publicacao.label" data-label="13. Publicação e entrega final" data-icon="fa-solid fa-rocket"
+             data-label="13. Publicação e entrega final" data-icon="fa-solid fa-rocket"
              data-keywords="publicação entrega final checkout main pull tag versão oficial apagar branch">
-      <span class="eyebrow"><i class="fa-solid fa-rocket"></i> <span data-i18n="sec.publicacao.eyebrow">Capítulo 13</span></span>
-      <h2 id="h-publicacao" data-i18n="sec.publicacao.title">Publicação e entrega final</h2>
-      <p class="lead" data-i18n-html="sec.publicacao.lead">
+      <span class="eyebrow"><i class="fa-solid fa-rocket"></i> Capítulo 13</span>
+      <h2 id="h-publicacao">Publicação e entrega final</h2>
+      <p class="lead">
         O projeto foi aprovado pelo negócio. Agora a mudança precisa percorrer o último trecho:
         de <code>develop</code> para <code>main</code> e da <code>main</code> para o Serviço do Power BI.
       </p>
@@ -2327,11 +2312,11 @@ atingimento de meta por país no mesmo painel de receita.
 
     <!-- ================================================== SEÇÃO 14 -->
     <section class="section reveal" id="comandos"
-             data-i18n-attr="data-label:sec.comandos.label" data-label="14. Comandos Git mais utilizados" data-icon="fa-solid fa-terminal"
+             data-label="14. Comandos Git mais utilizados" data-icon="fa-solid fa-terminal"
              data-keywords="init clone status add commit push pull fetch branch checkout merge log remote -v tabela referência">
-      <span class="eyebrow"><i class="fa-solid fa-terminal"></i> <span data-i18n="sec.comandos.eyebrow">Capítulo 14</span></span>
-      <h2 id="h-comandos" data-i18n="sec.comandos.title">Comandos Git mais utilizados</h2>
-      <p class="lead" data-i18n-html="sec.comandos.lead">
+      <span class="eyebrow"><i class="fa-solid fa-terminal"></i> Capítulo 14</span>
+      <h2 id="h-comandos">Comandos Git mais utilizados</h2>
+      <p class="lead">
         A referência rápida para consultar no dia a dia. Treze comandos cobrem mais de 95% do trabalho
         em um projeto Power BI.
       </p>
@@ -2472,11 +2457,11 @@ atingimento de meta por país no mesmo painel de receita.
 
     <!-- ================================================== SEÇÃO 15 -->
     <section class="section reveal" id="checklist"
-             data-i18n-attr="data-label:sec.checklist.label" data-label="15. Checklist final" data-icon="fa-solid fa-list-check"
+             data-label="15. Checklist final" data-icon="fa-solid fa-list-check"
              data-keywords="checklist interativo git instalado github configurado repositório branch commit push pull request merge sincronizado">
-      <span class="eyebrow"><i class="fa-solid fa-list-check"></i> <span data-i18n="sec.checklist.eyebrow">Capítulo 15</span></span>
-      <h2 id="h-checklist" data-i18n="sec.checklist.title">Checklist final</h2>
-      <p class="lead" data-i18n-html="sec.checklist.lead">
+      <span class="eyebrow"><i class="fa-solid fa-list-check"></i> Capítulo 15</span>
+      <h2 id="h-checklist">Checklist final</h2>
+      <p class="lead">
         Marque cada item conforme avança. O progresso fica salvo no seu navegador, então você pode
         fechar a página e voltar depois.
       </p>
@@ -2485,7 +2470,7 @@ atingimento de meta por país no mesmo painel de receita.
         <span class="checklist-bar__count" id="checkCount">0 de 10 concluídos</span>
         <div class="bar"><div class="bar__fill" id="checkProgress"></div></div>
         <button class="btn btn--ghost" id="checkReset" type="button">
-          <i class="fa-solid fa-rotate-left"></i> <span data-i18n="checklist.reset">Limpar</span>
+          <i class="fa-solid fa-rotate-left"></i> Limpar
         </button>
       </div>
 
@@ -2494,8 +2479,8 @@ atingimento de meta por país no mesmo painel de receita.
           <label class="check">
             <input type="checkbox" id="ck1">
             <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text"><span data-i18n="checklist.ck1.title">Git instalado</span>
-              <span data-i18n-html="checklist.ck1.hint" class="check__hint"><code>git --version</code> responde com um número de versão</span>
+            <span class="check__text">Git instalado
+              <span class="check__hint"><code>git --version</code> responde com um número de versão</span>
             </span>
           </label>
         </li>
@@ -2503,8 +2488,8 @@ atingimento de meta por país no mesmo painel de receita.
           <label class="check">
             <input type="checkbox" id="ck2">
             <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text"><span data-i18n="checklist.ck2.title">GitHub configurado</span>
-              <span data-i18n-html="checklist.ck2.hint" class="check__hint">Conta criada, 2FA ativo e <code>user.name</code> / <code>user.email</code> definidos</span>
+            <span class="check__text">GitHub configurado
+              <span class="check__hint">Conta criada, 2FA ativo e <code>user.name</code> / <code>user.email</code> definidos</span>
             </span>
           </label>
         </li>
@@ -2512,8 +2497,8 @@ atingimento de meta por país no mesmo painel de receita.
           <label class="check">
             <input type="checkbox" id="ck3">
             <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text"><span data-i18n="checklist.ck3.title">VS Code instalado</span>
-              <span data-i18n-html="checklist.ck3.hint" class="check__hint">Com as extensões GitHub Pull Requests, Copilot, TMDL e Material Icon Theme</span>
+            <span class="check__text">VS Code instalado
+              <span class="check__hint">Com as extensões GitHub Pull Requests, Copilot, TMDL e Material Icon Theme</span>
             </span>
           </label>
         </li>
@@ -2521,8 +2506,8 @@ atingimento de meta por país no mesmo painel de receita.
           <label class="check">
             <input type="checkbox" id="ck4">
             <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text"><span data-i18n="checklist.ck4.title">Repositório conectado</span>
-              <span data-i18n-html="checklist.ck4.hint" class="check__hint"><code>git remote -v</code> mostra o <code>origin</code> correto</span>
+            <span class="check__text">Repositório conectado
+              <span class="check__hint"><code>git remote -v</code> mostra o <code>origin</code> correto</span>
             </span>
           </label>
         </li>
@@ -2530,8 +2515,8 @@ atingimento de meta por país no mesmo painel de receita.
           <label class="check">
             <input type="checkbox" id="ck5">
             <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text"><span data-i18n="checklist.ck5.title">Branch criada</span>
-              <span data-i18n-html="checklist.ck5.hint" class="check__hint"><code>git checkout -b feature/minha-tarefa</code> com nome padronizado</span>
+            <span class="check__text">Branch criada
+              <span class="check__hint"><code>git checkout -b feature/minha-tarefa</code> com nome padronizado</span>
             </span>
           </label>
         </li>
@@ -2539,8 +2524,8 @@ atingimento de meta por país no mesmo painel de receita.
           <label class="check">
             <input type="checkbox" id="ck6">
             <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text"><span data-i18n="checklist.ck6.title">Commit realizado</span>
-              <span data-i18n-html="checklist.ck6.hint" class="check__hint">Mensagem no padrão <code>feat:</code>, <code>fix:</code>, <code>docs:</code>…</span>
+            <span class="check__text">Commit realizado
+              <span class="check__hint">Mensagem no padrão <code>feat:</code>, <code>fix:</code>, <code>docs:</code>…</span>
             </span>
           </label>
         </li>
@@ -2548,8 +2533,8 @@ atingimento de meta por país no mesmo painel de receita.
           <label class="check">
             <input type="checkbox" id="ck7">
             <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text"><span data-i18n="checklist.ck7.title">Push realizado</span>
-              <span data-i18n-html="checklist.ck7.hint" class="check__hint">A branch já aparece na aba <em>Branches</em> do GitHub</span>
+            <span class="check__text">Push realizado
+              <span class="check__hint">A branch já aparece na aba <em>Branches</em> do GitHub</span>
             </span>
           </label>
         </li>
@@ -2557,8 +2542,8 @@ atingimento de meta por país no mesmo painel de receita.
           <label class="check">
             <input type="checkbox" id="ck8">
             <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text"><span data-i18n="checklist.ck8.title">Pull Request criado</span>
-              <span data-i18n-html="checklist.ck8.hint" class="check__hint">Com descrição, revisor indicado e branch de destino correta</span>
+            <span class="check__text">Pull Request criado
+              <span class="check__hint">Com descrição, revisor indicado e branch de destino correta</span>
             </span>
           </label>
         </li>
@@ -2566,8 +2551,8 @@ atingimento de meta por país no mesmo painel de receita.
           <label class="check">
             <input type="checkbox" id="ck9">
             <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text"><span data-i18n="checklist.ck9.title">Merge concluído</span>
-              <span data-i18n-html="checklist.ck9.hint" class="check__hint">PR aprovado e mesclado; conflitos resolvidos e testados no Desktop</span>
+            <span class="check__text">Merge concluído
+              <span class="check__hint">PR aprovado e mesclado; conflitos resolvidos e testados no Desktop</span>
             </span>
           </label>
         </li>
@@ -2575,8 +2560,8 @@ atingimento de meta por país no mesmo painel de receita.
           <label class="check">
             <input type="checkbox" id="ck10">
             <span class="check__box"><i class="fa-solid fa-check"></i></span>
-            <span class="check__text"><span data-i18n="checklist.ck10.title">Projeto sincronizado</span>
-              <span data-i18n-html="checklist.ck10.hint" class="check__hint"><code>git checkout main</code> + <code>git pull</code> e branch antiga removida</span>
+            <span class="check__text">Projeto sincronizado
+              <span class="check__hint"><code>git checkout main</code> + <code>git pull</code> e branch antiga removida</span>
             </span>
           </label>
         </li>
@@ -2595,11 +2580,11 @@ atingimento de meta por país no mesmo painel de receita.
 
     <!-- ============================================ SEÇÃO EXTRA -->
     <section class="section reveal" id="recursos"
-             data-i18n-attr="data-label:sec.recursos.label" data-label="Recursos úteis" data-icon="fa-solid fa-book-bookmark"
+             data-label="Recursos úteis" data-icon="fa-solid fa-book-bookmark"
              data-keywords="links documentação oficial git docs github docs github flow vscode power bi gitignore generator">
-      <span class="eyebrow"><i class="fa-solid fa-book-bookmark"></i> <span data-i18n="sec.recursos.eyebrow">Seção extra</span></span>
-      <h2 id="h-recursos" data-i18n="sec.recursos.title">Recursos úteis</h2>
-      <p class="lead" data-i18n-html="sec.recursos.lead">
+      <span class="eyebrow"><i class="fa-solid fa-book-bookmark"></i> Seção extra</span>
+      <h2 id="h-recursos">Recursos úteis</h2>
+      <p class="lead">
         Documentação oficial para consultar quando este guia não for suficiente. Todos os links abrem
         em nova aba.
       </p>
@@ -2708,14 +2693,14 @@ atingimento de meta por país no mesmo painel de receita.
       </div>
 
       <footer class="footer">
-        <span data-i18n-html="footer.text">
+        <span>
           Guia Power BI + Git + GitHub + VS Code — material educacional e corporativo.
           Pronto para publicar no GitHub Pages.
         </span>
         <span class="footer__links">
-          <a href="#inicio" data-i18n="footer.back">Voltar ao início</a>
-          <a href="#comandos" data-i18n="footer.commands">Comandos</a>
-          <a href="#checklist" data-i18n="footer.checklist">Checklist</a>
+          <a href="#inicio">Voltar ao início</a>
+          <a href="#comandos">Comandos</a>
+          <a href="#checklist">Checklist</a>
         </span>
       </footer>
     </section>

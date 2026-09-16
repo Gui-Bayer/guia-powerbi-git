@@ -32,8 +32,7 @@ projetos **PBIP** com Git, GitHub e VS Code — da instalação inicial até a c
 - Botão **Copiar** em cada bloco de comando, que copia só os comandos e descarta a saída do terminal
 - Fluxogramas interativos, linha do tempo do workflow e diagramas de branches
 - Checklist final com progresso salvo no navegador
-- Três idiomas com troca em tempo real: português (Brasil), inglês (EUA) e espanhol (México)
-- 22 ilustrações SVG próprias: telas do VS Code, GitHub, GitHub Desktop, Power BI Desktop e terminais
+- 16 ilustrações SVG próprias: telas do VS Code, GitHub, GitHub Desktop, Power BI Desktop e terminais
 - Responsivo, acessível e com estilos de impressão
 
 ## Estrutura
@@ -44,65 +43,11 @@ guia-powerbi-git/
 ├── assets/
 │   ├── css/style.css       # design system, temas e componentes
 │   ├── js/main.js          # JavaScript puro, sem dependências
-│   ├── i18n/*.json         # traduções: pt-BR, en-US, es-MX
 │   └── img/*.svg           # 22 ilustrações e mockups de tela
-├── tools/
-│   ├── serve.ps1           # servidor HTTP local para testar o site
-│   ├── i18n-annotate.ps1   # insere as chaves data-i18n no HTML
-│   ├── i18n-extract.ps1    # gera o pt-BR.json a partir do HTML
-│   └── i18n-check.ps1      # valida codificação e paridade de chaves
+├── tools/serve.ps1         # servidor HTTP local para testar o site
 ├── .nojekyll               # necessário para o GitHub Pages servir os assets
 └── README.md
 ```
-
-## Idiomas
-
-O site está disponível em **português (Brasil)**, **inglês (EUA)** e **espanhol (México)**. A troca
-acontece sem recarregar a página, pelo seletor no canto superior direito.
-
-O idioma é escolhido nesta ordem de prioridade:
-
-1. Parâmetro na URL — `?lang=en-US` (útil para compartilhar um link já traduzido)
-2. Preferência salva no navegador (`localStorage`)
-3. Idioma do navegador (`navigator.languages`), com correspondência por prefixo: `es-AR` cai em `es-MX`
-4. Português, como padrão
-
-### API
-
-O módulo fica exposto em `window.I18n`:
-
-```js
-I18n.setLang('es-MX');        // troca o idioma, salva a preferência e reaplica a página
-I18n.t('sec.merge.title');    // lê uma string traduzida
-I18n.lang;                    // idioma atual, por exemplo "en-US"
-I18n.supported;               // ['pt-BR', 'en-US', 'es-MX']
-
-document.addEventListener('i18n:change', e => console.log(e.detail.lang));
-```
-
-### Como o conteúdo é marcado
-
-Cada elemento traduzível carrega uma chave no HTML:
-
-| Atributo | Efeito |
-|---|---|
-| `data-i18n="chave"` | substitui o texto do elemento |
-| `data-i18n-html="chave"` | substitui o HTML interno (permite `<code>`, `<strong>`) |
-| `data-i18n-attr="alt:chave\|aria-label:outra"` | substitui atributos, separados por `\|` |
-
-As traduções ficam em `assets/i18n/<idioma>.json`, com chaves planas. Quando uma chave não existe no
-idioma escolhido, o texto cai no português; se o JSON não carregar (por exemplo ao abrir o arquivo
-direto com `file://`), o conteúdo original do HTML permanece intacto.
-
-### Adicionando um idioma
-
-1. Copie `assets/i18n/pt-BR.json` para `assets/i18n/<código>.json` e traduza os valores.
-2. Acrescente o código em `SUPPORTED` e `SHORT` no `assets/js/main.js`.
-3. Adicione a opção no `<ul id="langMenu">` do `index.html`.
-4. Rode `tools/i18n-check.ps1` para conferir a paridade de chaves.
-
-> Observação: o texto dentro das ilustrações SVG e o corpo dos capítulos seguem em português nesta
-> etapa. A infraestrutura já suporta traduzi-los: basta acrescentar as chaves correspondentes.
 
 ## Como abrir localmente
 

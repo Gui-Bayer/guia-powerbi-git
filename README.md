@@ -3,6 +3,8 @@
 Site de documentação estático que ensina analistas de dados e desenvolvedores Power BI a versionar
 projetos **PBIP** com Git, GitHub e VS Code — da instalação inicial até a colaboração entre times.
 
+**Site publicado:** <https://gui-bayer.github.io/guia-powerbi-git/>
+
 ## Conteúdo
 
 | # | Capítulo |
@@ -64,6 +66,12 @@ Depois acesse <http://localhost:8000>.
 
 ## Publicando no GitHub Pages
 
+O site já está no ar em <https://gui-bayer.github.io/guia-powerbi-git/>, servido a partir da branch
+`main`. Cada `git push` para a `main` republica a página automaticamente, em cerca de um minuto —
+não é preciso fazer mais nada.
+
+Para reproduzir essa configuração em outro repositório:
+
 1. Crie um repositório no GitHub e envie os arquivos:
 
    ```bash
@@ -75,6 +83,8 @@ Depois acesse <http://localhost:8000>.
 3. Em *Source*, selecione **Deploy from a branch**, branch `main` e pasta `/ (root)`.
 4. Salve. Em cerca de um minuto o site fica disponível em
    `https://SEU-USUARIO.github.io/guia-powerbi-git/`.
+
+O repositório precisa ser público para o GitHub Pages funcionar no plano gratuito.
 
 ## Tecnologias
 

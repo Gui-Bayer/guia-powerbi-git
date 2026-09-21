@@ -32,7 +32,7 @@ projetos **PBIP** com Git, GitHub e VS Code — da instalação inicial até a c
 - Busca instantânea em todo o conteúdo (`Ctrl+K` ou `/`), com navegação por teclado
 - Botão **Copiar** em cada bloco de comando, que copia só os comandos e descarta a saída do terminal
 - Fluxogramas interativos, linha do tempo do workflow e diagramas de branches
-- 16 ilustrações SVG próprias: telas do VS Code, GitHub, GitHub Desktop, Power BI Desktop e terminais
+- 19 ilustrações SVG próprias: telas do VS Code, GitHub, GitHub Desktop, Power BI Desktop e terminais
 - Responsivo, acessível e com estilos de impressão
 
 ## Estrutura
@@ -43,7 +43,7 @@ guia-powerbi-git/
 ├── assets/
 │   ├── css/style.css       # design system, temas e componentes
 │   ├── js/main.js          # JavaScript puro, sem dependências
-│   └── img/*.svg           # 22 ilustrações e mockups de tela
+│   └── img/*.svg           # 19 ilustrações e mockups de tela
 ├── tools/serve.ps1         # servidor HTTP local para testar o site
 ├── .nojekyll               # necessário para o GitHub Pages servir os assets
 └── README.md

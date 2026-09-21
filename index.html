@@ -108,9 +108,9 @@
       <span class="eyebrow"><i class="fa-solid fa-graduation-cap"></i> Guia educacional e corporativo</span>
       <h1>Versionando projetos Power BI com Git, GitHub e VS Code</h1>
       <p class="lead">
-        Um caminho completo, do primeiro <code>git --version</code> até o Pull Request aprovado pelo time.
-        Escrito para <strong>analistas de dados e desenvolvedores Power BI</strong> que nunca usaram Git —
-        e que precisam parar de trocar arquivos <code>.pbix</code> por e-mail.
+        Um caminho completo, do primeiro <code>git --version</code> até o Pull Request aprovado pelo
+        time. Escrito para <strong>analistas de dados e desenvolvedores Power BI</strong> que estão
+        começando com Git.
       </p>
 
       <div class="hero__meta">
@@ -141,87 +141,74 @@
     <!-- ================================================== SEÇÃO 1 -->
     <section class="section reveal" id="introducao"
              data-label="1. Introdução" data-icon="fa-solid fa-lightbulb"
-             data-keywords="git github vscode pbip pbix versionamento colaboração email o que é">
+             data-keywords="git github vscode pbip pbix versionamento o que é diferença">
       <span class="eyebrow"><i class="fa-solid fa-lightbulb"></i> Capítulo 1</span>
-      <h2 id="h-introducao">Introdução: as quatro ferramentas e por que elas importam</h2>
+      <h2 id="h-introducao">As quatro ferramentas</h2>
       <p class="lead">
-        Antes de digitar qualquer comando, vale entender o papel de cada peça. São quatro ferramentas
-        independentes que, juntas, resolvem o problema mais comum de qualquer equipe de BI:
-        <strong>saber qual é a versão certa do relatório</strong>.
+        Quatro ferramentas independentes que, juntas, resolvem o problema mais comum de qualquer
+        equipe de BI: <strong>saber qual é a versão certa do relatório</strong>.
       </p>
 
       <div class="grid grid--2">
         <article class="card">
           <div class="card__icon card__icon--git"><i class="fa-brands fa-git-alt"></i></div>
-          <h3>O que é Git</h3>
+          <h3>Git</h3>
           <p>
-            É um <strong>sistema de controle de versão</strong> que roda na sua máquina. Ele tira "fotografias"
-            (commits) do seu projeto a cada mudança e guarda tudo num histórico: quem alterou, o que alterou,
-            quando e por quê.
-          </p>
-          <p>
-            Pense num "Ctrl+Z infinito e compartilhado". O Git é um programa de linha de comando — não tem
-            tela, não é um site e não precisa de internet para funcionar localmente.
+            <strong>Controle de versão</strong> que roda na sua máquina. Tira uma fotografia &#8212; o
+            commit &#8212; do projeto a cada mudança e registra quem alterou, o que alterou e por quê.
+            É um programa de linha de comando e funciona sem internet.
           </p>
           <a class="card__link" href="https://git-scm.com">Site oficial do Git <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </article>
 
         <article class="card">
           <div class="card__icon card__icon--gh"><i class="fa-brands fa-github"></i></div>
-          <h3>O que é GitHub</h3>
+          <h3>GitHub</h3>
           <p>
-            É a <strong>nuvem onde os repositórios Git vivem</strong>. O Git cuida do histórico local; o GitHub
-            hospeda esse histórico num servidor para que o time inteiro acesse o mesmo projeto.
-          </p>
-          <p>
-            Além de armazenar, o GitHub adiciona colaboração: Pull Requests, revisão de código, comentários,
-            permissões, automações e histórico visual na web.
+            A <strong>nuvem onde os repositórios vivem</strong>. O Git cuida do histórico local; o
+            GitHub hospeda esse histórico para o time inteiro acessar o mesmo projeto, com Pull
+            Requests e revisão de código.
           </p>
           <a class="card__link" href="https://github.com">Acessar o GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </article>
 
         <article class="card">
           <div class="card__icon card__icon--vs"><i class="fa-solid fa-code"></i></div>
-          <h3>O que é VS Code</h3>
+          <h3>VS Code</h3>
           <p>
-            O <strong>Visual Studio Code</strong> é um editor de texto e código gratuito da Microsoft. Nele você
-            abre a pasta do projeto PBIP, lê os arquivos de modelo e relatório, vê exatamente o que mudou
-            e executa comandos Git no terminal integrado.
-          </p>
-          <p>
-            É a "sala de controle": editor, terminal, painel de alterações e Pull Requests numa única janela.
+            Editor gratuito da Microsoft. Nele você abre a pasta do projeto PBIP, vê exatamente o que
+            mudou e executa os comandos Git no terminal integrado &#8212; tudo numa única janela.
           </p>
           <a class="card__link" href="https://code.visualstudio.com">Baixar o VS Code <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </article>
 
         <article class="card">
           <div class="card__icon card__icon--pbi"><i class="fa-solid fa-chart-column"></i></div>
-          <h3>O que é Power BI PBIP</h3>
+          <h3>Power BI PBIP</h3>
           <p>
-            <strong>PBIP</strong> (Power BI Project) é o formato de <em>projeto</em> do Power BI Desktop. Em vez de
-            um arquivo binário fechado, ele salva o relatório e o modelo semântico como uma
-            <strong>pasta com arquivos de texto</strong> (JSON e TMDL).
-          </p>
-          <p>
-            Essa é a peça que torna tudo possível: texto é exatamente o que o Git sabe versionar, comparar e mesclar.
+            O formato de <em>projeto</em> do Power BI Desktop. Em vez de um arquivo binário fechado,
+            salva o relatório e o modelo semântico como uma <strong>pasta de arquivos de texto</strong>
+            (JSON e TMDL). É a peça que torna tudo possível: texto é o que o Git sabe versionar.
           </p>
           <a class="card__link" href="https://learn.microsoft.com/power-bi/developer/projects/projects-overview">Documentação do PBIP <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </article>
       </div>
 
-      <h3 id="h-pbix-pbip">Diferença entre PBIX e PBIP</h3>
+      <h3 id="h-pbix-pbip">PBIX ou PBIP</h3>
       <p>
-        Essa é a distinção mais importante do guia. Os dois formatos abrem no Power BI Desktop e geram o
-        mesmo relatório — mas apenas um deles funciona bem com controle de versão.
+        A distinção mais importante do guia. Os dois formatos abrem no Power BI Desktop e geram o
+        mesmo relatório, mas só o PBIP funciona com controle de versão.
       </p>
 
       <figure class="fig">
         <div class="fig__frame">
-          <img src="assets/img/pbix-vs-pbip.svg" width="880" height="400" alt="Comparação entre PBIX, arquivo binário único, e PBIP, pasta com arquivos JSON e TMDL legíveis" loading="lazy">
+          <img src="assets/img/pbix-vs-pbip.svg" width="880" height="400"
+               alt="Comparação entre PBIX, arquivo binário único, e PBIP, pasta com arquivos JSON e TMDL legíveis"
+               loading="lazy">
         </div>
         <figcaption><i class="fa-solid fa-circle-info"></i>
-          À esquerda, o PBIX: uma caixa fechada. À direita, o PBIP: a mesma informação em arquivos de texto
-          que podem ser lidos, comparados linha a linha e revisados num Pull Request.
+          À esquerda o PBIX, uma caixa fechada. À direita o PBIP, a mesma informação em arquivos de
+          texto que podem ser comparados linha a linha.
         </figcaption>
       </figure>
 
@@ -231,12 +218,10 @@
             <tr><th>Característica</th><th>.PBIX</th><th>.PBIP</th></tr>
           </thead>
           <tbody>
-            <tr><td><strong>Formato</strong></td><td>Arquivo único binário compactado</td><td>Pasta com arquivos de texto (JSON e TMDL)</td></tr>
-            <tr><td><strong>O Git consegue comparar?</strong></td><td>Não — só sabe dizer "o arquivo mudou"</td><td>Sim — mostra linha a linha o que mudou</td></tr>
-            <tr><td><strong>Revisar uma medida DAX no PR</strong></td><td>Impossível</td><td>Natural, como revisar qualquer código</td></tr>
+            <tr><td><strong>Formato</strong></td><td>Arquivo único binário</td><td>Pasta com arquivos de texto (JSON e TMDL)</td></tr>
+            <tr><td><strong>O Git compara mudanças?</strong></td><td>Não &#8212; só sabe dizer que o arquivo mudou</td><td>Sim &#8212; mostra linha a linha</td></tr>
             <tr><td><strong>Dois analistas ao mesmo tempo</strong></td><td>Um sobrescreve o outro</td><td>Cada um numa branch, merge no fim</td></tr>
-            <tr><td><strong>Tamanho no repositório</strong></td><td>Cresce muito (cada versão é um binário novo)</td><td>Cresce pouco (só as linhas alteradas)</td></tr>
-            <tr><td><strong>Melhor uso</strong></td><td>Distribuir, arquivar, trabalho individual rápido</td><td>Trabalho em equipe, versionamento, CI/CD</td></tr>
+            <tr><td><strong>Melhor uso</strong></td><td>Distribuir e arquivar</td><td>Trabalho em equipe e versionamento</td></tr>
           </tbody>
         </table>
       </div>
@@ -244,90 +229,12 @@
       <div class="callout callout--info">
         <i class="fa-solid fa-circle-info"></i>
         <div>
-          <span class="callout__title">O PBIP não substitui o PBIX no dia a dia do usuário</span>
+          <span class="callout__title">O PBIP não substitui o PBIX no dia a dia</span>
           <p>Você continua abrindo o projeto no Power BI Desktop e publicando no Serviço normalmente.
-             A diferença é apenas <em>como o projeto é gravado em disco</em> — e isso muda tudo para a equipe.</p>
+             Muda apenas <em>como o projeto é gravado em disco</em>.</p>
         </div>
-      </div>
-
-      <h3 id="h-problema-email">O problema de trabalhar com arquivos enviados por e-mail</h3>
-      <p>
-        Toda equipe de BI já viveu esta cena. O relatório circula como anexo, cada pessoa baixa uma cópia,
-        edita, renomeia e devolve. Em poucos dias existem seis versões e ninguém sabe qual é a boa.
-      </p>
-
-      <figure class="fig">
-        <div class="fig__frame">
-          <img src="assets/img/sem-git-vs-com-git.svg" width="880" height="430" alt="Comparação entre trabalho sem Git, com vários arquivos chamados final por e-mail, e trabalho com Git, com um repositório único e histórico de commits" loading="lazy">
-        </div>
-        <figcaption><i class="fa-solid fa-circle-info"></i>
-          Comparação entre trabalho sem Git e trabalho com Git. À esquerda, o "versionamento por nome de arquivo".
-          À direita, um histórico único em que cada mudança tem autor, data e motivo.
-        </figcaption>
-      </figure>
-
-      <div class="vs">
-        <div class="vs__col vs__col--bad">
-          <h4><i class="fa-solid fa-triangle-exclamation"></i> Sem versionamento</h4>
-          <ul>
-            <li><strong>Sobrescrita silenciosa:</strong> o trabalho de um colega desaparece sem aviso.</li>
-            <li><strong>Sem rastreabilidade:</strong> não há como saber quem mudou a medida de receita.</li>
-            <li><strong>Sem volta:</strong> se a alteração quebrou o relatório, não existe versão anterior confiável.</li>
-            <li><strong>Gargalo humano:</strong> só uma pessoa pode mexer no arquivo por vez.</li>
-            <li><strong>Sem revisão:</strong> o erro só aparece depois de publicado, na frente do cliente.</li>
-            <li><strong>Risco operacional:</strong> o projeto vive no notebook de alguém.</li>
-          </ul>
-        </div>
-        <div class="vs__col vs__col--good">
-          <h4><i class="fa-solid fa-circle-check"></i> Com Git e GitHub</h4>
-          <ul>
-            <li><strong>Histórico completo:</strong> cada commit registra autor, data, arquivos e motivo.</li>
-            <li><strong>Reversão segura:</strong> volte a qualquer ponto do passado em segundos.</li>
-            <li><strong>Trabalho paralelo:</strong> branches permitem duas frentes ao mesmo tempo.</li>
-            <li><strong>Revisão por pares:</strong> nada entra em produção sem alguém olhar.</li>
-            <li><strong>Backup na nuvem:</strong> a máquina pode queimar, o projeto não se perde.</li>
-            <li><strong>Padronização:</strong> o processo é o mesmo para todos, sempre.</li>
-          </ul>
-        </div>
-      </div>
-
-      <h3 id="h-links-1">Links oficiais deste capítulo</h3>
-      <div class="links">
-        <a class="link-card" href="https://git-scm.com">
-          <span class="link-card__icon"><i class="fa-brands fa-git-alt"></i></span>
-          <span class="link-card__body">
-            <span class="link-card__title">Git — site oficial</span>
-            <span class="link-card__url">https://git-scm.com</span>
-          </span>
-          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
-        </a>
-        <a class="link-card" href="https://github.com">
-          <span class="link-card__icon"><i class="fa-brands fa-github"></i></span>
-          <span class="link-card__body">
-            <span class="link-card__title">GitHub</span>
-            <span class="link-card__url">https://github.com</span>
-          </span>
-          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
-        </a>
-        <a class="link-card" href="https://code.visualstudio.com">
-          <span class="link-card__icon"><i class="fa-solid fa-code"></i></span>
-          <span class="link-card__body">
-            <span class="link-card__title">Visual Studio Code</span>
-            <span class="link-card__url">https://code.visualstudio.com</span>
-          </span>
-          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
-        </a>
-        <a class="link-card" href="https://learn.microsoft.com/power-bi">
-          <span class="link-card__icon"><i class="fa-solid fa-chart-column"></i></span>
-          <span class="link-card__body">
-            <span class="link-card__title">Microsoft Learn — Power BI</span>
-            <span class="link-card__url">https://learn.microsoft.com/power-bi</span>
-          </span>
-          <i class="fa-solid fa-arrow-up-right-from-square link-card__go"></i>
-        </a>
       </div>
     </section>
-
     <!-- ================================================== SEÇÃO 2 -->
     <section class="section reveal" id="instalacao"
              data-label="2. Instalação e configuração inicial" data-icon="fa-solid fa-download"
@@ -2085,44 +1992,38 @@ atingimento de meta por país no mesmo painel de receita.
              versionamento de verdade — diff, revisão e merge.</p>
         </article>
         <article class="card">
-          <div class="card__icon card__icon--red"><i class="fa-solid fa-envelope-open-text"></i></div>
-          <h4>2. Nunca troque arquivos por e-mail</h4>
-          <p>Nem por WhatsApp, Teams ou pen drive. Se não passou pelo repositório, não existe.
-             O repositório é a única fonte da verdade.</p>
-        </article>
-        <article class="card">
           <div class="card__icon"><i class="fa-solid fa-code-pull-request"></i></div>
-          <h4>3. Toda mudança via Pull Request</h4>
+          <h4>2. Toda mudança via Pull Request</h4>
           <p>Inclusive as suas. Proteja a <code>main</code> nas configurações do repositório exigindo
              pelo menos uma aprovação.</p>
         </article>
         <article class="card">
           <div class="card__icon card__icon--green"><i class="fa-solid fa-rotate"></i></div>
-          <h4>4. Atualize a branch frequentemente</h4>
+          <h4>3. Atualize a branch frequentemente</h4>
           <p>Um <code>git pull origin develop</code> a cada dois dias mantém o conflito pequeno e
              administrável.</p>
         </article>
         <article class="card">
           <div class="card__icon card__icon--accent"><i class="fa-solid fa-scissors"></i></div>
-          <h4>5. Commits pequenos</h4>
+          <h4>4. Commits pequenos</h4>
           <p>Um commit = uma ideia concluída. "Criei a medida" e "ajustei o visual" são dois commits,
              não um só.</p>
         </article>
         <article class="card">
           <div class="card__icon card__icon--amber"><i class="fa-solid fa-comment-dots"></i></div>
-          <h4>6. Escreva mensagens claras</h4>
+          <h4>5. Escreva mensagens claras</h4>
           <p>A mensagem é para o colega de dentro de seis meses — que pode ser você mesmo, sem lembrar
              de nada.</p>
         </article>
         <article class="card">
           <div class="card__icon card__icon--vs"><i class="fa-solid fa-user-check"></i></div>
-          <h4>7. Use revisão por pares</h4>
+          <h4>6. Use revisão por pares</h4>
           <p>Quem revisa verifica a lógica DAX, a nomenclatura e o impacto nos visuais. Duas cabeças
              pegam erro que uma não pega.</p>
         </article>
         <article class="card">
           <div class="card__icon card__icon--gh"><i class="fa-solid fa-sun"></i></div>
-          <h4>8. Sincronize antes de começar</h4>
+          <h4>7. Sincronize antes de começar</h4>
           <p><code>git pull</code> é o primeiro comando do dia, antes de abrir o Power BI Desktop.
              Sempre.</p>
         </article>
